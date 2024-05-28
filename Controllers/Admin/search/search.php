@@ -1,11 +1,13 @@
 <?php
 
-use Core\CreateSlug;
+use Core\Slug;
 
-$config = require ("Database/Config.php");
 
-$createSlug = new CreateSlug();
-$db = new Database($config);
+use Core\Database;
+
+$db = new Database();
+
+$createSlug = new Slug();
 
 
 
@@ -59,22 +61,12 @@ if (isset($_POST["addExternalSource"])) {
     $content = trim($_POST["content"]);
     $section = $_POST["section"];
     $source = $_POST["source"];
-    $slug = trim($createSlug->index($_POST["title"]));
+    $slug = trim($createSlug->create($_POST["title"]));
     $status = "off";
     $post_at = strtotime($_POST["post_at"]);
     $image = $_POST["image"];
 
-    echo "<pre>";
-    var_dump($title);
-    var_dump($link);
-    var_dump($content);
-    var_dump($section);
-    var_dump($source);
-    var_dump($slug);
-    var_dump($post_at);
-    var_dump($image);
-    echo "</pre>";
-    $result = $db->query('INSERT INTO extposts(title, link, content, section, source, slug, status, post_at, image )
+    $result = $db->insertNewExternalPost('INSERT INTO extposts(title, link, content, section, source, slug, status, post_at, image )
                           VALUES(:title, :link, :content, :section, :source, :slug, :status, :post_at, :image)', [
         "title" => $title,
         "link" => $link,

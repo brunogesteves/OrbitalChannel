@@ -1,7 +1,7 @@
 <?php
 require "views/partials/admin/header.php";
 ?>
-<div class="h-[calc(100vh_-_184px)] flex justify-start">
+<div class="h-[calc(100vh_-_195px)] flex justify-start">
     <?php
     require "views/partials/admin/sidebar.php";
     ?>
@@ -12,7 +12,7 @@ require "views/partials/admin/header.php";
             <a class="item" data-tab="second">Externos</a>
             <a class="item" data-tab="third">Publicados</a>
         </div>
-        <div class="ui bottom attached tab segment active" data-tab="first">
+        <div class="ui bottom attached tab segment active h-[calc(100vh_-_250px)] overflow-y-auto" data-tab="first">
             <!-- First -->
             <?php
             foreach ($posts as $post): ?>
@@ -98,7 +98,7 @@ require "views/partials/admin/header.php";
                 </div>
             <?php endforeach; ?>
         </div>
-        <div class="ui bottom attached tab segment" data-tab="second">
+        <div class="ui bottom attached tab segment h-[calc(100vh_-_250px)] overflow-y-auto" data-tab="second">
             <!-- Second -->
             <?php
             foreach ($extposts as $extpost): ?>
@@ -197,7 +197,7 @@ require "views/partials/admin/header.php";
             <?php endforeach; ?>
 
         </div>
-        <div class="ui bottom attached tab segment" data-tab="third">
+        <div class="ui bottom attached tab segment h-[calc(100vh_-_250px)] overflow-y-auto" data-tab="third">
             <!-- Third -->
             <?php
             foreach ($posts as $post): ?>

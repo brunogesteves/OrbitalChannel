@@ -1,16 +1,15 @@
 <?php
-require ("../Database/Database.php");
-$config = require ("../Database/Config.php");
 
-$db = new Database($config);
-$images = $db->query("select * from images")->fetchAll();
-// var_dump($images);
+use Core\Database;
+
+$db = new Database();
+$images = $db->findAll("select * from images");
+
 
 
 
 header("Content-Type: application/json");
 
-// $res = $GalleryApi->getGallery();
 
 $list = [];
 

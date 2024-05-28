@@ -58,9 +58,11 @@
 
         <div class="text-4xl" id="timestamp"></div>
         <div class="flex flex-col items-center">
-            <form method="POST" action="components/admin/login/form.php">
-                <input type="submit" name="logout" value="Sair"
-                    class=" cursor-pointer text-xl bg-black text-white w-20 text-center mt-3 rounded-md" />
+
+            <form method="POST" action="/session/delete">
+                <button type="submit" name="_method" value="DELETE"
+                    class=" cursor-pointer text-xl bg-black text-white w-20 text-center mt-3 rounded-md">
+                    Sair</button>
             </form>
         </div>
     </header>

@@ -1,14 +1,24 @@
 <?php
-$config = require ("Database/Config.php");
-$db = new Database($config);
-$ads = $db->query("SELECT * FROM ads ORDER BY starts_at asc")->fetchAll();
-
-date_default_timezone_set('America/Sao_Paulo');
-
-$dtMinTime = new DateTime(date('m/d/Y h:i:s a', time()));
-$minTime = $dtMinTime->format('Y-m-d\TH:i');
 
 
+use Core\Database;
+
+$db = new Database();
+
+// $ads = $db->findAll("SELECT * FROM ads ORDER BY starts_at asc");
+
+// date_default_timezone_set('America/Sao_Paulo');
+
+// $dtMinTime = new DateTime(date('m/d/Y h:i:s a', time()));
+// $minTime = $dtMinTime->format('Y-m-d\TH:i');
+
+$name = $_POST["adName"];
+$position = $_POST["adPosition"];
+$status = "off";
+$file = $_POST["adName"];
+$link = $_POST["adLink"];
+$starts_at = strtotime($_POST["adStarts_at"]);
+$finishs_at = strtotime($_POST["adFinishs_at"]);
 
 
 
@@ -37,26 +47,20 @@ if ($finishs_at < $starts_at) {
     $errors["adFinalDate"] = "Data Final é maior que data Inicial";
 }
 
-$name = $_POST["adName"];
-$position = $_POST["adPosition"];
-$status = "off";
-$file = $_POST["adName"];
-$link = $_POST["adLink"];
-$starts_at = strtotime($_POST["adStarts_at"]);
-$finishs_at = strtotime($_POST["adFinishs_at"]);
+
 
 $fileName = $_FILES["adFile"]["name"];
 $tempName = $_FILES["adFile"]["tmp_name"];
 $fileSize = $_FILES["adFile"]['size'];
 $fileError = $_FILES["adFile"]['error'];
 
-
+var_dump($errors);
 $separateFilename = explode('.', $fileName);
 $ext = $separateFilename[1];
 $target = "images/ads/" . $file . "." . $ext;
 if (empty($errors)) {
     $file = $file . "." . $ext;
-    $result = $db->query('INSERT INTO ads(name, position, status, file, link, starts_at, finishs_at)
+    $result = $db->insert('INSERT INTO ads(name, position, status, file, link, starts_at, finishs_at)
             VALUES(:name, :position, :status, :file, :link, :starts_at, :finishs_at)', [
         "name" => $name,
         "position" => $position,
@@ -72,6 +76,6 @@ if (empty($errors)) {
         }
     }
 } else {
-    require "views/admin/ads.php";
+    require view("/admin/ads.php");
 
 }

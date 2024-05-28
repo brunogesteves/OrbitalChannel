@@ -1,11 +1,9 @@
 <?php
 require "views/partials/admin/header.php";
 ?>
-<div class="h-[calc(100vh_-_184px)] flex justify-start">
+<div class="h-[calc(100vh_-_195px)] flex justify-start">
     <?php
     require "views/partials/admin/sidebar.php";
-    // var_dump("front");
-    // var_dump($openModalIsValid);
     ?>
 
     <main class="w-full">
@@ -18,7 +16,7 @@ require "views/partials/admin/header.php";
             <button class="openNewModalbtn text-white bg-black my-7 p-2 ml-4 rounded-lg text-xl">Adicionar
                 Anúncio</button>
 
-            <div class="flex flex-col h-auto ads">
+            <div class="flex flex-col h-[calc(100vh_-_340px)] ads overflow-y-auto">
                 <?php
                 foreach ($ads as $ad): ?>
                     <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1 ">
@@ -39,7 +37,7 @@ require "views/partials/admin/header.php";
                             <?= $ad["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                         </p>
                         <div class="flex gap-x-1">
-                            <form method="GET">
+                            <form method="POST" action="/admin/ads/unique">
                                 <button type="submit" name="getUniqueId" value="<?= $ad["id"] ?>"
                                     class="bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                                     Verificar
@@ -155,7 +153,7 @@ require "views/partials/admin/header.php";
                 class="flex flex-col items-center gap-y-5 ">
                 <div class="flex justify-center gap-x-2">
                     <span class="text-xl">nome: </span>
-                    <input type="text" disabled name="adName" class=" w-96 border-2 border-black rounded-lg"
+                    <input type="text" disabled class=" w-96 border-2 border-black rounded-lg"
                         value="<?= $uniqueAd["name"] ?>" />
                 </div>
                 <span class=" text-red-500 font-bold -mt-3">
@@ -165,11 +163,11 @@ require "views/partials/admin/header.php";
                 </span>
                 <div class="flex justify-center gap-x-2">
                     <span class="text-xl">Imagem:</span>
-                    <input type="file" required name="adFile" id="adFileUpload" accept=".jpg, .jpeg, .png" />
+                    <input type="file" name="adFile" id="adFileUpload" accept=".jpg, .jpeg, .png" />
                 </div>
                 <div id="previewInputAdImage">
                     <?php if (isset($uniqueAd["file"])): ?>
-                        <img src="../images/ads/<?= $uniqueAd["file"] ?>" class=" thumb-image w-48 " />`
+                        <img src="/images/ads/<?= $uniqueAd["file"] ?>" class=" thumb-image w-48 " />`
                     <?php endif; ?>
                 </div>
                 <div class=" flex justify-center gap-x-2">
@@ -218,7 +216,8 @@ require "views/partials/admin/header.php";
                         <?= $errorsUpdate["adFinishs_at"] ?>
                     <?php endif; ?>
                 </span>
-                <input type="hidden" name="updateAdId" value="<?= $ad["id"] ?>" />
+                <input type="hidden" name="updateAdId" value="<?= $uniqueAd[0] ?>" />
+                <input type="hidden" name="adName" value="<?= $uniqueAd["name"] ?>" />
                 <div class="flex gap-x-3 mt-4">
                     <button class="closeUpdateAdModalbtn text-white bg-red-500 close p-2 rounded-md text-sm font-bold">
                         Fechar</button>

@@ -1,10 +1,9 @@
 <?php
-use Core\CreateSlug;
+use Core\Slug;
+use Core\Database;
 
-$config = require ("Database/Config.php");
-
-$createSlug = new CreateSlug();
-$db = new Database($config);
+$db = new Database();
+$createSlug = new Slug();
 
 
 date_default_timezone_set('America/Sao_Paulo');
@@ -17,15 +16,12 @@ $link = "";
 $content = trim($_POST["content"]);
 $section = $_POST["section"];
 $source = "Orbital Channel";
-$slug = trim($createSlug->index($_POST["title"]));
+$slug = trim($createSlug->create($_POST["title"]));
 $status = "off";
 $post_at = $_POST["post_at"];
 $image_id = (int) $_POST["image_id"];
 
-// echo "<pre>";
-// var_dump("parou aqui");
-// var_dump($_POST);
-// echo "</pre>";
+
 
 if (strlen($title) == 0) {
     $errors["title"] = "Digite um Título";
@@ -41,7 +37,8 @@ if (strlen($content) == 0) {
 }
 if (empty($errors)) {
 
-    $result = $db->query('INSERT INTO posts(title , link , content , section , source, slug , status ,post_at ,image_id )
+
+    $result = $db->insert('INSERT INTO posts(title , link , content , section , source, slug , status ,post_at ,image_id )
                           VALUES(:title , :link , :content , :section , :source, :slug , :status ,:post_at ,:image_id)', [
         "title" => $title,
         "link" => $link,
@@ -54,8 +51,8 @@ if (empty($errors)) {
         "image_id" => $image_id
     ]);
     if ($result) {
-        $result = $db->query("SELECT LAST_INSERT_ID()");
-        $lastId = $result->fetchColumn();
+        $lastId = $db->lastId("SELECT LAST_INSERT_ID()");
+        // $lastId = $result->fetchColumn();
         header('Location: ' . "/admin/editar?id=$lastId");
 
     }

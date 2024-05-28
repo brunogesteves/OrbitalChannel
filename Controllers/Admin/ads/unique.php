@@ -1,12 +1,19 @@
 <?php
-$config = require ("Database/Config.php");
-$db = new Database($config);
 
-var_dump($_POST);
+use Core\Database;
+
+$db = new Database();
+
 if ($_POST["getUniqueId"] > 0) {
     $id = (int) $_POST['getUniqueId'];
-    $uniqueAd = $db->query("SELECT * FROM ads WHERE id=$id")->fetch();
-    $openModalIsValid = true;
-    header('Location: ' . "/admin/ads?=$uniqueAd");
+    // var_dump($_POST);
+    $uniqueAd = $db->find("SELECT * FROM ads WHERE id=$id");
+    array_push($uniqueAd, $id);
+
+    $res = http_build_query($uniqueAd);
+
+    // $openModalIsValid = true;
+
+    header('Location: ' . "/admin/ads?=$res");
 
 }

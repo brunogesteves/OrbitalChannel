@@ -18,7 +18,14 @@ $(document).ready(() => {
     }
   });
 
-  console.log();
+  const urlToStrip = $(location).attr("href");
+
+  function stripUrl(urlToStrip) {
+    let stripped = urlToStrip.split("?")[0];
+    return stripped;
+  }
+
+  window.history.replaceState(null, "", stripUrl(urlToStrip));
 
   if ($("#openModalIsValid").val()) {
     $(`.updateAdModal`).show();

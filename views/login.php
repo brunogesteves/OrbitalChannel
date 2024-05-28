@@ -1,51 +1,42 @@
-<div class="flex justify-center items-center flex-col h-[calc(100vh_-_100px)]">
-    <div class="scrollable m-3 max-sm:m-0 ">
-        <?php
-        require ("partials/header.php");
-        ?>
-    </div>
-    <main class="scrollable h-auto max-sm:mx-0 mx-3 ">
-        <div class="flex flex-col justify-evenly items-center h-auto gap-y-3">
+<!DOCTYPE html>
+<html>
 
-            <form method="post" id="async_form" autocomplete="off" novalidate="novalidate"
-                action="components/admin/login/form.php" class="max-lg:hidden">
-                <div class="control-wrapper ">
-                    <div class="input-wrapper">
-                        <input id="email" class="input border-2 border-black rounded-md mb-5 pl-3" autocomplete="off"
-                            type="email" name="email" placeholder="email" value="email@email.com" />
-                    </div>
-                </div>
-                <div class="control-wrapper">
-                    <div class="input-wrapper">
-                        <input id="password" class="input border-2 border-black rounded-md mb-5 pl-3" autocomplete="off"
-                            type="password" name="password" placeholder="
-                            senha" value="1234" />
-                    </div>
-                </div>
-                <div class="control-wrapper">
-                    <button type="submit"
-                        class="cursor-pointer text-xl bg-black text-white w-20 text-center my-3 rounded-md">Entrar</button>
-                </div>
-                <?php
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE" />
+    <meta http-equiv="PRAGMA" content="NO-CACHE" />
 
 
-                echo getenv('MAIL_FROM_ADDRESS');
+    <script src="/scripts/tailwind.js"></script>
 
 
-                ?>
-                <div class="text-red-500">
+    <link rel="shortcut icon" href="/images/logo.ico" type="image/x-icon" />
 
-                    <?= empty($_COOKIE["message"]) ? "" : $_COOKIE["message"] ?>
-                </div>
-            </form>
+
+    <title>Orbital Channel - Login</title>
+</head>
+
+<body>
+    <header class="flex justify-center items-center py-3 gap-3 max-sm:hidden">
+        <div class="w-1/4 flex justify-center h-full">
+            <a href="/"><img src="/images/logo.jpg" alt="logo" class="h-full" /></a>
         </div>
+    </header>
+    <main class=" flex justify-center items-center h-[calc(100vh_-_265px)] max-sm:mx-0">
+        <form method="post" action="session/store" class="max-lg:hidden flex flex-col justify-center items-center">
+            <input id="email" class="input border-2 border-black rounded-md mb-5 pl-3" autocomplete="off" type="email"
+                name="email" placeholder="Digite o Email" value="email@email.com" />
+            <input id="password" class="input border-2 border-black rounded-md mb-5 pl-3" autocomplete="off"
+                type="password" name="password" placeholder="Digite a senha" value="1234" />
+            <button type="submit"
+                class="cursor-pointer text-xl bg-black text-white w-20 text-center my-3 rounded-md">Entrar</button>
+            <div class="text-red-500 font-bold"><?= $warning ?></div>
+        </form>
     </main>
-</div>
+    <footer class="bg-black text-white flex flex-col justify-center items-center  py-3 z-50">
+        <img src="/images/logo.jpg" alt="logo" class="rounded-full w-10" />
 
-<?php
-require ("partials/footer.php");
-?>
-
+        <span> Orbital Channel - Direitos Reservados</span>
+    </footer>
 </body>
-
-</html>

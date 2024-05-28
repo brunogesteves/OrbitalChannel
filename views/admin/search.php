@@ -2,14 +2,13 @@
 require "views/partials/admin/header.php";
 ?>
 
-<div class="h-[calc(100vh_-_167px)] flex justify-start">
+<div class="h-[calc(100vh_-_195px)] flex justify-start">
     <?php
     require "views/partials/admin/sidebar.php";
     // echo "<pre>";
     // var_dump($results[0]);
     // echo "</pre>";
     ?>
-    <div class="dd">nao funcionando</div>
 
     <main class="flex flex-col h-auto overflow-y-auto w-full">
         <div class="flex justify-start items-center w-full flex-col h-full">
@@ -30,7 +29,7 @@ require "views/partials/admin/header.php";
                     </button>
                 </form>
             </div>
-            <div class=" h-auto overflow-y-auto w-full ">
+            <div class=" h-auto overflow-y-auto w-full h-[calc(100vh_-_250px)] overflow-y-auto">
                 <?php
                 foreach ($results as $result): ?>
                     <div class="flex justify-between items-center h-auto gap-x-3 p-3">

@@ -1,12 +1,13 @@
 <?php
 
-use Core\CreateSlug;
+use Core\Slug;
+use Core\Database;
 
-$createSlug = new CreateSlug();
-$config = require ("Database/Config.php");
-$db = new Database($config);
+$createSlug = new Slug();
+$db = new Database();
 
 
+$errors = [];
 
 
 $id = trim($_POST["id"]);
@@ -15,54 +16,52 @@ $link = "";
 $content = trim($_POST["content"]);
 $section = $_POST["section"];
 $source = "Orbital Channel";
-$slug = trim($createSlug->index($_POST["title"]));
+$slug = trim($createSlug->create($_POST["title"]));
 $status = "off";
-$post_at = (int) $_POST["post_at"];
+$post_at = $_POST["post_at"] == NULL ? strtotime($_POST["new_post_at"]) : $_POST["post_at"];
 $image_id = (int) $_POST["image_id"];
 
 
-// echo "<pre>";
-// var_dump($_POST);
-// echo "</pre>";
+
 if (strlen($title) == 0) {
     $errors["title"] = "Digite um Título";
 }
-if ($post_at) {
-    $errors["date"] = "Escolha uma data";
-}
-if ($image_id == 0) {
-    $errors["thumb"] = "Escolha um Thumb";
-}
-if (strlen($content) == 0) {
-    $errors["content"] = "Crie o conteúdo";
-}
-
-// echo "<pre>";
-// var_dump($_POST);
-// var_dump($id);
-// echo "</pre>";
 
 if (empty($errors)) {
-    $result = $db->query("UPDATE posts SET 
-        title='$title',
-        link='$link',
-        content='$content',
-        section='$section',
-        source='$source',
-        slug='$slug',
-        status='$status',
-        post_at= $post_at,
-        image_id=$image_id 
-        WHERE id=$id");
+    echo "<pre>";
+
+    var_dump("entrou db");
+    // var_dump("title: " . $title);
+    // var_dump("link: " . $link);
+    // var_dump("content: " . $content);
+    // var_dump("section: " . $section);
+    // var_dump("source: " . $source);
+    // var_dump("slug: " . $slug);
+    // var_dump("status: " . $status);
+    // var_dump($_POST["post_at"]);
+    // var_dump($_POST["new_post_at"]);
+    // var_dump($post_at);
+    // var_dump("image_id: " . $image_id);
+    // var_dump("id: " . $id);
+    // echo "</pre>";
+
+    var_dump(strlen($content) = "");
+    // $result = $db->update("UPDATE posts SET 
+    //     title='$title',
+    //     link='$link',
+    //     content='$content',
+    //     section='$section',
+    //     source='$source',
+    //     slug='$slug',
+    //     status='$status',
+    //     post_at= $post_at,
+    //     image_id=$image_id 
+    //     WHERE id=$id");
 
 
     if ($result) {
-        // var_dump("parou aqui");
         header('Location: ' . "/admin/editar?id=$id");
     }
-
-} else {
-    require "views/admin/edit.php";
 
 }
 

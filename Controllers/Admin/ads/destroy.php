@@ -1,10 +1,12 @@
 <?php
-$config = require ("Database/Config.php");
-$db = new Database($config);
+
+use Core\Database;
+
+$db = new Database();
 
 
 if ($_POST["deleteAdId"]) {
     $id = $_POST["deleteAdId"];
-    $result = $db->query("DELETE FROM ads WHERE id=$id");
-    header('Location: ' . "/admin");
+    $result = $db->delete("DELETE FROM ads WHERE id=$id");
+    header('Location: ' . "/admin/ads");
 }

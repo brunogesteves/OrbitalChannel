@@ -3,7 +3,7 @@ require "views/partials/admin/header.php";
 ?>
 
 
-<div class="h-[calc(100vh_-_167px)] flex justify-start">
+<div class="h-[calc(100vh_-_195px)] flex justify-start">
     <?php
     require "views/partials/admin/sidebar.php";
     ?>
@@ -16,7 +16,7 @@ require "views/partials/admin/header.php";
             </form>
             <div id="previewInputImage"> </div>
         </div>
-        <div class="flex justify-around flex-wrap overflow-y-auto h-[calc(100vh_-_167px)]">
+        <div class="flex justify-around flex-wrap h-[calc(100vh_-_250px)] overflow-y-auto">
             <?php
             foreach ($images as $image): ?>
                 <div class="cursor-pointer w-1/6 mr-3 relative">

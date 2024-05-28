@@ -2,24 +2,23 @@
 
 $uri = parse_url(str_replace("orbital/", "", $_SERVER['REQUEST_URI']))['path'];
 $slug = str_replace("/", "", $uri);
-// $slug = "veja-os-melhores-ralis-do-brasil-na-liga-das-nacoes-e-vote-em-seu-preferido";
 
-$config = require ("Database/Config.php");
+use Core\Database;
 
-$db = new Database($config);
-$post = $db->query("SELECT p.*, i.name as image FROM posts p INNER JOIN images i ON i.id = p.image_id WHERE slug='$slug'")->fetch();
-$extpost = $db->query("SELECT * FROM extposts WHERE slug='$slug'")->fetch();
-$morePosts = $db->query("SELECT p.*, i.name as image FROM posts p INNER JOIN images i ON i.id = p.image_id ORDER BY RAND() LIMIT 3")->fetchAll();
+$db = new Database();
 
-// echo "<pre>";
+$post = $db->find("SELECT p.*, i.name as image FROM posts p INNER JOIN images i ON i.id = p.image_id WHERE slug='$slug'");
+$extpost = $db->find("SELECT * FROM extposts WHERE slug='$slug'");
+$morePosts = $db->find("SELECT p.*, i.name as image FROM posts p INNER JOIN images i ON i.id = p.image_id ORDER BY RAND() LIMIT 3");
 
-// var_dump($post);
-// var_dump($content["image"]);
-// var_dump($morePosts[2]["image"]);
-// echo "</pre>";
+
 
 if (empty($post) && empty($extpost)) {
-    require "views/abort.php";
+    require view("/abort.php", [
+        "post" => $post,
+        "extpost" => $extpost,
+        "morePosts" => $morePosts
+    ]);
 
 } else {
     if (!empty($post)) {
@@ -31,5 +30,5 @@ if (empty($post) && empty($extpost)) {
 
     }
 
-    require "views/post.php";
+    require view("post.php");
 }

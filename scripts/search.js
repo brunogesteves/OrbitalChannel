@@ -3,7 +3,6 @@ $(document).ready(() => {
 
   function stripUrl(urlToStrip) {
     let stripped = urlToStrip.split("?")[0];
-
     return stripped;
   }
 

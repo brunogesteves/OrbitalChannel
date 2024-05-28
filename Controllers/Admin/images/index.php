@@ -1,12 +1,13 @@
 <?php
 
-$config = require ("Database/Config.php");
-$db = new Database($config);
-$images = $db->query("select * from images")->fetchAll();
+
+use Core\Database;
+
+$db = new Database();
+$images = $db->findAll("select * from images");
 
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-
 
     if (isset($_POST["imageId"])) {
         $imageId = $_POST["imageId"];
@@ -30,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             }
         }
         if (move_uploaded_file($tempName, $target)) {
-            $db->query('INSERT INTO images(name) VALUES(:fileName)', [
+            $db->insert('INSERT INTO images(name) VALUES(:fileName)', [
                 "fileName" => $fileName
             ]);
 
@@ -41,4 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 }
 
-require "views/admin/images.php";
+require view("/admin/images.php", [
+    "images" => $images
+]);

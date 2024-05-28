@@ -1,7 +1,10 @@
 <?php
-$config = require ("Database/Config.php");
-$db = new Database($config);
-$ads = $db->query("SELECT * FROM ads ORDER BY starts_at asc")->fetchAll();
+
+use Core\Database;
+
+$db = new Database();
+
+$ads = $db->findAll("SELECT * FROM ads ORDER BY starts_at asc");
 
 date_default_timezone_set('America/Sao_Paulo');
 
@@ -36,7 +39,7 @@ if ($finishs_at < $starts_at) {
     $errors["adFinalDate"] = "Data Final é maior que data Inicial";
 }
 
-$id = (int) $_POST["updateAd"];
+$id = (int) $_POST["updateAdId"];
 $name = $_POST["adName"];
 $position = $_POST["adPosition"];
 $status = "off";
@@ -45,34 +48,40 @@ $link = $_POST["adLink"];
 $starts_at = strtotime($_POST["adStarts_at"]);
 $finishs_at = strtotime($_POST["adFinishs_at"]);
 
-$fileName = $_FILES["adFile"]["name"];
-$tempName = $_FILES["adFile"]["tmp_name"];
-$fileSize = $_FILES["adFile"]['size'];
-$fileError = $_FILES["adFile"]['error'];
 
-
-$separateFilename = explode('.', $fileName);
-$ext = $separateFilename[1];
-$target = "images/ads/" . $file . "." . $ext;
 if (empty($errors)) {
-    $file = $file . "." . $ext;
+
     $result = $db->query("UPDATE ads SET
-            name = $name,
-            position = $position,
-            status = $status,
-            file = $file,
-            link = $link,
+            name = '$name',
+            position = '$position',
+            status = '$status',
+            link = '$link',
             starts_at = $starts_at,
             finishs_at = $finishs_at
-            WHERE id=$id
-        ");
+            WHERE id=$id");
     if ($result) {
-        if (move_uploaded_file($tempName, $target)) {
+
+        if ((strlen($_FILES["adFile"]["name"]) != 0)) {
+
+            $fileName = $_FILES["adFile"]["name"];
+            $tempName = $_FILES["adFile"]["tmp_name"];
+            $fileSize = $_FILES["adFile"]['size'];
+            $fileError = $_FILES["adFile"]['error'];
+
+            $separateFilename = explode('.', $fileName);
+            $ext = $separateFilename[1];
+            $target = "images/ads/" . $_POST["adName"] . ".jpg";
+            if (move_uploaded_file($tempName, $target)) {
+                header('Location: ' . "/admin/ads");
+            }
+        } else {
             header('Location: ' . "/admin/ads");
         }
+
+
     }
 } else {
-    require "views/admin/ads.php";
+    require view("/admin/ads.php");
 
 }
 

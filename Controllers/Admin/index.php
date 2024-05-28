@@ -1,10 +1,17 @@
 <?php
-$config = require ("Database/Config.php");
-$db = new Database($config);
-$images = $db->query("select * from images")->fetchAll();
 
-$posts = $db->query("select p.*, i.name as image from posts p inner join images i on i.id = p.image_id ORDER BY p.post_at asc")->fetchAll();
-$extposts = $db->query("select * from extposts")->fetchAll();
+use Core\Database;
+use Core\Images;
 
+$db = new Database();
+$getImages = new Images();
 
-require "views/admin/index.php";
+$images = $getImages->allImages();
+$posts = $db->findAll("select p.*, i.name as image from posts p inner join images i on i.id = p.image_id ORDER BY p.post_at asc");
+$extposts = $db->findAll("select * from extposts");
+
+require view("/admin/index.php", [
+    "images" => $images,
+    "posts" => $posts,
+    "extposts" => $extposts
+]);
