@@ -1,7 +1,11 @@
 <?php
 use Core\Database;
+use Core\Images;
 
 $db = new Database();
+$getImages = new Images();
+
+$images = $getImages->allImages();
 
 $ads = $db->findAll("SELECT * FROM ads ORDER BY starts_at asc");
 
@@ -17,8 +21,11 @@ if ($uniqueAd) {
 
 }
 
-
 require view("/admin/ads.php", [
     "ads" => $ads,
-    "minTime" => $minTime
+    "minTime" => $minTime,
+    "openModalIsValid" => $openModalIsValid,
+    "images" => $images,
+
+
 ]);

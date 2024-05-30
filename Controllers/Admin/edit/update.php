@@ -17,7 +17,6 @@ $content = trim($_POST["content"]);
 $section = $_POST["section"];
 $source = "Orbital Channel";
 $slug = trim($createSlug->create($_POST["title"]));
-$status = "off";
 $post_at = $_POST["post_at"] == NULL ? strtotime($_POST["new_post_at"]) : $_POST["post_at"];
 $image_id = (int) $_POST["image_id"];
 
@@ -37,26 +36,26 @@ if (empty($errors)) {
     // var_dump("section: " . $section);
     // var_dump("source: " . $source);
     // var_dump("slug: " . $slug);
-    // var_dump("status: " . $status);
-    // var_dump($_POST["post_at"]);
-    // var_dump($_POST["new_post_at"]);
-    // var_dump($post_at);
+
+    var_dump($_POST["post_at"]);
+    var_dump($_POST["new_post_at"]);
+    var_dump($post_at);
     // var_dump("image_id: " . $image_id);
     // var_dump("id: " . $id);
-    // echo "</pre>";
+    echo "</pre>";
 
-    var_dump(strlen($content) = "");
-    // $result = $db->update("UPDATE posts SET 
-    //     title='$title',
-    //     link='$link',
-    //     content='$content',
-    //     section='$section',
-    //     source='$source',
-    //     slug='$slug',
-    //     status='$status',
-    //     post_at= $post_at,
-    //     image_id=$image_id 
-    //     WHERE id=$id");
+
+    $result = $db->update("UPDATE posts SET 
+        title='$title',
+        link='$link',
+        content='$content',
+        section='$section',
+        source='$source',
+        slug='$slug',
+        post_at= $post_at,
+        image_id=$image_id 
+        WHERE id=$id");
+    var_dump("saiu db");
 
 
     if ($result) {

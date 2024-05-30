@@ -33,8 +33,8 @@ require ("partials/header.php");
                 </div>
                 <!-- end share -->
                 <div class="flex justify-center">
-                    <img src="/images/<?= $content["image"] ?>" alt="<?= $content["image"] ?>"
-                        class="w-96 h-auto self-center" />
+                    <img src="<?= $content["source"] == "Orbital Channel" ? '/images/' . $content["image"] : $content["image"] ?>"
+                        class="w-[652px] h-[419px] h-auto self-center" />
                 </div>
 
                 <!-- begin speechtotext -->
@@ -76,10 +76,10 @@ require ("partials/header.php");
     <div class="w-1/6 flex justify-center flex flex-col gap-y-5 text-center">
         <?php foreach ($morePosts as $morePost): ?>
             <div>
-                <a href="<?= $morePost["slug"] ?>">
+                <a href="/<?= $morePost["slug"] ?>">
                     <img src="./images/<?= $morePost["image"] ?>" />
                 </a>
-                <p><?= $morePost["title"] ?></p>
+                <p class=" text-xl font-bold my-5"><?= $morePost["title"] ?></p>
             </div>
         <?php endforeach ?>
 

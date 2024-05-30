@@ -5,9 +5,7 @@ require "views/partials/admin/header.php";
 <div class="h-[calc(100vh_-_195px)] flex justify-start">
     <?php
     require "views/partials/admin/sidebar.php";
-    // echo "<pre>";
-    // var_dump($results[0]);
-    // echo "</pre>";
+
     ?>
 
     <main class="flex flex-col h-auto overflow-y-auto w-full">
@@ -38,14 +36,15 @@ require "views/partials/admin/header.php";
                             <?= $result["title"] ?>
                         </p>
                         <div class="flex gap-x-5">
-                            <button class="openModal bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white m-5">
+                            <button
+                                class="openExternalInfoModalbtn bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white m-5">
                                 Verificar
                             </button>
                         </div>
                     </div>
                     <!-- modal -->
                     <div
-                        class="ui modal two column grid infoModal absolute top-[300px] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        class="ui modal two column grid ExternalInfoModal absolute top-[300px] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                         <div class="header">
                             <?= $result["title"] ?>
                         </div>
@@ -71,7 +70,7 @@ require "views/partials/admin/header.php";
                         <div class="  flex justify-end items-center gap-x-10 ">
                             <div class="flex justify-end items-start w-100 p-3 h-14">
                                 <button type="button"
-                                    class="closemodal bg-red-600 hover:bg-red-700 px-3 h-full  rounded text-white mr-5">
+                                    class="closeExternalInfoModalbtn bg-red-600 hover:bg-red-700 px-3 h-full  rounded text-white mr-5">
                                     Cancelar
                                 </button>
                                 <form method="POST" action="/admin/procurar/search" class="flex gap-x-5">
@@ -102,7 +101,7 @@ require "views/partials/admin/header.php";
                 <?php endforeach; ?>
             </div>
     </main>
-    <script src="/scripts/search.js" defer></script>
+    <script src="/scripts/search.js"></script>
 
 
 </div>

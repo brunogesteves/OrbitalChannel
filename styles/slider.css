@@ -1,7 +1,8 @@
 #slider {
-  width: 100%;
-  height: 500px;
+  /* width: 100%;
+  height: 10000px; */
   overflow: hidden;
+  position: relative;
 }
 
 .slideComputer {
@@ -12,5 +13,51 @@
 
 .slideComputer img {
   width: 100%;
-  height: 100%;
+  height: fit-content;
+}
+
+.prev {
+  position: absolute;
+  left: 0px;
+  top: 45%;
+  z-index: 999;
+}
+
+.next {
+  position: absolute;
+  right: 10px;
+  top: 45%;
+  z-index: 999;
+}
+
+.pushToLeft {
+  position: absolute;
+  z-index: 2;
+
+  animation: push 3s;
+}
+
+.toBack {
+  position: absolute;
+  /* z-index: -1; */
+  /* visibility: hidden; */
+}
+
+@keyframes push {
+  0% {
+    transform: translateX(100%);
+    z-index: 2;
+  }
+  100% {
+    transform: translateX(0%);
+    z-index: 2;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+}
+#slider {
+  width: 100%;
+
+  height: 300px;
 }

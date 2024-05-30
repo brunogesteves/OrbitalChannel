@@ -9,16 +9,13 @@ $db = new Database();
 
 $post = $db->find("SELECT p.*, i.name as image FROM posts p INNER JOIN images i ON i.id = p.image_id WHERE slug='$slug'");
 $extpost = $db->find("SELECT * FROM extposts WHERE slug='$slug'");
-$morePosts = $db->find("SELECT p.*, i.name as image FROM posts p INNER JOIN images i ON i.id = p.image_id ORDER BY RAND() LIMIT 3");
+$autopost = $db->find("SELECT * FROM autoposts WHERE slug='$slug'");
+$morePosts = $db->findAll("SELECT p.*, i.name as image FROM posts p INNER JOIN images i ON i.id = p.image_id ORDER BY RAND() LIMIT 3");
 
 
 
-if (empty($post) && empty($extpost)) {
-    require view("/abort.php", [
-        "post" => $post,
-        "extpost" => $extpost,
-        "morePosts" => $morePosts
-    ]);
+if (empty($post) && empty($extpost) && empty($autopost)) {
+    require view("/abort.php", );
 
 } else {
     if (!empty($post)) {
@@ -30,5 +27,13 @@ if (empty($post) && empty($extpost)) {
 
     }
 
-    require view("post.php");
+    if (!empty($autopost)) {
+        $content = $autopost;
+
+    }
+
+    require view("post.php", [
+        "content" => $content,
+        "morePosts" => $morePosts
+    ]);
 }

@@ -1,9 +1,10 @@
 <?php
 require "views/partials/admin/header.php";
 ?>
-<div class="h-[calc(100vh_-_195px)] flex justify-start">
+<div class="h-[calc(100vh_-_198px)] flex justify-start">
     <?php
     require "views/partials/admin/sidebar.php";
+
     ?>
 
     <main class="w-full">
@@ -16,7 +17,7 @@ require "views/partials/admin/header.php";
             <button class="openNewModalbtn text-white bg-black my-7 p-2 ml-4 rounded-lg text-xl">Adicionar
                 Anúncio</button>
 
-            <div class="flex flex-col h-[calc(100vh_-_340px)] ads overflow-y-auto">
+            <div class="flex flex-col h-[calc(100vh_-_350px)] ads overflow-y-auto">
                 <?php
                 foreach ($ads as $ad): ?>
                     <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1 ">
@@ -153,8 +154,7 @@ require "views/partials/admin/header.php";
                 class="flex flex-col items-center gap-y-5 ">
                 <div class="flex justify-center gap-x-2">
                     <span class="text-xl">nome: </span>
-                    <input type="text" disabled class=" w-96 border-2 border-black rounded-lg"
-                        value="<?= $uniqueAd["name"] ?>" />
+                    <input type="text" disabled class=" w-96 border-2 border-black rounded-lg" value="<?= $ad["name"] ?>" />
                 </div>
                 <span class=" text-red-500 font-bold -mt-3">
                     <?php if (isset($errorsUpdate["adName"])): ?>
@@ -176,6 +176,8 @@ require "views/partials/admin/header.php";
                         <option value="none">Selecione uma posição</option>
                         <option value="mobile" <?php if ($uniqueAd["position"] == "mobile"): ?>selected<?php endif; ?>>
                             Mobile</option>
+                        <option value="front" <?php if ($uniqueAd["position"] == "front"): ?>selected<?php endif; ?>>
+                            Frente</option>
                         <option value="front" <?php if ($uniqueAd["position"] == "front"): ?>selected<?php endif; ?>>
                             Frente</option>
                     </select>

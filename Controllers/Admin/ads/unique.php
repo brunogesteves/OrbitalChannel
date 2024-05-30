@@ -12,7 +12,7 @@ if ($_POST["getUniqueId"] > 0) {
 
     $res = http_build_query($uniqueAd);
 
-    // $openModalIsValid = true;
+    $openModalIsValid = true;
 
     header('Location: ' . "/admin/ads?=$res");
 

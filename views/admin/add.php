@@ -2,7 +2,7 @@
 require "views/partials/admin/header.php";
 ?>
 
-<div class="h-[calc(100vh_-_167px)] flex justify-start">
+<div class="h-[calc(100vh_-_198px)] flex justify-start">
     <?php
     require "views/partials/admin/sidebar.php";
     ?>

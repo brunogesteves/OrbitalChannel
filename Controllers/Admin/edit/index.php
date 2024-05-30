@@ -17,6 +17,7 @@ $post = $db->find("SELECT p.*, i.name as image FROM posts p INNER JOIN images i 
 
 $scheduled = (new DateTime(date("Y-m-d h:i ", $post["post_at"])))->format('Y-m-d\TH:i');
 
+
 $minTime = (new DateTime(date('m/d/Y h:i:s a', time())))->format('Y-m-d\TH:i');
 
 $isDateTimeDisabled = date('m/d/Y h:i:s a', time()) < date("Y-m-d h:i ", $post_at);
@@ -26,7 +27,7 @@ $isDateTimeDisabled = date('m/d/Y h:i:s a', time()) < date("Y-m-d h:i ", $post_a
 require view("/admin/edit.php", [
     "post" => $post,
     "id" => $id,
-
+    "images" => $images,
     "scheduled" => $scheduled,
     "minTime" => $minTime,
     "isDateTimeDisabled" => $isDateTimeDisabled

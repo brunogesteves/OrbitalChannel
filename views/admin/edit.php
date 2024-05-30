@@ -2,7 +2,7 @@
 require "views/partials/admin/header.php";
 ?>
 
-<div class="h-[calc(100vh_-_167px)] flex justify-start">
+<div class="h-[calc(100vh_-_198px)] flex justify-start">
     <?php
     require "views/partials/admin/sidebar.php";
     ?>
@@ -21,10 +21,10 @@ require "views/partials/admin/header.php";
                             <div class="h-10 mb-1 text-red-500 font-bold"><?= $errors["title"] ?> </div>
                         <?php endif; ?>
 
-                        <input type="datetime-local" name="new_post_at" id="schedule_time" min="<?= $minTime ?>"                         
+                        <input type="datetime-local" name="new_post_at" id="schedule_time" min="<?= $minTime ?>"
                             value="<?= $scheduled ?>">                        
 
-                            <?php if(!$isDateTimeDisabled):?>
+                            <?php if($isDateTimeDisabled):?>
                             <input type="hidden" name="post_at" value="<?= $post["post_at"] ?>" />
                         <?php endif;?>
 

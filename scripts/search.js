@@ -8,14 +8,14 @@ $(document).ready(() => {
 
   window.history.replaceState(null, "", stripUrl(urlToStrip));
 
-  $(".openModal").on("click", function () {
-    var index = $(".openmodal").index(this);
-    $(`.infoModal:eq(${index})`).show();
+  $(".openExternalInfoModalbtn").on("click", function () {
+    var index = $(".openExternalInfoModalbtn").index(this);
+    $(`.ExternalInfoModal:eq(${index})`).show();
   });
 
-  $(".closemodal").on("click", function () {
-    var index = $(".closemodal").index(this);
-    $(`.infoModal:eq(${index})`).hide();
+  $(".closeExternalInfoModalbtn").on("click", function () {
+    var index = $(".closeExternalInfoModalbtn").index(this);
+    $(`.ExternalInfoModal:eq(${index})`).hide();
   });
   $(".dd").text("jquery funcionando");
 });

@@ -22,6 +22,8 @@ $router->put("/admin/ads/update", "Controllers/Admin/ads/update.php");
 $router->delete("/admin/ads/destroy", "Controllers/Admin/ads/destroy.php");
 
 $router->get("/admin/imagens", "Controllers/Admin/images/index.php");
+$router->post("/admin/imagens/create", "Controllers/Admin/images/create.php");
+$router->delete("/admin/imagens/destroy", "Controllers/Admin/images/destroy.php");
 
 $router->get("/login", "Controllers/login/index.php");
 

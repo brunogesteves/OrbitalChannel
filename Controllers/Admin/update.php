@@ -23,7 +23,6 @@ if ($_POST["UpdateStatusId"]) {
 }
 
 
-
 if ($_POST["ExtPostStatusId"]) {
     $id = $_POST["ExtPostStatusId"];
     $status = $_POST["status"];

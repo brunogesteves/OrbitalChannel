@@ -1,45 +1,48 @@
 $(document).ready(function () {
-  // $(".sliderArea").on("mousemove", function (e) {
-  //   let mousePosition = e.pageX - e.currentTarget.offsetLeft;
-  //   let slideArea = $(".sliderArea").width() / 2;
-  //   if (mousePosition > slideArea) {
-  //     $(".nextImg").show();
-  //     $(".previewImg").hide();
-  //   } else if (mousePosition < slideArea) {
-  //     $(".nextImg").hide();
-  //     $(".previewImg").show();
-  //   }
-  // });
-  // $(".sliderArea").on("mouseleave", function () {
-  //   $(".nextImg").hide();
-  //   $(".previewImg").hide();
-  // });
+  $("#slider").on("mousemove", function (e) {
+    let mousePosition = e.pageX - e.currentTarget.offsetLeft;
+    let slideArea = $("#slider").width() / 2;
+    if (mousePosition > slideArea) {
+      $(".next").show();
+      $(".prev").hide();
+    } else if (mousePosition < slideArea) {
+      $(".next").hide();
+      $(".prev").show();
+    }
+  });
+  $("#slider").on("mouseleave", function () {
+    $(".next").hide();
+    $(".prev").hide();
+  });
 
   const slides = $(".slideComputer"); // returns true
 
   let currentSlide = 0;
 
   function showSlide(index) {
-    slides.map((slide) => {
-      if (slide === index) {
-        $(".slideComputer").eq(slide).removeClass("hidden");
+    for (let i = 0; i < slides.length; i++) {
+      if (i === index) {
+        $(".slideComputer").eq(i).addClass("pushToLeft");
+        $(".slideComputer").eq(i).removeClass("toBack");
       } else {
-        $(".slideComputer").eq(slide).addClass("hidden");
+        $(".slideComputer").eq(i).removeClass("pushToLeft");
+        $(".slideComputer").eq(i).addClass("toBack");
       }
-    });
+    }
   }
 
   setInterval(() => {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
-  }, 2000);
+    // currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    currentSlide = currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
 
-  function nextSlide() {
     showSlide(currentSlide);
-  }
+  }, 3000);
+
+  function nextSlide() {}
 
   function prevSlide() {
     currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+
     showSlide(currentSlide);
   }
 
@@ -50,5 +53,5 @@ $(document).ready(function () {
     nextSlide();
   });
 
-  $(".dd").text("juquery funciinando: ", currentSlide);
+  $(".dd").text("juquery funciinando: ");
 });

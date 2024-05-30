@@ -18,5 +18,7 @@ parse_str($parsed_url['query'], $results);
 require view("admin/search.php", [
     "images" => $images,
     "countries" => $countries,
-    "minTime" => $minTime
+    "minTime" => $minTime,
+    "results" => $results
+
 ]);

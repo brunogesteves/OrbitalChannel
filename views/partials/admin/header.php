@@ -29,7 +29,7 @@
                         <div class="ui button changeLogotype">Mudar Logotipo</div>
                     </div>
                 </div>
-                <img class="ui image w-96" src="/images/logo.jpg">
+                <img class="ui image w-52" src="/images/logo.jpg">
             </div>
         </div>
         <div class="ui modal logotype">

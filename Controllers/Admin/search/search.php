@@ -1,12 +1,9 @@
 <?php
 
 use Core\Slug;
-
-
 use Core\Database;
 
 $db = new Database();
-
 $createSlug = new Slug();
 
 
@@ -66,7 +63,7 @@ if (isset($_POST["addExternalSource"])) {
     $post_at = strtotime($_POST["post_at"]);
     $image = $_POST["image"];
 
-    $result = $db->insertNewExternalPost('INSERT INTO extposts(title, link, content, section, source, slug, status, post_at, image )
+    $result = $db->insert('INSERT INTO extposts(title, link, content, section, source, slug, status, post_at, image )
                           VALUES(:title, :link, :content, :section, :source, :slug, :status, :post_at, :image)', [
         "title" => $title,
         "link" => $link,
