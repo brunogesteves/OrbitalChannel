@@ -41,10 +41,10 @@
                             <div class="ui dimmable image">
                                 <div class="ui dimmer">
                                     <div class="content">
-                                        <form method="POST">
-                                            <input type="hidden" name="logotype" value=<?= $image["name"] ?> />
-                                            <!-- <div class="ui button seePicture" id=<?= $image["name"] ?>>Ver</div> -->
-                                            <button type="submit" class="ui primary button ">Selecionar</button>
+                                        <form method="POST" action="/admin/update">
+                                            <input type="hidden" name="changeLogotype" value=<?= $image["name"] ?> />
+                                            <button type="submit" name="_method" value="put"
+                                                class="ui primary button ">Selecionar</button>
                                         </form>
                                     </div>
                                 </div>

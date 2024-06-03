@@ -8,6 +8,22 @@ require ("partials/header.php");
             include (__DIR__ . "/../Components/mobile.php");
             ?>
         </div>
+        <div class="three column tablet only row">
+            <div class="dd">teste jquery</div>
+            <div class="carousel-container">
+                <div class="carousel">
+                    <div class="carousel-slide">
+                        <img src="/images/logo.jpg" alt="Image 1">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="/images/logoold.jpg" alt="Image 2">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="/images/modelothumb.png" alt="Image 3">
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="four column computer only row">
             <!-- <div id="slider">
@@ -49,12 +65,10 @@ require ("partials/header.php");
             ?>
 
         </div>
-
     </div>
-
-
 </main>
 
+<script src="/scripts/slider.js"></script>
 
 
 <?php

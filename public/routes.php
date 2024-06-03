@@ -17,8 +17,8 @@ $router->put("/admin/editar/update", "Controllers/Admin/edit/update.php");
 
 $router->get("/admin/ads", "Controllers/Admin/ads/index.php");
 $router->post("/admin/ads/create", "Controllers/Admin/ads/create.php");
-$router->post("/admin/ads/unique", "Controllers/Admin/ads/unique.php");
 $router->put("/admin/ads/update", "Controllers/Admin/ads/update.php");
+$router->put("/admin/ads/publish", "Controllers/Admin/ads/publish.php");
 $router->delete("/admin/ads/destroy", "Controllers/Admin/ads/destroy.php");
 
 $router->get("/admin/imagens", "Controllers/Admin/images/index.php");

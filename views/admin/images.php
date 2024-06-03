@@ -3,7 +3,7 @@ require "views/partials/admin/header.php";
 ?>
 
 
-<div class="h-[calc(100vh_-_167px)] flex justify-start">
+<div class="h-[calc(100vh_-_188px)] flex justify-start">
     <?php
     require "views/partials/admin/sidebar.php";
     ?>
@@ -16,7 +16,7 @@ require "views/partials/admin/header.php";
             </form>
             <div id="previewInputImage"> </div>
         </div>
-        <div class="flex justify-around flex-wrap h-[calc(100vh_-_250px)] overflow-y-auto">
+        <div class="flex justify-start items-start gap-x-7 flex-wrap h-[calc(100vh_-_250px)] overflow-y-auto">
             <?php
             foreach ($images as $image): ?>
                 <div class="cursor-pointer w-1/6 mr-3 relative">
@@ -25,6 +25,7 @@ require "views/partials/admin/header.php";
                             <div class="content">
                                 <form method="post" action="/admin/imagens/destroy">
                                     <input type="hidden" name="imageId" value=<?= $image["id"] ?> />
+                                    <input type="hidden" name="imageName" value=<?= $image["name"] ?> />
                                     <div class="ui button seePicture" id=<?= $image["name"] ?>>Ver</div>
                                     <button type="submit" name="_method" value="DELETE"
                                         class="ui primary button ">Apagar</button>

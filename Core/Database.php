@@ -54,7 +54,7 @@ class Database
         return $this->statment->fetchAll();
     }
 
-    public function delete($query, $params = [])
+    public function delete($query, $params)
     {
         return self::query($query, $params);
 

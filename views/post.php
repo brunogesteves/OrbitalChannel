@@ -1,10 +1,10 @@
 <?php
 require ("partials/header.php");
-
+include (__DIR__ . "/../views/partials/headerMobile.php");
 ?>
-<div class="flex">
-    <div class="w-1/6 flex justify-center">esquerod</div>
-    <main class=" scrollable min-h-[calc(100vh_-_167px)] max-sm:mx-0 mx-3 w-4/6">
+<div class="flex max-[767px]:flex-col">
+    <div class="w-1/6 max-[767px]:w-full flex justify-center">esquerod</div>
+    <main class=" scrollable min-h-[calc(100vh_-_167px)] max-sm:mx-0 mx-3 max-[767px]:mx-0 w-4/6 max-[767px]:w-full">
         <div class="h-auto text-center w-full flex flex-col justify-center">
             <div id="excerpt">
                 <h1 class="w-full text-center text-3xl font-bold mb-2 max-sm:px-0">
@@ -73,11 +73,12 @@ require ("partials/header.php");
             </div> -->
         </div>
     </main>
-    <div class="w-1/6 flex justify-center flex flex-col gap-y-5 text-center">
+    <div class="w-1/6 max-[767px]:w-full flex justify-center flex flex-col gap-y-5 text-center">
+        <span class="font-bold text-xl">Mais Posts</span>
         <?php foreach ($morePosts as $morePost): ?>
             <div>
                 <a href="/<?= $morePost["slug"] ?>">
-                    <img src="./images/<?= $morePost["image"] ?>" />
+                    <img src="./images/<?= $morePost["image"] ?>" class="max-[767px]:w-full" />
                 </a>
                 <p class=" text-xl font-bold my-5"><?= $morePost["title"] ?></p>
             </div>
