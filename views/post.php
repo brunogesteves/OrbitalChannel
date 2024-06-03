@@ -1,6 +1,5 @@
 <?php
-require ("partials/header.php");
-include (__DIR__ . "/../views/partials/headerMobile.php");
+
 ?>
 <div class="flex max-[767px]:flex-col">
     <div class="w-1/6 max-[767px]:w-full flex justify-center">esquerod</div>

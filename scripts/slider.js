@@ -1,53 +1,36 @@
 $(document).ready(function () {
-  // $("#slider").on("mousemove", function (e) {
-  //   let mousePosition = e.pageX - e.currentTarget.offsetLeft;
-  //   let slideArea = $("#slider").width() / 2;
-  //   if (mousePosition > slideArea) {
-  //     $(".next").show();
-  //     $(".prev").hide();
-  //   } else if (mousePosition < slideArea) {
-  //     $(".next").hide();
-  //     $(".prev").show();
-  //   }
-  // });
-  // $("#slider").on("mouseleave", function () {
-  //   $(".next").hide();
-  //   $(".prev").hide();
-  // });
+  $(".carousel-container-computer").on("mousemove", function (e) {
+    let mousePosition =
+      e.pageX - $(".carousel-container-computer").offset().left;
+    let slideArea = $(".carousel-computer").width() / 2;
+    // console.log(e.pageX);
+    // console.log(e.pageX - $(".carousel-container-computer").offset().left);
+    // console.log(slideArea);
+    if (mousePosition > slideArea) {
+      $("#next").show();
+      $("#prev").hide();
+    } else if (mousePosition < slideArea) {
+      $("#next").hide();
+      $("#prev").show();
+    }
+  });
+  $(".carousel-container-computer").on("mouseleave", function () {
+    $("#next").hide();
+    $("#prev").hide();
+  });
 
-  // const slides = $(".slideComputer"); // returns true
+  $("#prev").on("mouseover", function () {
+    $("#next").hide();
+    $("#prev").show();
+  });
 
-  // let currentSlide = 0;
+  $("#next").on("mouseover", function () {
+    $("#next").show();
+    $("#prev").hide();
+  });
 
-  // function showSlide(index) {
-  //   for (let i = 0; i < slides.length; i++) {
-  //     if (i === index) {
-  //       $(".slideComputer").eq(i).addClass("pushToLeft");
-  //       $(".slideComputer").eq(i).removeClass("toBack");
-  //     } else {
-  //       $(".slideComputer").eq(i).removeClass("pushToLeft");
-  //       $(".slideComputer").eq(i).addClass("toBack");
-  //     }
-  //   }
-  // }
-
-  // setInterval(() => {
-  //   // currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-  //   currentSlide = currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
-
-  //   showSlide(currentSlide);
-  // }, 3000);
-
-  // function nextSlide() {}
-
-  // function prevSlide() {
-  //   currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-
-  //   showSlide(currentSlide);
-  // }
-
-  const carousel = document.querySelector(".carousel");
-  const slides = document.querySelectorAll(".carousel-slide");
+  const carousel = document.querySelector(".carousel-computer");
+  const slides = document.querySelectorAll(".carousel-slide-computer");
   let currentIndex = 0;
 
   function showSlide(index) {
@@ -77,26 +60,36 @@ $(document).ready(function () {
   }
 
   // Auto-advance the carousel (optional)
-  const autoAdvanceInterval = 3000; // Change slide every 3 seconds
+  const autoAdvanceInterval = 5000; // Change slide every 3 seconds
 
   setInterval(() => {
     currentIndex++;
     showSlide(currentIndex);
   }, autoAdvanceInterval);
 
-  // const autoAdvanceInterval = 3000; // Change slide every 3 seconds
+  const carouselMobile = document.querySelector(".carousel-mobile");
+  const slidesMobile = document.querySelectorAll(".carousel-slide-mobile");
+  let currentIndexMobile = 0;
 
-  // setInterval(function () {
-  //   currentIndex++;
-  //   showSlide(currentIndex);
-  // }, autoAdvanceInterval);
+  function showSlide(index) {
+    if (index < 0) {
+      currentIndexMobile = slidesMobile.length - 1;
+    } else if (index >= slidesMobile.length) {
+      currentIndexMobile = 0;
+    }
 
-  // $(".prev").on("click", () => {
-  //   prevSlide();
-  // });
-  // $(".next").on("click", () => {
-  //   nextSlide();
-  // });
+    carouselMobile.style.transform = `translateX(-${
+      currentIndexMobile * 100
+    }%)`;
+  }
+
+  // Auto-advance the carousel (optional)
+  const autoAdvanceIntervalMobile = 5000; // Change slide every 3 seconds
+
+  setInterval(() => {
+    currentIndex++;
+    showSlide(currentIndex);
+  }, autoAdvanceIntervalMobile);
 
   $(".dd").text("juquery funciinando: ");
 });

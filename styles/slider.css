@@ -1,19 +1,21 @@
-.carousel-container {
-  width: 80%;
+.carousel-container-computer,
+.carousel-container-mobile {
+  width: 100%;
   margin: 0 auto;
   overflow: hidden;
 }
 
-.carousel {
+.carousel-computer,
+.carousel-mobile {
   display: flex;
-  transition: transform 0.3s ease;
+  transition: transform 1s ease;
 }
 
-.carousel-slide {
+.carousel-slide-computer,
+.carousel-slide-mobile {
   flex: 0 0 100%;
 }
 
 img {
-  max-width: 50%;
-  height: auto;
+  object-fit: cover;
 }
