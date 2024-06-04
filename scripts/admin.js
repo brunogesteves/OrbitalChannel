@@ -1,12 +1,17 @@
 $(document).ready(() => {
-  $(".openmodal").on("click", function () {
-    var index = $(".openmodal").index(this);
-    $(`.infoModal:eq(${index})`).show();
+  $(".openmodalPost").on("click", function () {
+    var index = $(".openmodalPost").index(this);
+    console.log(index);
+    // $(`.infoModal:eq(${index})`).show();
+    $(`.fullscreen.infoModal:eq(${index})`).modal("toggle");
   });
 
-  $(".closemodal").on("click", function () {
-    var index = $(".closemodal").index(this);
-    $(`.infoModal:eq(${index})`).hide();
+  $(".closemodalPost").on("click", function () {
+    var index = $(".closemodalPost").index(this);
+    console.log(index);
+
+    // $(`.infoModal:eq(${index})`).hide();
+    $(`.fullscreen.infoModal:eq(${index})`).modal("toggle");
   });
 
   $(".menu .item").tab();

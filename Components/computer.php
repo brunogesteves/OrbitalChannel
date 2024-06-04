@@ -1,14 +1,14 @@
 <div class="flex justify-between  items-start w-full h-auto ">
-    <div class="w-1/2 flex flex-wrap gap-y-3">
+    <div class="w-1/2 flex flex-wrap gap-y-3 pl-3">
         <?php foreach ($posts1 as $post): ?>
-            <div class=" flex flex-col w-1/2 h-auto justify-center items-center">
-                <div class="w-[250px] min-[1440px]:w-[350px] h-[180px]">
+            <div class=" flex flex-col w-1/2 h-auto justify-center items-center px-3">
+                <div class="w-full h-full">
                     <a href=/<?= $post["slug"] ?>>
                         <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : (strlen($post["image"]) <= 0 ? '/images/logo.jpg' : $post["image"]) ?> alt=""
-                            class="w-full h-full " />
+                            class="object-cover object-center w-full h-72" />
                     </a>
                 </div>
-                <div class="w-[250px] min-[1440px]:w-[350px] h-[100px]">
+                <div class="w-full h-full">
                     <a href="#">
                         <span class="text-2xl font-bold break-words text-left">
                             <?= substr($post["title"], 0, 62); ?>...
@@ -18,14 +18,15 @@
             </div>
         <?php endforeach; ?>
     </div>
-    <div class="w-1/2 h-[400px] relative bg-black">
+    <!-- <div class="dd">teste slider jquery</div> -->
+    <div class="w-1/2 h-[500px] relative bg-black">
         <div class="carousel-container-computer h-full">
             <div class="carousel-computer h-full">
                 <?php foreach ($posts2 as $post): ?>
                     <div class="carousel-slide-computer h-full relative ">
                         <a href="/<?= $post["slug"] ?>">
                             <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : (strlen($post["image"]) <= 0 ? '/images/logo.jpg' : $post["image"]) ?> alt=""
-                                class="h-[400px] w-[640px] opacity-70">
+                                class="object-cover object-center w-full h-full opacity-70">
                             <div class="absolute text-center w-full font-bold text-white text-2xl px-10 bottom-10">
                                 <?= $post["title"] ?>
                             </div>
@@ -43,8 +44,21 @@
                 <img src="/images/icons/arrow-right.png" class="w-7 rotate-180" />
             </button>
         </div>
-        <div class="slideAd h-[150px] mt-2 bg-green-500">
-            <img src="/images/modeloslide.png" alt="Image 1" class="h-[150px] w-[640px]">
+        <div class="slideAd h-[150px] mt-2 ">
+            <div class="carousel-container-slideAd h-full">
+                <div class="carousel-slideAd h-full">
+                    <?php foreach ($adsSlide as $ad): ?>
+                        <div class="carousel-slide-slideAd h-full relative ">
+                            <a href="/<?= $ad["link"] ?>">
+                                <!-- <img src="/images/adsmodeloslide.png" alt="Image 1" class="h-[150px] w-[640px]"> -->
+                            <img src="/images/ads/<?=$ad["file"] ?>" alt=""
+                                class="object-cover object-center w-full h-full opacity-70">                            
+                        </a>
+                    </div>
+
+                <?php endforeach; ?>
+            </div>
+        </div>
 
         </div>
     </div>
@@ -64,14 +78,14 @@
     <div class="w-7/12 flex flex-wrap bg-slate-400 items-start gap-y-3">
         <?php foreach ($posts4 as $post): ?>
 
-            <div class="h-auto flex flex-col items-center w-1/3">
-                <div class="w-[190px] min-[1440px]:w-[270px] h-[150px]">
+            <div class="h-auto flex flex-col items-center w-1/3 px-3">
+                <div class="w-full h-full">
                     <a href=/<?= $post["slug"] ?>>
                         <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : (strlen($post["image"]) <= 0 ? '/images/logo.jpg' : $post["image"]) ?> alt=""
-                            class="w-full h-full" />
+                            class="w-full h-44 object-cover object-center " />
                     </a>
                 </div>
-                <div class="w-[190px] min-[1440px]:w-[270px]">
+                <div class="w-full">
                     <a href="#">
                         <span class="text-2xl font-bold break-words text-left">
                             <?= substr($post["title"], 0, 70); ?>...

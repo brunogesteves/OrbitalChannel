@@ -11,7 +11,7 @@
         </div>
     <?php endforeach; ?>
 </div>
-<div class="w-full h-[200px] relative bg-black">
+<div class="w-full h-[300px] relative bg-black">
     <div class="carousel-container-mobile h-full w-full">
         <div class="carousel-mobile h-full">
             <?php foreach ($posts2 as $post): ?>

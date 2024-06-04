@@ -2,9 +2,13 @@
 
 
 use Core\Database;
+use Core\Coin;
 
+$stock = new Coin();
 $source = new Database();
+date_default_timezone_set('America/Sao_Paulo');
 
+$timeNow =strtotime( date('m/d/Y h:i:s a', time()));
 
 $postsN1 = $source->findAll("SELECT p.*, i.name as image FROM posts p INNER JOIN images i ON i.id = p.image_id WHERE section = 'n1' AND status = 'on'");
 $postsN2 = $source->findAll("SELECT p.*, i.name as image FROM posts p INNER JOIN images i ON i.id = p.image_id WHERE section = 'n2' AND status = 'on'");
@@ -21,7 +25,12 @@ $autopostsN2 = $source->findAll("SELECT * FROM autoposts WHERE section = 'n2'");
 $autopostsN3 = $source->findAll("SELECT * FROM autoposts WHERE section = 'n3'");
 $autopostsN4 = $source->findAll("SELECT * FROM autoposts WHERE section = 'n4'");
 
-$ads = $source->findAll("SELECT * FROM ads");
+$adsFront = $source->findAll("SELECT link, file FROM ads WHERE position= 'front' AND (starts_at <=$timeNow AND finishs_at >= $timeNow)");
+$adsSlide = $source->findAll("SELECT link, file FROM ads WHERE position= 'slide' AND (starts_at <=$timeNow AND finishs_at >= $timeNow)");
+$adsMobile = $source->findAll("SELECT link, file FROM ads WHERE position= 'mobile' AND (starts_at <=$timeNow AND finishs_at >= $timeNow)");
+
+
+
 
 $level1 = [];
 $level2 = [];
@@ -103,5 +112,8 @@ require view("index.php", [
     "posts2" => $level2,
     "posts3" => $level3,
     "posts4" => $level4,
-    "ads" => $ads
+    "adsFront" => $adsFront,
+    "adsSlide" =>$adsSlide,
+    "adsMobile" =>$adsMobile,
+    "stock"=>$stock->index("USD", "BRL")
 ]);

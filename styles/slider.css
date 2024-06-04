@@ -1,18 +1,24 @@
 .carousel-container-computer,
-.carousel-container-mobile {
+.carousel-container-mobile,
+.carousel-container-adfront,
+.carousel-slideAd {
   width: 100%;
   margin: 0 auto;
   overflow: hidden;
 }
 
 .carousel-computer,
-.carousel-mobile {
+.carousel-mobile,
+.carousel-adfront,
+.carousel-slide-slideAd {
   display: flex;
   transition: transform 1s ease;
 }
 
 .carousel-slide-computer,
-.carousel-slide-mobile {
+.carousel-slide-mobile,
+.carousel-slide-adfront,
+.carousel-slide-slideAd {
   flex: 0 0 100%;
 }
 

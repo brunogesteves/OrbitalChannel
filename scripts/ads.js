@@ -53,26 +53,31 @@ $(document).ready(() => {
   window.history.replaceState(null, "", stripUrl(urlToStrip));
 
   if ($("#newModalhasErrors").val() != "") {
-    $(`.newAdModal`).show();
+    // $(`.newAdModal`).show();
+    $(`.fullscreen.newAdModal`).modal("toggle");
   }
 
   $(".openNewModalbtn").on("click", function () {
-    $(`.newAdModal`).show();
+    // $(`.newAdModal`).show();
+    $(`.fullscreen.newAdModal`).modal("toggle");
   });
 
   $(".closeNewAdModalbtn").on("click", function () {
-    $(`.newAdModal`).hide();
+    // $(`.newAdModal`).hide();
+    $(`.fullscreen.newAdModal`).modal("toggle");
   });
 
   $(".openUpdateAdModalbtn").on("click", function () {
     var index = $(".openUpdateAdModalbtn").index(this);
+    console.log(index);
 
-    $(`.updateAdModal:eq(${index})`).show();
+    $(`.fullscreen.updateAdModal:eq(${index})`).modal("toggle");
   });
 
   $(".closeUpdateAdModalbtn").on("click", function () {
     var index = $(".closeUpdateAdModalbtn").index(this);
-    $(`.updateAdModal:eq(${index})`).hide();
+    console.log(index);
+    $(`.fullscreen.updateAdModal:eq(${index})`).modal("toggle");
   });
 
   $(".menu .item").tab();

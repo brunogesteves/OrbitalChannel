@@ -19,10 +19,9 @@ require "views/partials/admin/header.php";
 
             <div class="flex flex-col h-[calc(100vh_-_350px)] ads overflow-y-auto">
                 <?php
-                foreach ($ads as $ad): ?>
-                    <?php if ($ad["position"] == "front"): ?>
+                foreach ($frontAds as $ad): ?>                    
                         <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1 ">
-                            <img src="../images/ads/<?= $ad['file'] ?>" class=" w-20 h-20  object-fit" />
+                            <img src="/images/ads/<?= $ad['file'] ?>" class=" w-20 h-20  object-fit" />
                             <p class="w-auto">
                                 <?= $ad["name"] ?>
                             </p>
@@ -58,7 +57,7 @@ require "views/partials/admin/header.php";
                             </div>
                         </div>
                         <div
-                            class="ui modal updateAdModal absolute top-[450px] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                            class="ui modal fullscreen updateAdModal h-fit">
                             <div class="bg-gray-100 py-5">
                                 <form method="POST" action="/admin/ads/update" enctype="multipart/form-data"
                                     class="flex flex-col items-center gap-y-5 ">
@@ -66,12 +65,7 @@ require "views/partials/admin/header.php";
                                         <span class="text-xl">nome: </span>
                                         <input type="text" disabled class=" w-96 border-2 border-black rounded-lg"
                                             value="<?= $ad["name"] ?>" />
-                                    </div>
-                                    <span class=" text-red-500 font-bold -mt-3">
-                                        <?php if (isset($errorsUpdate["adName"])): ?>
-                                            <?= $errorsUpdate["adName"] ?>
-                                        <?php endif; ?>
-                                    </span>
+                                    </div>                                    
                                     <div class="flex justify-center gap-x-2">
                                         <span class="text-xl">Imagem:</span>
                                         <input type="file" name="adUpdateFileUpload" id="adUpdateFileUpload"
@@ -99,7 +93,7 @@ require "views/partials/admin/header.php";
                                     </span>
                                     <div class="flex justify-center gap-x-2">
                                         <span class="text-xl">Link:</span>
-                                        <input type="text" name="adLink" value="<?= $ad["link"] ?>"
+                                        <input type="text"  name="adLink" value="<?= $ad["link"] ?>"
                                             class="border-2 border-black rounded-lg px-2 w-96" />
                                     </div>
                                     <span class="text-red-500 font-bold -mt-3">
@@ -109,7 +103,7 @@ require "views/partials/admin/header.php";
                                     </span>
                                     <div class="flex justify-center gap-x-2">
                                         <span class="text-xl">Início: </span>
-                                        <input type="datetime-local" min="<?= $minTime ?>" name="adStarts_at" value="<?= (new DateTime(date("Y-m-d h:i ", $ad["starts_at"])))->format('Y-m-d\TH:i')
+                                        <input  type="datetime-local" min="<?= $minTime ?>" name="adStarts_at" value="<?= (new DateTime(date("Y-m-d h:i ", $ad["starts_at"])))->format('Y-m-d\TH:i')
                                               ?>" class="border-2 border-black rounded-lg px-2" />
                                     </div>
                                     <span class="text-red-500 font-bold -mt-3">
@@ -119,7 +113,7 @@ require "views/partials/admin/header.php";
                                     </span>
                                     <div class="flex justify-center gap-x-2">
                                         <span class="text-xl">Fim:</span>
-                                        <input type="datetime-local" min="<?= $minTime ?>" name="adFinishs_at" value="<?= (new DateTime(date("Y-m-d h:i ", $ad["starts_at"])))->format('Y-m-d\TH:i')
+                                        <input  type="datetime-local" min="<?= $minTime ?>" name="adFinishs_at" value="<?= (new DateTime(date("Y-m-d h:i ", $ad["starts_at"])))->format('Y-m-d\TH:i')
                                               ?? $_POST["adStarts_at"] ?>"
                                             class="border-2 border-black rounded-lg px-2" />
                                     </div>
@@ -131,19 +125,17 @@ require "views/partials/admin/header.php";
                                     <input type="hidden" name="updateAdId" value="<?= $ad["id"] ?>" />
                                     <input type="hidden" name="adName" value="<?= $ad["name"] ?>" />
                                     <div class="flex gap-x-3 mt-4">
-                                        <button
-                                            class="closeUpdateAdModalbtn text-white bg-red-500 close p-2 rounded-md text-sm font-bold">
-                                            Fechar</button>
+                                    <button type="button"
+                                        class="closeUpdateAdModalbtn bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
+                                    Cancelar
+                                    </button>
                                         <button type="submit" name="_method" value="put"
                                             class="text-white bg-black p-2 rounded-md text-sm font-bold">Atualizar
                                             Anuncio</button>
                                     </div>
                                 </form>
                             </div>
-                        </div>
-
-                        <!-- begin first ver modal -->
-                    <?php endif; ?>
+                        </div>                    
                 <?php endforeach; ?>
             </div>
         </div>
@@ -154,8 +146,7 @@ require "views/partials/admin/header.php";
 
             <div class="flex flex-col h-[calc(100vh_-_350px)] ads overflow-y-auto">
                 <?php
-                foreach ($ads as $ad): ?>
-                    <?php if ($ad["position"] == "mobile"): ?>
+                foreach ($mobileAds as $ad): ?>                    
                         <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1 ">
                             <img src="../images/ads/<?= $ad['file'] ?>" class=" w-20 h-20  object-fit" />
                             <p class="w-auto">
@@ -182,7 +173,7 @@ require "views/partials/admin/header.php";
                                     </button>
                                 </form>
                                 <button class="openUpdateAdModalbtn bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
-                                    Verificar
+                                    Verificar2
                                 </button>
                                 <form method="POST" action="/admin/ads/destroy" class=" flex items-center">
                                     <input type="hidden" name="deleteAdId" value=<?= $ad["id"] ?> />
@@ -193,7 +184,7 @@ require "views/partials/admin/header.php";
                             </div>
                         </div>
                         <div
-                            class="ui modal updateAdModal absolute top-[450px] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                            class="ui modal fullscreen updateAdModal h-fit">
                             <div class="bg-gray-100 py-5">
                                 <form method="POST" action="/admin/ads/update" enctype="multipart/form-data"
                                     class="flex flex-col items-center gap-y-5 ">
@@ -278,7 +269,6 @@ require "views/partials/admin/header.php";
                         </div>
 
                         <!-- begin first ver modal -->
-                    <?php endif; ?>
                 <?php endforeach; ?>
             </div>
         </div>
@@ -289,8 +279,7 @@ require "views/partials/admin/header.php";
 
             <div class="flex flex-col h-[calc(100vh_-_350px)] ads overflow-y-auto">
                 <?php
-                foreach ($ads as $ad): ?>
-                    <?php if ($ad["position"] == "slide"): ?>
+                foreach ($slideAds as $ad): ?>
                         <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1 ">
                             <img src="../images/ads/<?= $ad['file'] ?>" class=" w-20 h-20  object-fit" />
                             <p class="w-auto">
@@ -328,7 +317,7 @@ require "views/partials/admin/header.php";
                             </div>
                         </div>
                         <div
-                            class="ui modal updateAdModal absolute top-[450px] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                            class="ui modal fullscreen updateAdModal h-fit">
                             <div class="bg-gray-100 py-5">
                                 <form method="POST" action="/admin/ads/update" enctype="multipart/form-data"
                                     class="flex flex-col items-center gap-y-5 ">
@@ -413,7 +402,6 @@ require "views/partials/admin/header.php";
                         </div>
 
                         <!-- begin first ver modal -->
-                    <?php endif; ?>
                 <?php endforeach; ?>
             </div>
         </div>
@@ -421,7 +409,7 @@ require "views/partials/admin/header.php";
 
 <!-- ver Adicionar AD modal -->
 <input class="hidden" id="newModalhasErrors" value="<?= $errors ?>" />
-<div class="ui modal newAdModal absolute top-[450px] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+<div class="ui modal fullscreen newAdModal h-fit">
     <div class="bg-gray-100 py-5">
         <form method="POST" action="/admin/ads/create" enctype="multipart/form-data"
             class="flex flex-col items-center gap-y-5 ">

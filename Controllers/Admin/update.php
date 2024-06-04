@@ -10,7 +10,7 @@ $db = new Database();
 if ($_POST["changeLogotype"]) {
     $logotype = $_POST["changeLogotype"];
     $sourceImage = 'images/' . $_POST["changeLogotype"];
-    copy($sourceImage, "images/logo.jpg");
+    copy($sourceImage, "images/orbital/logo.png");
     header('Location: ' . "/admin");
 
 }

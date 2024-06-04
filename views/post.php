@@ -1,5 +1,5 @@
 <?php
-
+include ("partials/header.php");
 ?>
 <div class="flex max-[767px]:flex-col">
     <div class="w-1/6 max-[767px]:w-full flex justify-center">esquerod</div>
@@ -85,11 +85,11 @@
 
     </div>
 </div>
+<?php
+require ("partials/footer.php");
+?>
 
 <script src="../scripts/postnews.js" defer></script>
 <script src="../scripts/textspeech.js" defer></script>
 
 
-<?php
-require ("partials/footer.php");
-?>

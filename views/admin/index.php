@@ -6,7 +6,7 @@ require "views/partials/admin/header.php";
     require "views/partials/admin/sidebar.php";
     ?>
 
-    <main class="flex flex-col h-auto overflow-y-auto w-full">
+    <main class="flex flex-col h-auto overflow-y-auto w-full relative">
         <div class="ui top attached tabular menu">
             <a class="item active" data-tab="first">Orbital</a>
             <a class="item" data-tab="second">Externos</a>
@@ -16,12 +16,12 @@ require "views/partials/admin/header.php";
             <a class="item" data-tab="sixth">Nível 4</a>
             <a class="item" data-tab="seventh">Automáticos</a>
         </div>
-        <div class="ui bottom attached tab segment active h-[calc(100vh_-_250px)] overflow-y-auto" data-tab="first">
+        <div class="ui bottom attached tab segment active h-[calc(100vh_-_250px)] overflow-y-auto " data-tab="first">
             <!-- First -->
             <?php
             foreach ($posts as $post): ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
-                    <img src="/images/<?= $post['image'] ?>" class=" w-20 h-20  object-fit" />
+                    <img src="/images/<?= $post['image'] ?>" class=" w-20 h-10  object-fit" />
                     <p class="w-96">
                         <?= $post["title"] ?>
                     </p>
@@ -38,7 +38,7 @@ require "views/partials/admin/header.php";
                         <?= $post["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                     </p>
                     <div class="flex gap-x-1">
-                        <button class="openmodal bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
+                        <button class="openmodalPost bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                             Verificar
                         </button>
                         <form method="POST" action="/admin/destroy" class="flex items-center">
@@ -51,7 +51,7 @@ require "views/partials/admin/header.php";
                 </div>
                 <!-- begin first modal -->
                 <div
-                    class="ui modal two column grid infoModal absolute top-[200px] left-[500px] transform -translate-x-1/2 -translate-y-1/2">
+                    class="ui modal fullscreen infoModal two column grid h-fit">
                     <div class="header">
                         <?= $post["title"] ?>
                     </div>
@@ -79,9 +79,9 @@ require "views/partials/admin/header.php";
                         </div>
                     </div>
                     <div class="actions">
-                        <div class="flex justify-end items-start w-100 p-3 gap-x-3 h-14">
+                        <div class="flex justify-end items-start w-100 p-3 gap-x-3 h-10">
                             <button type="button"
-                                class="closemodal bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
+                                class="closemodalPost bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
                                 Cancelar
                             </button>
                             <a href='/admin/editar?id=<?= $post["id"] ?>'
@@ -107,7 +107,7 @@ require "views/partials/admin/header.php";
             <?php
             foreach ($extposts as $extpost): ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
-                    <img src="<?= $extpost["image"] ?>" class="w-20 h-20  object-fit" />
+                    <img src="<?= $extpost["image"] ?>" class="w-20 h-10  object-fit" />
                     <p class="w-96">
                         <?= $extpost["title"] ?>
                         <?= $extpost["id"] ?>
@@ -125,7 +125,7 @@ require "views/partials/admin/header.php";
                         <?= $extpost["status"] == "off" ? "Fora do Ar" : "Publicado" ?>
                     </p>
                     <div class="flex gap-x-1">
-                        <button class="openmodal bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
+                        <button class="openmodalPost bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                             Verificar
                         </button>
                         <form method="POST" action="/admin/destroy" class="flex items-center">
@@ -138,7 +138,7 @@ require "views/partials/admin/header.php";
                 </div>
                 <!-- begin second modal -->
                 <div
-                    class="ui modal two column grid infoModal absolute top-[200px] left-[500px] transform -translate-x-1/2 -translate-y-1/2">
+                class="ui modal fullscreen infoModal two column grid h-fit">
                     <div class="header">
                         <?= $extpost["title"] ?>
                         <?= $extpost["id"] ?>
@@ -167,9 +167,9 @@ require "views/partials/admin/header.php";
                         </div>
                     </div>
                     <div class="actions">
-                        <div class="flex justify-end items-start w-100 p-3 gap-x-3 h-14">
+                        <div class="flex justify-end items-start w-100 p-3 gap-x-3 h-10">
                             <button type="button"
-                                class="closemodal bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
+                                class="closemodalPost bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
                                 Cancelar
                             </button>
                             <form method="post" action="/admin/update">
@@ -210,7 +210,7 @@ require "views/partials/admin/header.php";
             foreach ($posts1 as $post): ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
                     <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?>
-                        class=" w-20 h-20 object-cover" />
+                        class=" w-20 h-10 object-cover" />
                     <p class="w-96">
                         <?= $post["title"] ?>
                     </p>
@@ -227,14 +227,14 @@ require "views/partials/admin/header.php";
                         <?= $post["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                     </p>
                     <div class="flex gap-x-1">
-                        <button class="openmodal bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
+                        <button class="openmodalPost bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                             Verificar
                         </button>
                     </div>
                 </div>
                 <!-- begin fourth-a -->
                 <div
-                    class="ui modal two column grid infoModal absolute top-[200px] left-[500px] transform -translate-x-1/2 -translate-y-1/2">
+                class="ui modal fullscreen infoModal two column grid h-fit">
                     <div class="header">
                         <?= $post["title"] ?>
                     </div>
@@ -264,7 +264,7 @@ require "views/partials/admin/header.php";
                     <div class="actions">
                         <div class="flex justify-end items-start w-100 p-3 gap-x-3 h-14">
                             <button type="button"
-                                class="closemodal bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
+                                class="closemodalPost bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
                                 Fechar
                             </button>
                             <?php if ($post["source"] == "Orbital Channel"): ?>
@@ -289,7 +289,7 @@ require "views/partials/admin/header.php";
             foreach ($posts2 as $post): ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
                     <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?>
-                        class=" w-20 h-20 object-cover" />
+                        class=" w-20 h-10 object-cover" />
                     <p class="w-96">
                         <?= $post["title"] ?>
                     </p>
@@ -306,14 +306,14 @@ require "views/partials/admin/header.php";
                         <?= $post["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                     </p>
                     <div class="flex gap-x-1">
-                        <button class="openmodal bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
+                        <button class="openmodalPost bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                             Verificar
                         </button>
                     </div>
                 </div>
                 <!-- begin fourth-a -->
                 <div
-                    class="ui modal two column grid infoModal absolute top-[200px] left-[500px] transform -translate-x-1/2 -translate-y-1/2">
+                class="ui modal fullscreen infoModal two column grid h-fit">
                     <div class="header">
                         <?= $post["title"] ?>
                     </div>
@@ -342,7 +342,7 @@ require "views/partials/admin/header.php";
                     <div class="actions">
                         <div class="flex justify-end items-start w-100 p-3 gap-x-3 h-14">
                             <button type="button"
-                                class="closemodal bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
+                                class="closemodalPost bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
                                 Fechar
                             </button>
                             <?php if ($post["source"] == "Orbital Channel"): ?>
@@ -367,7 +367,7 @@ require "views/partials/admin/header.php";
             foreach ($posts3 as $post): ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
                     <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?>
-                        class=" w-20 h-20 object-cover" />
+                        class=" w-20 h-10 object-cover" />
                     <?= $post["title"] ?>
                     </p>
                     <p class="w-auto">
@@ -383,14 +383,14 @@ require "views/partials/admin/header.php";
                         <?= $post["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                     </p>
                     <div class="flex gap-x-1">
-                        <button class="openmodal bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
+                        <button class="openmodalPost bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                             Verificar
                         </button>
                     </div>
                 </div>
                 <!-- begin fourth-a -->
                 <div
-                    class="ui modal two column grid infoModal absolute top-[200px] left-[500px] transform -translate-x-1/2 -translate-y-1/2">
+                class="ui modal fullscreen infoModal two column grid h-fit">
                     <div class="header">
                         <?= $post["title"] ?>
                     </div>
@@ -420,7 +420,7 @@ require "views/partials/admin/header.php";
                     <div class="actions">
                         <div class="flex justify-end items-start w-100 p-3 gap-x-3 h-14">
                             <button type="button"
-                                class="closemodal bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
+                                class="closemodalPost bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
                                 Fechar
                             </button>
                             <?php if ($post["source"] == "Orbital Channel"): ?>
@@ -462,21 +462,21 @@ require "views/partials/admin/header.php";
                         <?= $post["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                     </p>
                     <div class="flex gap-x-1">
-                        <button class="openmodal bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
+                        <button class="openmodalPost bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                             Verificar
                         </button>
                     </div>
                 </div>
                 <!-- begin fourth-a -->
                 <div
-                    class="ui modal two column grid infoModal absolute top-[200px] left-[500px] transform -translate-x-1/2 -translate-y-1/2">
+                class="ui modal fullscreen infoModal two column grid h-fit">
                     <div class="header">
                         <?= $post["title"] ?>
                     </div>
                     <div class=" flex justify-start gap-x-2">
                         <div class="w-1/6">
                             <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?>
-                                class=" w-20 h-20 object-cover" />
+                                class=" w-20 h-10 object-cover" />
                         </div>
                         <div class="w-5/6">
                             <span>Posição:</span>
@@ -499,7 +499,7 @@ require "views/partials/admin/header.php";
                     <div class="actions">
                         <div class="flex justify-end items-start w-100 p-3 gap-x-3 h-14">
                             <button type="button"
-                                class="closemodal bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
+                                class="closemodalPost bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
                                 Fechar
                             </button>
                             <?php if ($post["source"] == "Orbital Channel"): ?>
@@ -520,7 +520,7 @@ require "views/partials/admin/header.php";
             <?php
             foreach ($autoposts as $post): ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
-                    <img src="<?= $post["image"] ?>" class=" w-20 h-20  object-fit" />
+                    <img src="<?= $post["image"] ?>" class=" w-20 h-10  object-fit" />
                     <p class="w-96">
                         <?= $post["title"] ?>
                     </p>
@@ -537,14 +537,14 @@ require "views/partials/admin/header.php";
                         <?= $post["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                     </p>
                     <div class="flex gap-x-1">
-                        <button class="openmodal bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
+                        <button class="openmodalPost bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                             Verificar
                         </button>
                     </div>
                 </div>
                 <!-- begin fourth-a -->
                 <div
-                    class="ui modal two column grid infoModal absolute top-[200px] left-[500px] transform -translate-x-1/2 -translate-y-1/2">
+                class="ui modal fullscreen infoModal two column grid h-fit">
                     <div class="header">
                         <?= $post["title"] ?>
                     </div>
@@ -573,7 +573,7 @@ require "views/partials/admin/header.php";
                     <div class="actions">
                         <div class="flex justify-end items-start w-100 p-3 gap-x-3 h-14">
                             <button type="button"
-                                class="closemodal bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
+                                class="closemodalPost bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
                                 Fechar
                             </button>
                         </div>
@@ -582,10 +582,6 @@ require "views/partials/admin/header.php";
                 </div>
             <?php endforeach; ?>
         </div>
-
-
-
-
     </main>
 
     <script src="../scripts/admin.js" defer></script>
