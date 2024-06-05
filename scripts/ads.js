@@ -1,8 +1,4 @@
 $(document).ready(() => {
-  let modalIndex = (n) => {
-    return n;
-  };
-
   $("#adFileUpload").on("change", function () {
     $(".dd").text("coloca foto");
 
@@ -15,7 +11,7 @@ $(document).ready(() => {
       var reader = new FileReader();
       reader.onload = function (e) {
         $("#previewInputAdImage").html(
-          `<img src=${e.target.result} class="thumb-image w-44 h-44 " />`
+          `<img src=${e.target.result} class="thumb-image w-full " />`
         );
       };
       previewInputImage.show();
@@ -25,17 +21,20 @@ $(document).ready(() => {
 
   $(".adUpdateFileUpload").on("change", function () {
     $(".previewUploadInputAdImage").hide();
+    var index = $(".adUpdateFileUpload").index(this);
 
     var imgPath = $(this)[0].value;
 
     if (typeof FileReader != "undefined") {
-      var previewUploadInputAdImage = $("#previewUploadInputAdImage");
+      var previewUploadInputAdImage = $(
+        `.previewUploadInputAdImage:eq(${index})`
+      );
       previewUploadInputAdImage.empty();
 
       var reader = new FileReader();
       reader.onload = function (e) {
-        $(".previewUploadInputAdImage").html(
-          `<img src=${e.target.result} class="thumb-image w-44 h-44 " />`
+        $(`.previewUploadInputAdImage:eq(${index})`).html(
+          `<img src=${e.target.result} class="thumb-image w-full h-44 " />`
         );
       };
       previewUploadInputAdImage.show();
@@ -69,8 +68,6 @@ $(document).ready(() => {
 
   $(".openUpdateAdModalbtn").on("click", function () {
     var index = $(".openUpdateAdModalbtn").index(this);
-    console.log(index);
-
     $(`.fullscreen.updateAdModal:eq(${index})`).modal("toggle");
   });
 

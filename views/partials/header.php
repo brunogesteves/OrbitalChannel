@@ -43,10 +43,8 @@
                 </a>
                 <a class="item">
                     PodCast da Rafa
-
                 </a>
             </div>
-
             <nav class="bg-[#251014] w-full">
                 <div class="h-[100px] w-full">
                     <div class="carousel-adfront h-full">
@@ -61,12 +59,50 @@
                     </div>
                 </div>
                 <div class="flex justify-start py-3 pl-5  gap-x-3 w-full">
-                    <img src="/images/icons/menu.svg" alt="logo" class="rounded-full mt-1 w-7 h-7" id="menu_open" />
+                    <img src="/images/icons/menu.svg" alt="logo" class="rounded-full mt-1 w-7 h-7" id="menu_mobile_open" />
                     <a href="/"></a> <img src="/images/orbital/logo.png" alt="logo" class="rounded-full -mt-2 w-11 h-11 object-scale-down" /></a>
                     <span class="text-white text-3xl  font-black font-sans">ORBITAL CHANNEL</span>
                 </div>
             </nav>
-            <div class="w-full h-10 flex justify-center items-center shadow-lg font-bold">Cotação: R$<span class="text-red-500"><?= $stock["ask"] ?></span>
+            <div class="w-full h-20 flex flex-col justify-center items-center shadow-lg font-bold">Cotação Dólar - Real:
+                <span>Venda: R$<?= $stock["ask"] ?></span>
+                <span>Compra: R$<?= $stock["bid"] ?></span>
+            </div>
+        </div>
+        <div class="three column tablet only row">
+            <div class="ui thin sidebar inverted vertical menu">
+                <a class="item">
+                    PodCast da Rafa
+                </a>
+                <a class="item">
+                    PodCast da Rafa
+                </a>
+                <a class="item">
+                    PodCast da Rafa
+                </a>
+            </div>
+            <nav class="bg-[#251014] w-full">
+                <div class="h-[100px] w-full">
+                    <div class="carousel-adfront h-full">
+                        <?php foreach ($adsMobile as $ad) : ?>
+                            <div class="carousel-slide-adfront h-full  ">
+                                <a href="/<?= $ad["link"] ?>">
+                                    <img src="/images/ads/<?= $ad["file"] ?>" alt="" class="object-cover object-center w-full h-full">
+                                </a>
+                            </div>
+
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <div class="flex justify-start py-3 pl-5  gap-x-3 w-full">
+                    <img src="/images/icons/menu.svg" alt="logo" class="rounded-full mt-1 w-7 h-7" id="menu_tablet_open" />
+                    <a href="/"></a> <img src="/images/orbital/logo.png" alt="logo" class="rounded-full -mt-2 w-11 h-11 object-scale-down" /></a>
+                    <span class="text-white text-3xl  font-black font-sans">ORBITAL CHANNEL</span>
+                </div>
+            </nav>
+            <div class="w-full h-20 flex flex-col justify-center items-center shadow-lg font-bold">Cotação Dólar - Real:
+                <span>Venda: R$<?= $stock["ask"] ?></span>
+                <span>Compra: R$<?= $stock["bid"] ?></span>
             </div>
         </div>
         <div class="computer only row w-full">

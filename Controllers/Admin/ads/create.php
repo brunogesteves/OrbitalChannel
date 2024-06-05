@@ -10,6 +10,7 @@ date_default_timezone_set('America/Sao_Paulo');
 $minTime = (new DateTime(date('m/d/Y h:i:s a', time())))->format('Y-m-d\TH:i');
 
 $errors = [];
+
 $name = $_POST["adName"];
 $position = $_POST["adPosition"];
 $status = "off";
@@ -22,24 +23,34 @@ $finishs_at = strtotime($_POST["adFinishs_at"]);
 
 
 
-
+if (strlen($name) == 0) {
+    $errors["adName"] = "Digite o Nome";
+}else{
+    $errors["oldAdName"] = $_POST["adName"];
+}
 if ($position == "none") {
     $errors["adPosition"] = "Selecione uma posição";
+}else{
+    $errors["oldAdPosition"] = $_POST["adPosition"];
 }
 if (strlen($link) == 0) {
     $errors["adLink"] = "Digite o Link";
+}else{
+    $errors["oldAdLink"] = $_POST["adLink"];    
 }
 if ($starts_at == false) {
     $errors["adStarts_at"] = "Selecione Data Inicial";
+}else{
+    $errors["oldAdStarts_at"] = $_POST["adStarts_at"];
 }
 
 if ($finishs_at == false) {
     $errors["adFinishs_at"] = "Selecione Data Final";
+}else{
+    $errors["oldAdFinishs_at"] = $_POST["adFinishs_at"];
 }
 
-if (strlen($name) == 0) {
-    $errors["adName"] = "Digite o Link";
-}
+
 
 if ($finishs_at < $starts_at) {
     $errors["adFinalDate"] = "Data Final é maior que data Inicial";

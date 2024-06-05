@@ -32,7 +32,6 @@ if ($starts_at == false) {
 
 if ($finishs_at == false) {
     $errorsUpdate["adFinishs_at"] = "Selecione Data Final";
-
 }
 
 if ($finishs_at < $starts_at) {
@@ -50,21 +49,21 @@ $starts_at = strtotime($_POST["adStarts_at"]);
 $finishs_at = strtotime($_POST["adFinishs_at"]);
 
 
+if (empty($errorsUpdate)) {
+    if ((strlen($_FILES["adUpdateFileUpload"]["name"]) != 0)) {
 
-if ((strlen($_FILES["adUpdateFileUpload"]["name"]) != 0)) {
 
+        $fileName = $_FILES["adUpdateFileUpload"]["name"];
+        $tempName = $_FILES["adUpdateFileUpload"]["tmp_name"];
+        $fileSize = $_FILES["adUpdateFileUpload"]['size'];
+        $fileError = $_FILES["adUpdateFileUpload"]['error'];
 
-    $fileName = $_FILES["adUpdateFileUpload"]["name"];
-    $tempName = $_FILES["adUpdateFileUpload"]["tmp_name"];
-    $fileSize = $_FILES["adUpdateFileUpload"]['size'];
-    $fileError = $_FILES["adUpdateFileUpload"]['error'];
+        $separateFilename = explode('.', $fileName);
+        $ext = $separateFilename[1];
+        $target = "images/ads/" . $_POST["adName"] . "." . $ext;
 
-    $separateFilename = explode('.', $fileName);
-    $ext = $separateFilename[1];
-    $target = "images/ads/" . $_POST["adName"] . "." . $ext;
-
-    $file = $file . "." . $ext;
-    $result = $db->insert("UPDATE ads SET
+        $file = $file . "." . $ext;
+        $result = $db->insert("UPDATE ads SET
             name = '$name',
             position = '$position',
             status = '$status',
@@ -74,13 +73,13 @@ if ((strlen($_FILES["adUpdateFileUpload"]["name"]) != 0)) {
             finishs_at = $finishs_at
             WHERE id=$id");
 
-    if ($result) {
-        if (move_uploaded_file($tempName, $target)) {
-            header('Location: ' . "/admin/ads");
+        if ($result) {
+            if (move_uploaded_file($tempName, $target)) {
+                header('Location: ' . "/admin/ads");
+            }
         }
-    }
-} else {
-    $result = $db->insert("UPDATE ads SET
+    } else {
+        $result = $db->insert("UPDATE ads SET
     name = '$name',
     position = '$position',
     status = '$status',
@@ -89,9 +88,11 @@ if ((strlen($_FILES["adUpdateFileUpload"]["name"]) != 0)) {
     finishs_at = $finishs_at
     WHERE id=$id");
 
-    if ($result) {
-        header('Location: ' . "/admin/ads");
-
+        if ($result) {
+            header('Location: ' . "/admin/ads");
+        }
     }
-
+}else{
+    $errorsUpdate = http_build_query($errorsUpdate);
+    header('Location: ' . "/admin/ads?$errorsUpdate");
 }

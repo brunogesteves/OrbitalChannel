@@ -25,9 +25,9 @@ $autopostsN2 = $source->findAll("SELECT * FROM autoposts WHERE section = 'n2'");
 $autopostsN3 = $source->findAll("SELECT * FROM autoposts WHERE section = 'n3'");
 $autopostsN4 = $source->findAll("SELECT * FROM autoposts WHERE section = 'n4'");
 
-$adsFront = $source->findAll("SELECT link, file FROM ads WHERE position= 'front' AND (starts_at <=$timeNow AND finishs_at >= $timeNow)");
-$adsSlide = $source->findAll("SELECT link, file FROM ads WHERE position= 'slide' AND (starts_at <=$timeNow AND finishs_at >= $timeNow)");
-$adsMobile = $source->findAll("SELECT link, file FROM ads WHERE position= 'mobile' AND (starts_at <=$timeNow AND finishs_at >= $timeNow)");
+$adsFront = $source->findAll("SELECT link, file FROM ads WHERE position= 'front' AND (starts_at <=$timeNow AND finishs_at >= $timeNow) AND status= 'on'");
+$adsSlide = $source->findAll("SELECT link, file FROM ads WHERE position= 'slide' AND (starts_at <=$timeNow AND finishs_at >= $timeNow) AND status= 'on'");
+$adsMobile = $source->findAll("SELECT link, file FROM ads WHERE position= 'mobile' AND (starts_at <=$timeNow AND finishs_at >= $timeNow) AND status= 'on'");
 
 
 

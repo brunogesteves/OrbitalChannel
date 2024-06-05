@@ -1,5 +1,8 @@
 $(document).ready(() => {
-  $("#menu_open").on("click", function () {
+  $("#menu_mobile_open").on("click", function () {
+    $(".ui.sidebar").sidebar("toggle");
+  });
+  $("#menu_tablet_open").on("click", function () {
     $(".ui.sidebar").sidebar("toggle");
   });
 

@@ -11,15 +11,15 @@ $posts = $db->findAll("SELECT p.*, i.name as image FROM posts p inner join image
 $extposts = $db->findAll("SELECT * FROM extposts");
 
 
-$postsN1 = $db->findAll("SELECT p.*, i.name as image FROM posts p INNER JOIN images i ON i.id = p.image_id WHERE section = 'n1' AND status = 'on'");
-$postsN2 = $db->findAll("SELECT p.*, i.name as image FROM posts p INNER JOIN images i ON i.id = p.image_id WHERE section = 'n2' AND status = 'on'");
-$postsN3 = $db->findAll("SELECT p.*, i.name as image FROM posts p INNER JOIN images i ON i.id = p.image_id WHERE section = 'n3' AND status = 'on' ");
-$postsN4 = $db->findAll("SELECT p.*, i.name as image FROM posts p INNER JOIN images i ON i.id = p.image_id WHERE section = 'n4' AND status = 'on'");
+$postsN1 = $db->findAll("SELECT p.*, i.name as image FROM posts p INNER JOIN images i ON i.id = p.image_id WHERE section = 'n1' AND status = 'on' ORDER BY p.post_at asc");
+$postsN2 = $db->findAll("SELECT p.*, i.name as image FROM posts p INNER JOIN images i ON i.id = p.image_id WHERE section = 'n2' AND status = 'on' ORDER BY p.post_at asc");
+$postsN3 = $db->findAll("SELECT p.*, i.name as image FROM posts p INNER JOIN images i ON i.id = p.image_id WHERE section = 'n3' AND status = 'on' ORDER BY p.post_at asc ");
+$postsN4 = $db->findAll("SELECT p.*, i.name as image FROM posts p INNER JOIN images i ON i.id = p.image_id WHERE section = 'n4' AND status = 'on' ORDER BY p.post_at asc");
 
-$extpostsN1 = $db->findAll("SELECT * FROM extposts WHERE section = 'n1' AND status = 'on'");
-$extpostsN2 = $db->findAll("SELECT * FROM extposts WHERE section = 'n2' AND status = 'on'");
-$extpostsN3 = $db->findAll("SELECT * FROM extposts WHERE section = 'n3' AND status = 'on'");
-$extpostsN4 = $db->findAll("SELECT * FROM extposts WHERE section = 'n4' AND status = 'on'");
+$extpostsN1 = $db->findAll("SELECT * FROM extposts WHERE section = 'n1' AND status = 'on' ORDER BY post_at asc");
+$extpostsN2 = $db->findAll("SELECT * FROM extposts WHERE section = 'n2' AND status = 'on' ORDER BY post_at asc");
+$extpostsN3 = $db->findAll("SELECT * FROM extposts WHERE section = 'n3' AND status = 'on' ORDER BY post_at asc");
+$extpostsN4 = $db->findAll("SELECT * FROM extposts WHERE section = 'n4' AND status = 'on' ORDER BY post_at asc");
 
 $autopostsN1 = $db->findAll("SELECT * FROM autoposts WHERE section = 'n1'");
 $autopostsN2 = $db->findAll("SELECT * FROM autoposts WHERE section = 'n2'");
