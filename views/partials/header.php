@@ -8,14 +8,13 @@
     <meta http-equiv="PRAGMA" content="NO-CACHE" />
 
 
-    <!-- <script src="/scripts/jquery.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="/scripts/tailwind.js"></script>
-    <script src="/scripts/slider.js" defer></script>
-    <script src="/scripts/semantic.min.js"></script>
+    <script src="scripts/tailwind.js"></script>
+    <script src="scripts/slider.js" defer></script>
+    <script src="scripts/semantic.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="/styles/semantic.min.css">
-    <link rel="stylesheet" href="/styles/slider.css" />
+    <link rel="stylesheet" type="text/css" href="styles/semantic.min.css">
+    <link rel="stylesheet" href="styles/slider.css" />
     <script type="text/javascript">
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
@@ -36,7 +35,7 @@
         <div class=" mobile only row ">
             <div class="ui thin sidebar inverted vertical menu">
                 <a class="item">
-                    PodCast da Rafa
+                    PodCast da Rafa mobile
                 </a>
                 <a class="item">
                     PodCast da Rafa
@@ -65,14 +64,13 @@
                 </div>
             </nav>
             <div class="w-full h-20 flex flex-col justify-center items-center shadow-lg font-bold">Cotação Dólar - Real:
-                <span>Venda: R$<?= $stock["ask"] ?></span>
-                <span>Compra: R$<?= $stock["bid"] ?></span>
+                <span class="<?= $stock["pctChange"] > 0 ? "text-green-500" : "text-red-500" ?>"> R$<?= $stock["ask"] ?></span>
             </div>
         </div>
         <div class="three column tablet only row">
             <div class="ui thin sidebar inverted vertical menu">
                 <a class="item">
-                    PodCast da Rafa
+                    PodCast da Rafa tablet
                 </a>
                 <a class="item">
                     PodCast da Rafa
@@ -101,8 +99,7 @@
                 </div>
             </nav>
             <div class="w-full h-20 flex flex-col justify-center items-center shadow-lg font-bold">Cotação Dólar - Real:
-                <span>Venda: R$<?= $stock["ask"] ?></span>
-                <span>Compra: R$<?= $stock["bid"] ?></span>
+                <span class="<?= $stock["pctChange"] > 0 ? "text-green-500" : "text-red-500" ?>"> R$<?= $stock["ask"] ?></span>
             </div>
         </div>
         <div class="computer only row w-full">

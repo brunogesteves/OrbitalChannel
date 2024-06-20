@@ -20,7 +20,6 @@ class Router
             "middleware" => null
         ];
         return $this;
-
     }
 
     public function get(
@@ -47,7 +46,6 @@ class Router
         $controller
     ) {
         return $this->add("PATCH", $uri, $controller);
-
     }
     public function put(
         $uri,
@@ -74,7 +72,5 @@ class Router
         }
 
         return require "Controllers/post.php";
-
-
     }
 }

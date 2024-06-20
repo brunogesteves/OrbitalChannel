@@ -8,7 +8,7 @@ class Auth
     {
 
         if (!$_SESSION["user"] ?? false) {
-            header('location: /login');
+            header('location: /orbital/login');
             exit();
         }
     }

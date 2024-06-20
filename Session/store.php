@@ -22,7 +22,7 @@ if ($user) {
         login([
             "email" => $email
         ]);
-        header("location: /admin");
+        header("location: /orbital/admin");
     } else {
         require view("login.php", [
             "warning" => "Senha Errada"

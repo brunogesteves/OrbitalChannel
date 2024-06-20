@@ -32,7 +32,7 @@ include ("partials/header.php");
                 </div>
                 <!-- end share -->
                 <div class="flex justify-center">
-                    <img src="<?= $content["source"] == "Orbital Channel" ? '/images/' . $content["image"] : $content["image"] ?>"
+                    <img src="<?= $content["source"] == "Orbital Channel" ? 'images/' . $content["image"] : $content["image"] ?>"
                         class="w-[652px] h-[419px] h-auto self-center" />
                 </div>
 
@@ -77,7 +77,7 @@ include ("partials/header.php");
         <?php foreach ($morePosts as $morePost): ?>
             <div>
                 <a href="/<?= $morePost["slug"] ?>">
-                    <img src="./images/<?= $morePost["image"] ?>" class="max-[767px]:w-full" />
+                    <img src="images/<?= $morePost["image"] ?>" class="max-[767px]:w-full" />
                 </a>
                 <p class=" text-xl font-bold my-5"><?= $morePost["title"] ?></p>
             </div>

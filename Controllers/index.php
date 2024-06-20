@@ -1,6 +1,7 @@
 <?php
 
 
+
 use Core\Database;
 use Core\Coin;
 
@@ -36,6 +37,7 @@ $level1 = [];
 $level2 = [];
 $level3 = [];
 $level4 = [];
+
 
 for ($x = 0; $x <= sizeof($postsN1); $x++) {
     if ($postsN1[$x] != NULL) {

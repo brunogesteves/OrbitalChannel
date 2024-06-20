@@ -11,7 +11,7 @@ require "views/partials/admin/header.php";
 
         <div class=" flex justify-center items-start w-full ">
             <div class="w-4/12 h-fit flex flex-col items-center z-0 ">
-                <form method="post" action="/admin/editar/update" class="flex justify-between text-center px-5 w-full h-full pt-2 ">
+                <form method="post" action="orbital//admin/editar/update" class="flex justify-between text-center px-5 w-full h-full pt-2 ">
                     <div class="flex justify-start flex-col w-full gap-y-10 overflow-y-auto">
                         <button type="submit" name="_method" value="put" class="ui approve button">Atualizar</button>
                         <input type="text" required name="title" value="<?=$post["title"] ?>"
@@ -84,10 +84,10 @@ require "views/partials/admin/header.php";
             </div>
         </div>
     </main>
-    <script src="/scripts/editpost.js" defer></script>
-    <script src="/scripts/suneditor.min.js"></script>
-    <script src="/scripts/pt.js" defer></script>
-    <link href="/styles/suneditor.min.css" rel="stylesheet" />
+    <script src="scripts/editpost.js" defer></script>
+    <script src="scripts/suneditor.min.js"></script>
+    <script src="scripts/pt.js" defer></script>
+    <link href="styles/suneditor.min.css" rel="stylesheet" />
 
 </div>
 <?php

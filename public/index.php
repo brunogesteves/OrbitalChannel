@@ -1,8 +1,6 @@
 <?php
 use Core\Router;
 
-
-
 const BASE_PATH = __DIR__ . '/../';
 
 
@@ -18,5 +16,6 @@ $router = new Router();
 $routes = require ("routes.php");
 
 $method = $_POST["_method"] ?? $_SERVER["REQUEST_METHOD"];
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+$uri = parse_url(str_replace("orbital/", "", $_SERVER['REQUEST_URI']))['path'];
+
 $router->route($uri, $method);

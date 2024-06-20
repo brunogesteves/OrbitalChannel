@@ -1,5 +1,5 @@
 <?php
-require "views/partials/admin/header.php";
+require "views/partials/admin/headerAdmin.php";
 ?>
 
 <div class="h-[calc(100vh_-_198px)] flex justify-start">
@@ -10,7 +10,7 @@ require "views/partials/admin/header.php";
     <main class="flex flex-col h-auto w-full">
         <div class=" flex justify-center items-start w-full ">
             <div class="w-4/12 h-fit flex flex-col z-0 ">
-                <form method="post" action="/admin/adicionar/create" class="flex justify-between text-center px-5 w-full h-full pt-2 ">
+                <form method="post" action="orbital//admin/adicionar/create" class="flex justify-between text-center px-5 w-full h-full pt-2 ">
                     <div class="flex justify-start flex-col w-full gap-y-10 overflow-y-auto">
                         <button type="submit" class="ui approve button">Salvar</button>
                         <input type="text" name="title" value="<?= $_POST["title"];?>"
@@ -57,7 +57,7 @@ require "views/partials/admin/header.php";
 
                                         </div>
                                     </div>
-                                    <img src="/images/<?= $image["name"] ?>" alt=<?= $image["name"] ?>
+                                    <img src="../images/<?= $image["name"] ?>" alt=<?= $image["name"] ?>
                                         class="w-full min-h-40" />
                                 </div>
                             </div>
@@ -76,10 +76,10 @@ require "views/partials/admin/header.php";
             </div>
         </div>
     </main>
-    <script src="/scripts/addpost.js" defer></script>
-    <script src="/scripts/suneditor.min.js"></script>
-    <script src="/scripts/pt.js" defer></script>
-    <link href="/styles/suneditor.min.css" rel="stylesheet" />
+    <script src="../scripts/addpost.js" defer></script>
+    <script src="../scripts/suneditor.min.js"></script>
+    <script src="../scripts/pt.js" defer></script>
+    <link href="../styles/suneditor.min.css" rel="stylesheet" />
 
 </div>
 <?php

@@ -1,5 +1,5 @@
 <?php
-require "views/partials/admin/header.php";
+require "views/partials/admin/headerAdmin.php";
 
 ?>
 <div class="h-[calc(100vh_-_181px)] flex justify-start">
@@ -21,7 +21,7 @@ require "views/partials/admin/header.php";
             <div class="flex flex-col h-[calc(100vh_-_350px)] ads overflow-y-auto">
                 <?php
                 foreach ($frontAds as $ad): ?>                    
-                            <img src="/images/ads/<?= $ad['file'] ?>" class=" w-full object-fit object-center" />
+                            <img src="../images/ads/<?= $ad['file'] ?>" class=" w-full object-fit object-center" />
                         <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1 ">
                             <p class="w-auto ">
                                 <?= $ad["name"] ?>
@@ -39,7 +39,7 @@ require "views/partials/admin/header.php";
                                 <?= $ad["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                             </p>
                             <div class="flex gap-x-1">
-                                <form method="POST" action="/admin/ads/publish" class=" flex items-center">
+                                <form method="POST" action="orbital//admin/ads/publish" class=" flex items-center">
                                     <input type="hidden" name="statusId" value=<?= $ad["id"] ?> />
                                     <input type="hidden" name="recentStatus" value=<?= $ad["status"] == "on" ? "off" : "on" ?> />
                                     <button type="submit" name="_method" value="put" 
@@ -50,10 +50,10 @@ require "views/partials/admin/header.php";
                                 <button class="openUpdateAdModalbtn bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                                     Verificar
                                 </button>
-                                <form method="POST" action="/admin/ads/destroy" class=" flex items-center">
+                                <form method="POST" action="orbital//admin/ads/destroy" class=" flex items-center">
                                     <input type="hidden" name="deleteAdId" value=<?= $ad["id"] ?> />
                                     <button type="submit" name="_method" value="DELETE" class="rounded-md" name="deletePost">
-                                        <img src="/images/icons/trash.png" alt="trash" class="w-7" />
+                                        <img src="../images/icons/trash.png" alt="trash" class="w-7" />
                                     </button>
                                 </form>
                             </div>
@@ -61,7 +61,7 @@ require "views/partials/admin/header.php";
                         <div
                             class="ui modal fullscreen updateAdModal h-fit">
                             <div class="bg-gray-100 py-5">
-                                <form method="POST" action="/admin/ads/update" enctype="multipart/form-data"
+                                <form method="POST" action="orbital//admin/ads/update" enctype="multipart/form-data"
                                     class="flex flex-col items-center gap-y-5 ">
                                     <div class="flex justify-center gap-x-2">
                                         <span class="text-xl">nome: </span>
@@ -74,7 +74,7 @@ require "views/partials/admin/header.php";
                                             accept=".jpg, .jpeg, .png" value="[]"/>
                                     </div>
                                     <div class="previewUploadInputAdImage">
-                                        <img src="/images/ads/<?= $ad["file"] ?>" class=" thumb-image w-48 " />`
+                                        <img src="../images/ads/<?= $ad["file"] ?>" class=" thumb-image w-48 " />`
                                     </div>
                                     <div class=" flex justify-center gap-x-2">
                                         <span class="text-xl">Posição:</span>
@@ -167,7 +167,7 @@ require "views/partials/admin/header.php";
                                 <?= $ad["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                             </p>
                             <div class="flex gap-x-1">
-                                <form method="POST" action="/admin/ads/publish" class=" flex items-center">
+                                <form method="POST" action="orbital//admin/ads/publish" class=" flex items-center">
                                     <input type="hidden" name="statusId" value=<?= $ad["id"] ?> />
                                     <input type="hidden" name="recentStatus" value=<?= $ad["status"] == "on" ? "off" : "on" ?> />
                                     <button type="submit" name="_method" value="put" name="statusPost"
@@ -178,10 +178,10 @@ require "views/partials/admin/header.php";
                                 <button class="openUpdateAdModalbtn bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                                     Verificar
                                 </button>
-                                <form method="POST" action="/admin/ads/destroy" class=" flex items-center">
+                                <form method="POST" action="orbital//admin/ads/destroy" class=" flex items-center">
                                     <input type="hidden" name="deleteAdId" value=<?= $ad["id"] ?> />
                                     <button type="submit" name="_method" value="DELETE" class="rounded-md" name="deletePost">
-                                        <img src="/images/icons/trash.png" alt="trash" class="w-7" />
+                                        <img src="../images/icons/trash.png" alt="trash" class="w-7" />
                                     </button>
                                 </form>
                             </div>
@@ -189,7 +189,7 @@ require "views/partials/admin/header.php";
                         <div
                             class="ui modal fullscreen updateAdModal h-fit">
                             <div class="bg-gray-100 py-5">
-                                <form method="POST" action="/admin/ads/update" enctype="multipart/form-data"
+                                <form method="POST" action="orbital//admin/ads/update" enctype="multipart/form-data"
                                     class="flex flex-col items-center gap-y-5 ">
                                     <div class="flex justify-center gap-x-2">
                                         <span class="text-xl">nome: </span>
@@ -207,7 +207,7 @@ require "views/partials/admin/header.php";
                                             accept=".jpg, .jpeg, .png" />
                                     </div>
                                     <div class="previewUploadInputAdImage">
-                                        <img src="/images/ads/<?= $ad["file"] ?>" class=" thumb-image w-48 " />`
+                                        <img src="../images/ads/<?= $ad["file"] ?>" class=" thumb-image w-48 " />`
                                     </div>
                                     <div class=" flex justify-center gap-x-2">
                                         <span class="text-xl">Posição:</span>
@@ -301,7 +301,7 @@ require "views/partials/admin/header.php";
                                 <?= $ad["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                             </p>
                             <div class="flex gap-x-1">
-                                <form method="POST" action="/admin/ads/publish" class=" flex items-center">
+                                <form method="POST" action="orbital//admin/ads/publish" class=" flex items-center">
                                     <input type="hidden" name="statusId" value=<?= $ad["id"] ?> />
                                     <input type="hidden" name="recentStatus" value=<?= $ad["status"] == "on" ? "off" : "on" ?> />
                                     <button type="submit" name="_method" value="put" name="statusPost"
@@ -312,10 +312,10 @@ require "views/partials/admin/header.php";
                                 <button class="openUpdateAdModalbtn bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                                     Verificar
                                 </button>
-                                <form method="POST" action="/admin/ads/destroy" class=" flex items-center">
+                                <form method="POST" action="orbital//admin/ads/destroy" class=" flex items-center">
                                     <input type="hidden" name="deleteAdId" value=<?= $ad["id"] ?> />
                                     <button type="submit" name="_method" value="DELETE" class="rounded-md" name="deletePost">
-                                        <img src="/images/icons/trash.png" alt="trash" class="w-7" />
+                                        <img src="../images/icons/trash.png" alt="trash" class="w-7" />
                                     </button>
                                 </form>
                             </div>
@@ -323,7 +323,7 @@ require "views/partials/admin/header.php";
                         <div
                             class="ui modal fullscreen updateAdModal h-fit">
                             <div class="bg-gray-100 py-5">
-                                <form method="POST" action="/admin/ads/update" enctype="multipart/form-data"
+                                <form method="POST" action="orbital//admin/ads/update" enctype="multipart/form-data"
                                     class="flex flex-col items-center gap-y-5 ">
                                     <div class="flex justify-center gap-x-2">
                                         <span class="text-xl">nome: </span>
@@ -341,7 +341,7 @@ require "views/partials/admin/header.php";
                                             accept=".jpg, .jpeg, .png" />
                                     </div>
                                     <div class="previewUploadInputAdImage">
-                                        <img src="/images/ads/<?= $ad["file"] ?>" class=" thumb-image w-48 " />`
+                                        <img src="../images/ads/<?= $ad["file"] ?>" class=" thumb-image w-48 " />`
                                     </div>
                                     <div class=" flex justify-center gap-x-2">
                                         <span class="text-xl">Posição:</span>
@@ -415,7 +415,7 @@ require "views/partials/admin/header.php";
 <input class="hidden" id="newModalhasErrors" value="<?= $errors ?>" />
 <div class="ui modal fullscreen newAdModal h-fit">
     <div class="bg-gray-100 py-5">
-        <form method="POST" action="/admin/ads/create" enctype="multipart/form-data"
+        <form method="POST" action="orbital//admin/ads/create" enctype="multipart/form-data"
             class="flex flex-col items-center gap-y-5 ">
             <div class="flex justify-center gap-x-2">
                 <span class="text-xl">nome2: </span>
@@ -495,7 +495,7 @@ require "views/partials/admin/header.php";
 
 </main>
 
-<script src="/scripts/ads.js" defer></script>
+<script src="../scripts/ads.js" defer></script>
 
 </div>
 <?php

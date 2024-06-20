@@ -1,5 +1,5 @@
 <?php
-require "views/partials/admin/header.php";
+require "views/partials/admin/headerAdmin.php";
 ?>
 
 <div class="h-[calc(100vh_-_195px)] flex justify-start">
@@ -11,7 +11,7 @@ require "views/partials/admin/header.php";
     <main class="flex flex-col h-auto overflow-y-auto w-full">
         <div class="flex justify-start items-center w-full flex-col h-full">
             <div class="mt-3 w-full">
-                <form method="POST" action="/admin/procurar/search"
+                <form method="POST" action="orbital//admin/procurar/search"
                     class=" w-full h-20 flex justify-center items-center gap-x-3">
                     <input type="text" required name="searchTerm" value="brasil"
                         class="bg-slate-300 rounded-md pl-2 outline-none" placeholder="buscar" />
@@ -31,7 +31,7 @@ require "views/partials/admin/header.php";
                 <?php
                 foreach ($results as $result): ?>
                     <div class="flex justify-between items-center h-auto gap-x-3 p-3">
-                        <img src="<?= $result["media"] ?>" class="w-28 h-auto object-scale-down" />
+                        <img src="../<?= $result["media"] ?>" class="w-28 h-auto object-scale-down" />
                         <p>
                             <?= $result["title"] ?>
                         </p>
@@ -50,7 +50,7 @@ require "views/partials/admin/header.php";
                         </div>
                         <div class=" flex justify-start gap-x-2">
                             <div class="w-1/6">
-                                <img src="<?= $result["media"] ?>" class="w-full">
+                                <img src="../<?= $result["media"] ?>" class="w-full">
                             </div>
                             <div class="w-5/6 ">
                                 <div>
@@ -73,7 +73,7 @@ require "views/partials/admin/header.php";
                                     class="closeExternalInfoModalbtn bg-red-600 hover:bg-red-700 px-3 h-full  rounded text-white mr-5">
                                     Cancelar
                                 </button>
-                                <form method="POST" action="/admin/procurar/search" class="flex gap-x-5">
+                                <form method="POST" action="orbital//admin/procurar/search" class="flex gap-x-5">
                                     <input type="hidden" name="title" value="<?= $result["title"] ?>" />
                                     <select name="section">
                                         <option>n1</option>
@@ -101,7 +101,7 @@ require "views/partials/admin/header.php";
                 <?php endforeach; ?>
             </div>
     </main>
-    <script src="/scripts/search.js"></script>
+    <script src="../scripts/search.js"></script>
 
 
 </div>

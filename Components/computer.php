@@ -3,8 +3,8 @@
         <?php foreach ($posts1 as $post) : ?>
             <div class=" flex flex-col w-1/2 h-auto justify-center items-center px-3">
                 <div class="w-full h-full">
-                    <a href=/<?= $post["slug"] ?>>
-                        <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : (strlen($post["image"]) <= 0 ? '/images/logo.jpg' : $post["image"]) ?> alt="" class="object-cover object-center w-full h-72" />
+                    <a href=/orbital/<?= $post["slug"] ?>>
+                        <img src=<?= $post["source"] == "Orbital Channel" ? 'images/' . $post["image"] : (strlen($post["image"]) <= 0 ? 'images/logo.jpg' : $post["image"]) ?> alt="" class="object-cover object-center w-full h-72" />
                     </a>
                 </div>
                 <div class="w-full h-full">
@@ -24,7 +24,7 @@
                 <?php foreach ($posts2 as $post) : ?>
                     <div class="carousel-slide-computer h-full relative ">
                         <a href="/<?= $post["slug"] ?>">
-                            <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : (strlen($post["image"]) <= 0 ? '/images/logo.jpg' : $post["image"]) ?> alt="" class="object-cover object-center w-full h-full opacity-70">
+                            <img src=<?= $post["source"] == "Orbital Channel" ? 'images/' . $post["image"] : (strlen($post["image"]) <= 0 ? 'images/logo.jpg' : $post["image"]) ?> alt="" class="object-cover object-center w-full h-full opacity-70">
                             <div class="absolute text-center w-full font-bold text-white text-2xl px-10 bottom-10">
                                 <?= $post["title"] ?>
                             </div>
@@ -36,10 +36,10 @@
         </div>
         <div>
             <button id="prev" class="bg-slate-400 rounded-r-md p-2 absolute left-0 top-1/2">
-                <img src="/images/icons/arrow-right.png" class="w-7" />
+                <img src="images/icons/arrow-right.png" class="w-7" />
             </button>
             <button id="next" class="bg-slate-400 rounded-l-md p-2 absolute right-3 top-1/2">
-                <img src="/images/icons/arrow-right.png" class="w-7 rotate-180" />
+                <img src="images/icons/arrow-right.png" class="w-7 rotate-180" />
             </button>
         </div>
         <div class="slideAd h-[150px] mt-2 ">
@@ -48,7 +48,7 @@
                     <?php foreach ($adsSlide as $ad) : ?>
                         <div class="carousel-slide-slideAd h-full relative ">
                             <a href="/<?= $ad["link"] ?>">                                
-                                <img src="/images/ads/<?= $ad["file"] ?>" alt="" class="object-cover object-center w-full h-full opacity-70">
+                                <img src="images/ads/<?= $ad["file"] ?>" alt="" class="object-cover object-center w-full h-full opacity-70">
                             </a>
                         </div>
 
@@ -77,7 +77,7 @@
             <div class="h-auto flex flex-col items-center w-1/3 px-3">
                 <div class="w-full h-full">
                     <a href=/<?= $post["slug"] ?>>
-                        <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : (strlen($post["image"]) <= 0 ? '/images/logo.jpg' : $post["image"]) ?> alt="" class="w-full h-44 object-cover object-center " />
+                        <img src=<?= $post["source"] == "Orbital Channel" ? 'images/' . $post["image"] : (strlen($post["image"]) <= 0 ? 'images/logo.jpg' : $post["image"]) ?> alt="" class="w-full h-44 object-cover object-center " />
                     </a>
                 </div>
                 <div class="w-full">

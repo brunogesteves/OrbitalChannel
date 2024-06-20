@@ -21,7 +21,7 @@ require "views/partials/admin/header.php";
             <?php
             foreach ($posts as $post): ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
-                    <img src="/images/<?= $post['image'] ?>" class=" w-20 h-10  object-fit" />
+                    <img src="images/<?= $post['image'] ?>" class=" w-20 h-10  object-fit" />
                     <p class="w-96">
                         <?= $post["title"] ?>
                     </p>
@@ -41,10 +41,10 @@ require "views/partials/admin/header.php";
                         <button class="openmodalPost bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                             Verificar
                         </button>
-                        <form method="POST" action="/admin/destroy" class="flex items-center">
+                        <form method="POST" action="orbital//admin/destroy" class="flex items-center">
                             <input type="hidden" name="deletePostId" value=<?= $post["id"] ?> />
                             <button type="submit" class="rounded-md" name="_method" value="DELETE">
-                                <img src="/images/icons/trash.png" alt="trash" class="w-7" />
+                                <img src="images/icons/trash.png" alt="trash" class="w-7" />
                             </button>
                         </form>
                     </div>
@@ -88,7 +88,7 @@ require "views/partials/admin/header.php";
                                 class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white cursor-pointer hover:text-white">
                                 Editar
                             </a>
-                            <form method="post" action="/admin/update">
+                            <form method="post" action="orbital//admin/update">
                                 <input type="hidden" name="UpdateStatusId" value=<?= $post["id"] ?> />
                                 <input type="hidden" name="status" value=<?= $post["status"] == "on" ? "off" : "on" ?> />
                                 <button type="submit" name="_method" value="put"
@@ -128,7 +128,7 @@ require "views/partials/admin/header.php";
                         <button class="openmodalPost bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                             Verificar
                         </button>
-                        <form method="POST" action="/admin/destroy" class="flex items-center">
+                        <form method="POST" action="orbital//admin/destroy" class="flex items-center">
                             <input type="hidden" name="DeleteExtPostId" value=<?= $extpost["id"] ?> />
                             <button type="submit" name="_method" value="DELETE" class=" rounded-md">
                                 <img src="/images/icons/trash.png" alt="trash" class="w-7" />
@@ -172,7 +172,7 @@ require "views/partials/admin/header.php";
                                 class="closemodalPost bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
                                 Cancelar
                             </button>
-                            <form method="post" action="/admin/update">
+                            <form method="post" action="orbital//admin/update">
                                 <input type="hidden" name="sectionUpdateExtPostId" value=<?= $extpost["id"] ?> />
                                 <select name="sectionUpdateExtPost">
                                     <option <?php if ($extpost["section"] == "n1"): ?> selected <?php endif; ?>>n1</option>
@@ -185,7 +185,7 @@ require "views/partials/admin/header.php";
                                     Atualizar seção
                                 </button>
                             </form>
-                            <form method="post" action="/admin/update">
+                            <form method="post" action="orbital//admin/update">
                                 <input type="hidden" name="ExtPostStatusId" value=<?= $extpost["id"] ?> />
                                 <input type="hidden" name="status" value=<?= $extpost["status"] == "on" ? "off" : "on" ?> />
                                 <button type="submit" name="_method" value="put"
@@ -584,7 +584,7 @@ require "views/partials/admin/header.php";
         </div>
     </main>
 
-    <script src="../scripts/admin.js" defer></script>
+    <script src="scripts/admin.js" defer></script>
 
 </div>
 <?php

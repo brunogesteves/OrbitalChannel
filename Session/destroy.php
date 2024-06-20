@@ -2,5 +2,5 @@
 
 logout();
 
-header("location: /login");
+header("location: /orbital/login");
 exit();

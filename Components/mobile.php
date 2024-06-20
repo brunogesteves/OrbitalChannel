@@ -64,4 +64,4 @@
 <?php endforeach; ?> 
 
 
-<script type="text/javascript" src="/scripts/mobile.js"></script>
+<script type="text/javascript" src="scripts/mobile.js"></script>

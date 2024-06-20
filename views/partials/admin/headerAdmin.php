@@ -8,13 +8,13 @@
     <meta http-equiv="PRAGMA" content="NO-CACHE" />
 
 
-    <script src="scripts/tailwind.js"></script>
-    <script src="scripts/scripts.js" defer></script>
+    <script src="../scripts/tailwind.js"></script>
+    <script src="../scripts/scripts.js" defer></script>
     <link rel="shortcut icon" href="images/orbital/logo.ico" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" href="styles/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="../styles/semantic.min.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="scripts/semantic.min.js"></script>
+    <script src="../scripts/semantic.min.js"></script>
 
 
     <title>Orbital Channel</title>
@@ -29,7 +29,7 @@
                         <div class="ui button changeLogotype">Mudar Logotipo</div>
                     </div>
                 </div>
-                <img class="ui image w-52" src="images/orbital/logo.png">
+                <img class="ui image w-52" src="../images/orbital/logo.png">
             </div>
         </div>
         <div class="ui modal logotype">
@@ -48,7 +48,7 @@
                                         </form>
                                     </div>
                                 </div>
-                                <img src="images/<?= $image["name"] ?>" alt=<?= $image["name"] ?> class="w-full min-h-10" />
+                                <img src="../images/<?= $image["name"] ?>" alt=<?= $image["name"] ?> class="w-full min-h-10" />
                             </div>
                         </div>
                     <?php endforeach; ?>
