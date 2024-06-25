@@ -29,7 +29,7 @@
                         <div class="ui button changeLogotype">Mudar Logotipo</div>
                     </div>
                 </div>
-                <img class="ui image w-52" src="../images/orbital/logo.png">
+                <img class="ui image w-52 h-52 object-center" src="../images/orbital/logo.png">
             </div>
         </div>
         <div class="ui modal logotype">
@@ -41,7 +41,7 @@
                             <div class="ui dimmable image">
                                 <div class="ui dimmer">
                                     <div class="content">
-                                        <form method="POST" action="orbital//admin/update">
+                                        <form method="POST" action="orbital/admin/imagens/logotype">
                                             <input type="hidden" name="changeLogotype" value=<?= $image["name"] ?> />
                                             <button type="submit" name="_method" value="put"
                                                 class="ui primary button ">Selecionar</button>
@@ -59,7 +59,7 @@
         <div class="text-4xl" id="timestamp"></div>
         <div class="flex flex-col items-center">
 
-            <form method="POST" action="orbital//session/delete">
+            <form method="POST" action="orbital/session/delete">
                 <button type="submit" name="_method" value="DELETE"
                     class=" cursor-pointer text-xl bg-black text-white w-20 text-center mt-3 rounded-md">
                     Sair</button>

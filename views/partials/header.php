@@ -103,7 +103,7 @@
             </div>
         </div>
         <div class="computer only row w-full">
-            <header class="w-full flex justify-center items-center h-[150px] py-3 gap-3 max-[768px]:hidden ">
+            <header class="w-full flex justify-center items-center h-52 py-3 gap-3 max-[768px]:hidden ">
                 <div class="w-1/4 flex justify-center h-full">
                     <a href="/"><img src="images/orbital/logo.png" alt="logo" class="h-full" /></a>
                 </div>
@@ -124,6 +124,4 @@
             <hr class="border-b-2  mb-2 mx-6 border-black w-full">
             </hr>
         </div>
-
-
     </div>

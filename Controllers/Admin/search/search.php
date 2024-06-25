@@ -41,11 +41,12 @@ if (isset($_POST["searchTerm"])) {
         return "cURL Error #:" . $err;
     } else {
         $res = json_decode($response);
-        $results = $res->articles;
-        $res = http_build_query($results);
+        $results = $res->articles;        
+
+        $_SESSION["search_content"] = $res;
 
     }
-    header('Location: ' . "/admin/procurar?=$res");
+    header('Location: ' . "/admin/procurar");
 
 
 
@@ -79,8 +80,5 @@ if (isset($_POST["addExternalSource"])) {
         header('Location: ' . "/admin");
         die();
 
-    } else {
-        var_dump("external", $results);
-
-    }
+    } 
 }

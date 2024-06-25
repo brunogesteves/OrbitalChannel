@@ -61,15 +61,19 @@ include ("partials/header.php");
                     <p class="text-start my-4 font-bold max-sm:pl-2">Fonte:
                         <?= $content["source"] ?>
                     </p>
+                    <?php if (!$tempContent["thumb"]): ?>
+
                     <button class="bg-black text-white p-3 w-52 rounded-md" id="button_change">
                         Ler matéria completa
                     </button>
                 </div>
             </div>
-            <!-- <div class="w-full h-full p-3" id="complete">
+            <div class="w-full h-full p-3" id="complete">
                 <iframe src=<?= $content["link"] ?> height="100vh" title="description"
                     style="overflow:hidden;height:100vh;width:100%"></iframe>
-            </div> -->
+            </div>
+            <?php endif; ?>
+
         </div>
     </main>
     <div class="w-1/6 max-[767px]:w-full flex justify-center flex flex-col gap-y-5 text-center">

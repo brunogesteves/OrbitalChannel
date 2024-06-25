@@ -10,7 +10,7 @@ require "views/partials/admin/headerAdmin.php";
 
     <main class="flex flex-col w-full">
         <div class="w-full flex justify-center items-start gap-x-5">
-            <form method="POST" action="orbital//admin/imagens/create" enctype="multipart/form-data" class="flex flex-col">
+            <form method="POST" action="orbital/admin/imagens/create" enctype="multipart/form-data" class="flex flex-col">
                 <input type="file" name="image" id="fileUpload" required accept=".jpg, .jpeg, .png" />
                 <button type="submit" class="text-white bg-black my-7 p-2 rounded-lg text-xl">adicionar</button>
             </form>
@@ -23,7 +23,7 @@ require "views/partials/admin/headerAdmin.php";
                     <div class="ui dimmable image">
                         <div class="ui dimmer">
                             <div class="content">
-                                <form method="post" action="orbital//admin/imagens/destroy">
+                                <form method="post" action="orbital/admin/imagens/destroy">
                                     <input type="hidden" name="imageId" value=<?= $image["id"] ?> />
                                     <input type="hidden" name="imageName" value=<?= $image["name"] ?> />
                                     <div class="ui button seePicture" id=<?= $image["name"] ?>>Ver</div>
@@ -32,7 +32,7 @@ require "views/partials/admin/headerAdmin.php";
                                 </form>
                             </div>
                         </div>
-                        <img src=<?= "../images/" . $image["name"] ?> alt=<?= $image["name"] ?> class="w-full min-h-40" />
+                        <img src=<?= "../images/" . $image["name"] ?> alt=<?= $image["name"] ?> class="w-full object-cover min-h-40" />
                     </div>
                 </div>
             <?php endforeach; ?>

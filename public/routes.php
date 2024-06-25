@@ -23,6 +23,7 @@ $router->delete("/admin/ads/destroy", "Controllers/Admin/ads/destroy.php")->only
 
 $router->get("/admin/imagens", "Controllers/Admin/images/index.php")->only("auth");
 $router->post("/admin/imagens/create", "Controllers/Admin/images/create.php")->only("auth");
+$router->put("/admin/imagens/logotype", "Controllers/Admin/images/logotype.php")->only("auth");
 $router->delete("/admin/imagens/destroy", "Controllers/Admin/images/destroy.php")->only("auth");
 
 $router->get("/login", "Controllers/login/index.php");

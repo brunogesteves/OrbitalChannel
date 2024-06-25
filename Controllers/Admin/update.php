@@ -7,13 +7,6 @@ use Core\Database;
 
 $db = new Database();
 
-if ($_POST["changeLogotype"]) {
-    $logotype = $_POST["changeLogotype"];
-    $sourceImage = 'images/' . $_POST["changeLogotype"];
-    copy($sourceImage, "images/orbital/logo.png");
-    header('Location: ' . "/admin");
-
-}
 
 if ($_POST["UpdateStatusId"]) {
     $id = (int) $_POST["UpdateStatusId"];
