@@ -2,7 +2,7 @@
 
 $router->get("/", "Controllers/index.php");
 $router->get("/admin", "Controllers/Admin/index.php");
-$router->post("/admin/update", "Controllers/Admin/create.php")->only("auth");
+$router->post("/admin/create", "Controllers/Admin/create.php")->only("auth");
 $router->put("/admin/update", "Controllers/Admin/update.php")->only("auth");
 $router->delete("/admin/destroy", "Controllers/Admin/destroy.php")->only("auth");
 

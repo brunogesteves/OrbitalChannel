@@ -10,10 +10,9 @@
 
     <script src="../scripts/tailwind.js"></script>
     <script src="../scripts/scripts.js" defer></script>
-    <link rel="shortcut icon" href="images/orbital/logo.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="../images/orbital/logo.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="../styles/semantic.min.css">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="../scripts/semantic.min.js"></script>
 
 
@@ -32,36 +31,21 @@
                 <img class="ui image w-52 h-52 object-center" src="../images/orbital/logo.png">
             </div>
         </div>
-        <div class="ui modal logotype">
-            <div id="modalImage">
-                <div class="flex justify-around flex-wrap overflow-y-auto h-[calc(100vh_-_107px)]">
-                    <?php
-                    foreach ($images as $image): ?>
-                        <div class="cursor-pointer w-1/6 mr-3 relative">
-                            <div class="ui dimmable image">
-                                <div class="ui dimmer">
-                                    <div class="content">
-                                        <form method="POST" action="orbital/admin/imagens/logotype">
-                                            <input type="hidden" name="changeLogotype" value=<?= $image["name"] ?> />
-                                            <button type="submit" name="_method" value="put"
-                                                class="ui primary button ">Selecionar</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <img src="../images/<?= $image["name"] ?>" alt=<?= $image["name"] ?> class="w-full min-h-10" />
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
+        <div class="ui modal logotype ">
+            <div class="flex flex-col justify-start items-center pt-10 min-h-96">
+                <span class="text-3xl font-bold text-black">Selecione um novo Logotipo</span>                
+                <form method="POST" action="admin/imagens/logotype" enctype="multipart/form-data" class="flex flex-col mt-10">
+                    <input type="file" name="image" id="newLogotype" required accept=".png" />
+                    <button type="submit" class="text-white bg-black my-7 p-2 rounded-lg text-xl">Mudar Logotipo</button>
+                </form>
+                <div id="previewNewLogotype"> </div>
+                </form>                
             </div>
         </div>
-
         <div class="text-4xl" id="timestamp"></div>
         <div class="flex flex-col items-center">
-
             <form method="POST" action="orbital/session/delete">
-                <button type="submit" name="_method" value="DELETE"
-                    class=" cursor-pointer text-xl bg-black text-white w-20 text-center mt-3 rounded-md">
+                <button type="submit" name="_method" value="DELETE" class=" cursor-pointer text-xl bg-black text-white w-20 text-center mt-3 rounded-md">
                     Sair</button>
             </form>
         </div>

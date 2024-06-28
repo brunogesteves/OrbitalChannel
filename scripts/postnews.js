@@ -1,9 +1,9 @@
 $(document).ready(() => {
-  $("#complete").hide();
+  $("#completeArticle").hide();
 
-  $("#button_change").click(function () {
-    $("#excerpt").hide();
-    $("#button_change").hide();
-    $("#complete").show();
+  $("#shortArticleBtn").click(function () {
+    $("#shortArticle").hide();
+    $("#shortArticleBtn").hide();
+    $("#completeArticle").show();
   });
 });

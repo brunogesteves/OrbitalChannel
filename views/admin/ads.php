@@ -4,7 +4,7 @@ require "views/partials/admin/headerAdmin.php";
 ?>
 <div class="h-[calc(100vh_-_181px)] flex justify-start">
     <?php
-    require "views/partials/admin/sidebar.php";
+    require "views/partials/admin/sidebar.php";     
     ?>
 
     <main class="w-full">
@@ -13,8 +13,10 @@ require "views/partials/admin/headerAdmin.php";
             <div class="item" data-tab="mobile">Mobile</div>
             <div class="item" data-tab="slide">Slide</div>
         </div>
+
         <div class="ui active tab" data-tab="front">
-            <!-- Tab Content !-->
+            
+
             <button class="openNewModalbtn text-white bg-black my-7 p-2 ml-4 rounded-lg text-xl">Adicionar
                 Anúncio</button>
 
@@ -39,7 +41,7 @@ require "views/partials/admin/headerAdmin.php";
                                 <?= $ad["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                             </p>
                             <div class="flex gap-x-1">
-                                <form method="POST" action="orbital//admin/ads/publish" class=" flex items-center">
+                                <form method="POST" action="/admin/ads/publish" class=" flex items-center">
                                     <input type="hidden" name="statusId" value=<?= $ad["id"] ?> />
                                     <input type="hidden" name="recentStatus" value=<?= $ad["status"] == "on" ? "off" : "on" ?> />
                                     <button type="submit" name="_method" value="put" 
@@ -50,7 +52,7 @@ require "views/partials/admin/headerAdmin.php";
                                 <button class="openUpdateAdModalbtn bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                                     Verificar
                                 </button>
-                                <form method="POST" action="orbital//admin/ads/destroy" class=" flex items-center">
+                                <form method="POST" action="/admin/ads/destroy" class=" flex items-center">
                                     <input type="hidden" name="deleteAdId" value=<?= $ad["id"] ?> />
                                     <button type="submit" name="_method" value="DELETE" class="rounded-md" name="deletePost">
                                         <img src="../images/icons/trash.png" alt="trash" class="w-7" />
@@ -61,7 +63,7 @@ require "views/partials/admin/headerAdmin.php";
                         <div
                             class="ui modal fullscreen updateAdModal h-fit">
                             <div class="bg-gray-100 py-5">
-                                <form method="POST" action="orbital//admin/ads/update" enctype="multipart/form-data"
+                                <form method="POST" action="/admin/ads/update" enctype="multipart/form-data"
                                     class="flex flex-col items-center gap-y-5 ">
                                     <div class="flex justify-center gap-x-2">
                                         <span class="text-xl">nome: </span>
@@ -115,7 +117,7 @@ require "views/partials/admin/headerAdmin.php";
                                     </span>
                                     <div class="flex justify-center gap-x-2">
                                         <span class="text-xl">Fim:</span>
-                                        <input  type="datetime-local" min="<?= $minTime ?>" name="adFinishs_at" value="<?= (new DateTime(date("Y-m-d h:i ", $ad["starts_at"])))->format('Y-m-d\TH:i')
+                                        <input  type="datetime-local" min="<?= $minTime ?>" name="adFinishs_at" value="<?= (new DateTime(date("Y-m-d h:i ", $ad["finishs_at"])))->format('Y-m-d\TH:i')
                                               ?? $_POST["adStarts_at"] ?>"
                                             class="border-2 border-black rounded-lg px-2" />
                                     </div>
@@ -149,7 +151,7 @@ require "views/partials/admin/headerAdmin.php";
             <div class="flex flex-col h-[calc(100vh_-_350px)] ads overflow-y-auto">
                 <?php
                 foreach ($mobileAds as $ad): ?>                    
-                        <input type="hidden" name="recentStatus" value=<?= $ad["status"] == "on" ? "off" : "on" ?> />
+                         <img src="../images/ads/<?= $ad['file'] ?>" class=" w-full object-fit object-center" />                        
                         <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1 ">
                             <p class="w-auto">
                                 <?= $ad["name"] ?>
@@ -167,7 +169,7 @@ require "views/partials/admin/headerAdmin.php";
                                 <?= $ad["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                             </p>
                             <div class="flex gap-x-1">
-                                <form method="POST" action="orbital//admin/ads/publish" class=" flex items-center">
+                                <form method="POST" action="/admin/ads/publish" class=" flex items-center">
                                     <input type="hidden" name="statusId" value=<?= $ad["id"] ?> />
                                     <input type="hidden" name="recentStatus" value=<?= $ad["status"] == "on" ? "off" : "on" ?> />
                                     <button type="submit" name="_method" value="put" name="statusPost"
@@ -178,7 +180,7 @@ require "views/partials/admin/headerAdmin.php";
                                 <button class="openUpdateAdModalbtn bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                                     Verificar
                                 </button>
-                                <form method="POST" action="orbital//admin/ads/destroy" class=" flex items-center">
+                                <form method="POST" action="/admin/ads/destroy" class=" flex items-center">
                                     <input type="hidden" name="deleteAdId" value=<?= $ad["id"] ?> />
                                     <button type="submit" name="_method" value="DELETE" class="rounded-md" name="deletePost">
                                         <img src="../images/icons/trash.png" alt="trash" class="w-7" />
@@ -189,7 +191,7 @@ require "views/partials/admin/headerAdmin.php";
                         <div
                             class="ui modal fullscreen updateAdModal h-fit">
                             <div class="bg-gray-100 py-5">
-                                <form method="POST" action="orbital//admin/ads/update" enctype="multipart/form-data"
+                                <form method="POST" action="/admin/ads/update" enctype="multipart/form-data"
                                     class="flex flex-col items-center gap-y-5 ">
                                     <div class="flex justify-center gap-x-2">
                                         <span class="text-xl">nome: </span>
@@ -248,7 +250,7 @@ require "views/partials/admin/headerAdmin.php";
                                     </span>
                                     <div class="flex justify-center gap-x-2">
                                         <span class="text-xl">Fim:</span>
-                                        <input type="datetime-local" min="<?= $minTime ?>" name="adFinishs_at" value="<?= (new DateTime(date("Y-m-d h:i ", $ad["starts_at"])))->format('Y-m-d\TH:i')
+                                        <input type="datetime-local" min="<?= $minTime ?>" name="adFinishs_at" value="<?= (new DateTime(date("Y-m-d h:i ", $ad["finishs_at"])))->format('Y-m-d\TH:i')
                                               ?? $_POST["adStarts_at"] ?>"
                                             class="border-2 border-black rounded-lg px-2" />
                                     </div>
@@ -283,6 +285,7 @@ require "views/partials/admin/headerAdmin.php";
             <div class="flex flex-col h-[calc(100vh_-_350px)] ads overflow-y-auto">
                 <?php
                 foreach ($slideAds as $ad): ?>
+                         <img src="../images/ads/<?= $ad['file'] ?>" class=" w-full object-fit object-center" />
                         <input type="hidden" name="recentStatus" value=<?= $ad["status"] == "on" ? "off" : "on" ?> />
                         <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1 ">
                             <p class="w-auto">
@@ -301,7 +304,7 @@ require "views/partials/admin/headerAdmin.php";
                                 <?= $ad["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                             </p>
                             <div class="flex gap-x-1">
-                                <form method="POST" action="orbital//admin/ads/publish" class=" flex items-center">
+                                <form method="POST" action="/admin/ads/publish" class=" flex items-center">
                                     <input type="hidden" name="statusId" value=<?= $ad["id"] ?> />
                                     <input type="hidden" name="recentStatus" value=<?= $ad["status"] == "on" ? "off" : "on" ?> />
                                     <button type="submit" name="_method" value="put" name="statusPost"
@@ -312,7 +315,7 @@ require "views/partials/admin/headerAdmin.php";
                                 <button class="openUpdateAdModalbtn bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                                     Verificar
                                 </button>
-                                <form method="POST" action="orbital//admin/ads/destroy" class=" flex items-center">
+                                <form method="POST" action="/admin/ads/destroy" class=" flex items-center">
                                     <input type="hidden" name="deleteAdId" value=<?= $ad["id"] ?> />
                                     <button type="submit" name="_method" value="DELETE" class="rounded-md" name="deletePost">
                                         <img src="../images/icons/trash.png" alt="trash" class="w-7" />
@@ -323,7 +326,7 @@ require "views/partials/admin/headerAdmin.php";
                         <div
                             class="ui modal fullscreen updateAdModal h-fit">
                             <div class="bg-gray-100 py-5">
-                                <form method="POST" action="orbital//admin/ads/update" enctype="multipart/form-data"
+                                <form method="POST" action="/admin/ads/update" enctype="multipart/form-data"
                                     class="flex flex-col items-center gap-y-5 ">
                                     <div class="flex justify-center gap-x-2">
                                         <span class="text-xl">nome: </span>
@@ -382,7 +385,7 @@ require "views/partials/admin/headerAdmin.php";
                                     </span>
                                     <div class="flex justify-center gap-x-2">
                                         <span class="text-xl">Fim:</span>
-                                        <input type="datetime-local" min="<?= $minTime ?>" name="adFinishs_at" value="<?= (new DateTime(date("Y-m-d h:i ", $ad["starts_at"])))->format('Y-m-d\TH:i')
+                                        <input type="datetime-local" min="<?= $minTime ?>" name="adFinishs_at" value="<?= (new DateTime(date("Y-m-d h:i ", $ad["finishs_at"])))->format('Y-m-d\TH:i')
                                               ?? $_POST["adStarts_at"] ?>"
                                             class="border-2 border-black rounded-lg px-2" />
                                     </div>
@@ -412,20 +415,20 @@ require "views/partials/admin/headerAdmin.php";
 </div>
 
 <!-- ver Adicionar AD modal -->
-<input class="hidden" id="newModalhasErrors" value="<?= $errors ?>" />
+<input class="hidden" id="newModalhasErrors" value="<?= sizeof($newAdErrors) ?>" />
 <div class="ui modal fullscreen newAdModal h-fit">
     <div class="bg-gray-100 py-5">
-        <form method="POST" action="orbital//admin/ads/create" enctype="multipart/form-data"
+        <form method="POST" action="/admin/ads/create" enctype="multipart/form-data"
             class="flex flex-col items-center gap-y-5 ">
             <div class="flex justify-center gap-x-2">
-                <span class="text-xl">nome2: </span>
+                <span class="text-xl">nome: </span>
                 <input type="text" name="adName" class=" w-96 border-2 border-black rounded-lg"
-                    value="<?= $errors["oldAdName"] ?>" />
+                    value="<?= $tempNewAdContent["adName"] ?>" />
             </div>
             <span class=" text-red-500 font-bold -mt-3">
-                <?php if (($errors["adName"])): ?>
-                    <?= $errors["adName"] ?>
-                <?php endif; ?>
+                 <?php if (!$tempNewAdContent["adName"]): ?>
+                    <?= $newAdErrors["adName"] ?>
+                 <?php endif; ?>
             </span>
             <div class="flex justify-center gap-x-2">
                 <span class="text-xl">Imagem:</span>
@@ -437,48 +440,48 @@ require "views/partials/admin/headerAdmin.php";
                 <span class="text-xl">Posição:</span>
                 <select name="adPosition" class="text-xl">
                     <option value="none">Selecione uma posição</option>
-                    <option value="mobile" <?php if ($errors["oldAdPosition"] == "mobile"): ?>selected<?php endif; ?>>
+                    <option value="mobile" <?php if ($tempNewAdContent["adPosition"] == "mobile"): ?>selected<?php endif; ?>>
                         Mobile</option>
-                    <option value="front" <?php if ($errors["oldAdPosition"] == "front"): ?>selected<?php endif; ?>>
+                    <option value="front" <?php if ($tempNewAdContent["adPosition"] == "front"): ?>selected<?php endif; ?>>
                         Frente</option>
-                    <option value="slide" <?php if ($errors["oldAdPosition"] == "slide"): ?>selected<?php endif; ?>>
+                    <option value="slide" <?php if ($tempNewAdContent["adPosition"] == "slide"): ?>selected<?php endif; ?>>
                         Slide</option>
                 </select>
             </div>
             <span class="text-red-500 font-bold -mt-3">
-                <?php if (($errors["adPosition"])): ?>
-                    <?= $errors["adPosition"] ?>
+                <?php if (!$tempNewAdContent["adPosition"]): ?>
+                    <?= $newAdErrors["adPosition"] ?>
                 <?php endif; ?>
             </span>
             <div class="flex justify-center gap-x-2">
                 <span class="text-xl">Link:</span>
-                <input type="text" name="adLink" value="<?= $errors["oldAdLink"] ?>"
+                <input type="text" name="adLink" value="<?= $tempNewAdContent["adLink"] ?>"
                     class="border-2 border-black rounded-lg px-2 w-96" />
             </div>
             <span class="text-red-500 font-bold -mt-3">
-                <?php if (($errors["adLink"])): ?>
-                    <?= $errors["adLink"] ?>
+                <?php if (!$tempNewAdContent["adLink"]): ?>
+                    <?= $newAdErrors["adLink"] ?>
                 <?php endif; ?>
             </span>
             <div class="flex justify-center gap-x-2">
                 <span class="text-xl">Início: </span>
                 <input type="datetime-local" min="<?= $minTime ?>" name="adStarts_at"
-                    value="<?= $errors["oldAdStarts_at"] ?>" class="border-2 border-black
+                    value="<?= $tempNewAdContent["adStarts_at"] ?>" class="border-2 border-black
                 rounded-lg px-2" />
             </div>
             <span class="text-red-500 font-bold -mt-3">
-                <?php if (($errors["adStarts_at"])): ?>
-                    <?= $errors["adStarts_at"] ?>
+                <?php if (!$tempNewAdContent["adStarts_at"]): ?>
+                    <?= $newAdErrors["adStarts_at"] ?>
                 <?php endif; ?>
             </span>
             <div class="flex justify-center gap-x-2">
                 <span class="text-xl">Fim:</span>
                 <input type="datetime-local" min="<?= $minTime ?>" name="adFinishs_at"
-                    value="<?= $errors["oldAdFinishs_at"] ?>" class="border-2 border-black rounded-lg px-2" />
+                    value="<?= $tempNewAdContent["adFinishs_at"] ?>" class="border-2 border-black rounded-lg px-2" />
             </div>
             <span class="text-red-500 font-bold -mt-3">
-                <?php if (($errors["adFinishs_at"])): ?>
-                    <?= $errors["adFinishs_at"] ?>
+                <?php if (!$tempNewAdContent["adFinishs_at"]): ?>
+                    <?= $newAdErrors["adFinishs_at"] ?>
                 <?php endif; ?>
             </span>
             <div class="flex gap-x-3 mt-4" >
@@ -490,14 +493,9 @@ require "views/partials/admin/headerAdmin.php";
         </form>
     </div>
 </div>
-
-
-
 </main>
-
-<script src="../scripts/ads.js" defer></script>
-
 </div>
+<script src="/scripts/ads.js" defer></script>
 <?php
 require "views/partials/admin/footer.php";
 

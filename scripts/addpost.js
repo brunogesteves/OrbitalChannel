@@ -106,6 +106,4 @@ $(document).ready(() => {
   $(".ui.dimmable").dimmer({
     on: "hover",
   });
-
-  $(".dd").text("tem jquery sem erros");
 });

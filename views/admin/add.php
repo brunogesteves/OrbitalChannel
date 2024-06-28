@@ -4,9 +4,7 @@ require "views/partials/admin/headerAdmin.php";
 
 <div class="h-[calc(100vh_-_198px)] flex justify-start">
     <?php
-    require "views/partials/admin/sidebar.php";
-    $errors = $_SESSION["errors"];   
-    $tempContent = $_SESSION["tempContent"];   
+    require "views/partials/admin/sidebar.php";  
     
     ?>
 

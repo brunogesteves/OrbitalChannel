@@ -8,40 +8,48 @@ require "views/partials/admin/header.php";
 
     <main class="flex flex-col h-auto overflow-y-auto w-full relative">
         <div class="ui top attached tabular menu">
-            <a class="item active" data-tab="first">Orbital</a>
-            <a class="item" data-tab="second">Externos</a>
-            <a class="item" data-tab="third">Nível 1</a>
-            <a class="item" data-tab="fourth">Nível 2</a>
-            <a class="item" data-tab="fifth">Nível 3</a>
-            <a class="item" data-tab="sixth">Nível 4</a>
-            <a class="item" data-tab="seventh">Automáticos</a>
+            <a class="item active" data-tab="orbital">Orbital</a>
+            <a class="item" data-tab="external">Externos</a>
+            <a class="item" data-tab="level1">Nível 1</a>
+            <a class="item" data-tab="level2">Nível 2</a>
+            <a class="item" data-tab="level3">Nível 3</a>
+            <a class="item" data-tab="level4">Nível 4</a>
+            <a class="item" data-tab="automatics">Automáticos</a>
         </div>
-        <div class="ui bottom attached tab segment active h-[calc(100vh_-_250px)] overflow-y-auto " data-tab="first">
-            <!-- First -->
+        <div class="ui bottom attached tab segment active h-[calc(100vh_-_250px)] overflow-y-auto " data-tab="orbital">
             <?php
-            foreach ($posts as $post): ?>
+            foreach ($posts as $post) : ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
                     <img src="images/<?= $post['image'] ?>" class=" w-20 h-10  object-fit" />
-                    <p class="w-96">
+                    <p class="w-96 title">
                         <?= $post["title"] ?>
                     </p>
-                    <p class="w-auto">
+                    <p class="w-auto source">
                         <?= $post["source"] ?>
                     </p>
-                    <p class="w-5">
+                    <p class="w-5 section">
                         <?= $post["section"] ?>
                     </p>
                     <p class="w-24">
                         <?= date("d-m-Y h:i ", $post["post_at"]) ?>
                     </p>
-                    <p class="w-20 ">
+                    <p class="w-20 status">
                         <?= $post["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                     </p>
+                    <div class=" postContent bg-red-500 hidden">
+                        <?= $post["content"] ?>
+                    </div>
+                    <div class="w-20 thumb hidden ">
+                        <?= $post["image"] ?>
+                    </div>
+                    <div class="w-20 postId hidden">
+                        <?= $post["id"] ?>
+                    </div>
                     <div class="flex gap-x-1">
-                        <button class="openmodalPost bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
+                        <button class="openModalBtn bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                             Verificar
                         </button>
-                        <form method="POST" action="orbital//admin/destroy" class="flex items-center">
+                        <form method="POST" action="admin/destroy" class="flex items-center">
                             <input type="hidden" name="deletePostId" value=<?= $post["id"] ?> />
                             <button type="submit" class="rounded-md" name="_method" value="DELETE">
                                 <img src="images/icons/trash.png" alt="trash" class="w-7" />
@@ -49,545 +57,287 @@ require "views/partials/admin/header.php";
                         </form>
                     </div>
                 </div>
-                <!-- begin first modal -->
-                <div
-                    class="ui modal fullscreen infoModal two column grid h-fit">
-                    <div class="header">
-                        <?= $post["title"] ?>
-                    </div>
-                    <div class=" flex justify-start gap-x-2">
-                        <div class="w-1/6">
-                            <img src="/images/<?= $post["image"] ?>" class="w-28 h-28">
-                        </div>
-                        <div class="w-5/6">
-                            <span>Posição:</span>
-                            <span <?= $post["section"] ?>></span>
-                            <div>
-                                <span>Status:</span>
-                                <?= $post["status"] == "off" ? "Fora do Ar" : "Publicado" ?>
-                            </div>
-                            <div>
-                                <span>Fonte:</span>
-                                <?= $post["source"] ?>
-                            </div>
-                            <span>Fonte:</span>
-
-                            <div id="content">
-                                <span>Conteúdo:</span>
-                                <?= nl2br($post["content"]) ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="actions">
-                        <div class="flex justify-end items-start w-100 p-3 gap-x-3 h-10">
-                            <button type="button"
-                                class="closemodalPost bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
-                                Cancelar
-                            </button>
-                            <a href='/admin/editar?id=<?= $post["id"] ?>'
-                                class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white cursor-pointer hover:text-white">
-                                Editar
-                            </a>
-                            <form method="post" action="orbital//admin/update">
-                                <input type="hidden" name="UpdateStatusId" value=<?= $post["id"] ?> />
-                                <input type="hidden" name="status" value=<?= $post["status"] == "on" ? "off" : "on" ?> />
-                                <button type="submit" name="_method" value="put"
-                                    class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white cursor-pointer">
-                                    <?= $post["status"] == "on" ? "Despublicar" : "Publicar" ?>
-                                </button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
             <?php endforeach; ?>
         </div>
-        <div class="ui bottom attached tab segment h-[calc(100vh_-_250px)] overflow-y-auto" data-tab="second">
-            <!-- Second -->
+        <div class="ui bottom attached tab segment h-[calc(100vh_-_250px)] overflow-y-auto" data-tab="external">
             <?php
-            foreach ($extposts as $extpost): ?>
+            foreach ($extposts as $post) : ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
-                    <img src="<?= $extpost["image"] ?>" class="w-20 h-10  object-fit" />
-                    <p class="w-96">
-                        <?= $extpost["title"] ?>
-                        <?= $extpost["id"] ?>
+                    <img src=<?= $post["image"] ?> class=" w-20 h-10 object-cover " />
+                    <p class="w-96 title">
+                        <?= $post["title"] ?>
                     </p>
-                    <p class="w-auto">
-                        <?= $extpost["source"] ?>
+                    <p class="w-auto source">
+                        <?= $post["source"] ?>
                     </p>
-                    <p class="w-5">
-                        <?= $extpost["section"] ?>
+                    <p class="w-5 section">
+                        <?= $post["section"] ?>
                     </p>
                     <p class="w-24">
                         <?= date("d-m-Y h:i ", $post["post_at"]) ?>
                     </p>
-                    <p class="w-20 ">
-                        <?= $extpost["status"] == "off" ? "Fora do Ar" : "Publicado" ?>
+                    <p class="w-20 status">
+                        <?= $post["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                     </p>
+                    <div class="w-20 postContent hidden ">
+                        <?= $post["content"] ?>
+                    </div>
+                    <div class="w-20 thumb hidden ">
+                        <?= $post["image"] ?>
+                    </div>
+                    <div class="w-20 postId hidden">
+                        <?= $post["id"] ?>
+                    </div>
                     <div class="flex gap-x-1">
-                        <button class="openmodalPost bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
+                        <button class="openModalBtn bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                             Verificar
                         </button>
-                        <form method="POST" action="orbital//admin/destroy" class="flex items-center">
-                            <input type="hidden" name="DeleteExtPostId" value=<?= $extpost["id"] ?> />
+                        <form method="POST" action="admin/destroy" class="flex items-center">
+                            <input type="hidden" name="DeleteExtPostId" value=<?= $post["id"] ?> />
                             <button type="submit" name="_method" value="DELETE" class=" rounded-md">
                                 <img src="/images/icons/trash.png" alt="trash" class="w-7" />
                             </button>
                         </form>
                     </div>
                 </div>
-                <!-- begin second modal -->
-                <div
-                class="ui modal fullscreen infoModal two column grid h-fit">
-                    <div class="header">
-                        <?= $extpost["title"] ?>
-                        <?= $extpost["id"] ?>
-                    </div>
-                    <div class=" flex justify-start gap-x-2">
-                        <div class="w-1/6">
-                            <img src="<?= $extpost["image"] ?>" class="w-28 h-28">
-                        </div>
-                        <div class="w-5/6">
-                            <span>Posição:</span>
-                            <span><?= $extpost["section"] ?></span>
-                            <div>
-                                <span>Status:</span>
-                                <?= $extpost["status"] == "off" ? "Fora do Ar" : "Publicado" ?>
-                            </div>
-                            <div>
-                                <span>Fonte:</span>
-                                <?= $extpost["source"] ?>
-                            </div>
-                            <span>Link:</span>
-                            <?= $extpost["link"] ?>
-                            <div id="content">
-                                <span>Conteúdo:</span>
-                                <?= nl2br($extpost["content"]) ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="actions">
-                        <div class="flex justify-end items-start w-100 p-3 gap-x-3 h-10">
-                            <button type="button"
-                                class="closemodalPost bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
-                                Cancelar
-                            </button>
-                            <form method="post" action="orbital//admin/update">
-                                <input type="hidden" name="sectionUpdateExtPostId" value=<?= $extpost["id"] ?> />
-                                <select name="sectionUpdateExtPost">
-                                    <option <?php if ($extpost["section"] == "n1"): ?> selected <?php endif; ?>>n1</option>
-                                    <option <?php if ($extpost["section"] == "n2"): ?> selected <?php endif; ?>>n2</option>
-                                    <option <?php if ($extpost["section"] == "n3"): ?> selected <?php endif; ?>>n3</option>
-                                    <option <?php if ($extpost["section"] == "n4"): ?> selected <?php endif; ?>>n4</option>
-                                </select>
-                                <button type="submit" name="_method" value="put"
-                                    class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white cursor-pointer">
-                                    Atualizar seção
-                                </button>
-                            </form>
-                            <form method="post" action="orbital//admin/update">
-                                <input type="hidden" name="ExtPostStatusId" value=<?= $extpost["id"] ?> />
-                                <input type="hidden" name="status" value=<?= $extpost["status"] == "on" ? "off" : "on" ?> />
-                                <button type="submit" name="_method" value="put"
-                                    class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white cursor-pointer">
-                                    <?= $extpost["status"] == "on" ? "Despublicar" : "Publicar" ?>
-                                </button>
 
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
             <?php endforeach; ?>
-
         </div>
-        <div class="ui bottom attached tab segment h-[calc(100vh_-_250px)] overflow-y-auto" data-tab="third">
-            <!-- Third -->
-            <span>
-                No momento : <?= sizeof($posts1) ?> /4
-            </span>
+        <div class="ui bottom attached tab segment h-[calc(100vh_-_250px)] overflow-y-auto" data-tab="level1">
+                No momento :  <span class="<?= sizeof($posts1) >4  ? 'text-red-500' : 'text-black-500' ?>"> <?= sizeof($posts1)?></span>/4
             <?php
-            foreach ($posts1 as $post): ?>
+            foreach ($posts1 as $post) : ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
-                    <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?>
-                        class=" w-20 h-10 object-cover" />
-                    <p class="w-96">
+                    <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?> class=" w-20 h-20 object-cover" />
+                    <p class="w-96 title">
                         <?= $post["title"] ?>
                     </p>
-                    <p class="w-auto">
+                    <p class="w-auto source">
                         <?= $post["source"] ?>
                     </p>
-                    <p class="w-5">
+                    <p class="w-5 section">
                         <?= $post["section"] ?>
                     </p>
                     <p class="w-24">
                         <?= date("d-m-Y h:i ", $post["post_at"]) ?>
                     </p>
-                    <p class="w-20 ">
+                    <p class="w-20 status">
                         <?= $post["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                     </p>
+                    <div class="w-20 postContent hidden ">
+                        <?= $post["content"] ?>
+                    </div>
+                    <div class="w-20 thumb hidden ">
+                        <?= $post["image"] ?>
+                    </div>
+                    <div class="w-20 postId hidden">
+                        <?= $post["id"] ?>
+                    </div>
                     <div class="flex gap-x-1">
-                        <button class="openmodalPost bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
+                        <button class="openModalBtn bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                             Verificar
                         </button>
                     </div>
                 </div>
-                <!-- begin fourth-a -->
-                <div
-                class="ui modal fullscreen infoModal two column grid h-fit">
-                    <div class="header">
-                        <?= $post["title"] ?>
-                    </div>
-                    <div class=" flex justify-start gap-x-2">
-                        <div class="w-1/6">
-                            <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?>
-                                class=" w-20 h-20 object-cover" />
-                        </div>
-                        <div class="w-5/6">
-                            <span>Posição:</span>
-                            <span <?= $post["section"] ?>></span>
-                            <div>
-                                <span>Status:</span>
-                                <?= $post["status"] == "off" ? "Fora do Ar" : "Publicado" ?>
-                            </div>
-                            <div>
-                                <span>Fonte:</span>
-                                <?= $post["source"] ?>
-                            </div>
 
-                            <div id="content">
-                                <span>Conteúdo:</span>
-                                <?= nl2br($post["content"]) ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="actions">
-                        <div class="flex justify-end items-start w-100 p-3 gap-x-3 h-14">
-                            <button type="button"
-                                class="closemodalPost bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
-                                Fechar
-                            </button>
-                            <?php if ($post["source"] == "Orbital Channel"): ?>
-                                <a href='/admin/editar?id=<?= $post["id"] ?>'
-                                    class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white cursor-pointer hover:text-white">
-                                    Editar
-                                </a>
-                            <?php endif; ?>
-
-                        </div>
-
-                    </div>
-                </div>
             <?php endforeach; ?>
         </div>
-        <div class="ui bottom attached tab segment h-[calc(100vh_-_250px)] overflow-y-auto" data-tab="fourth">
-            <!-- fourth -->
-            <span>
-                No momento : <?= sizeof($posts2) ?> /4
-            </span>
+        <div class="ui bottom attached tab segment h-[calc(100vh_-_250px)] overflow-y-auto" data-tab="level2">
+            No momento :  <span class="<?= sizeof($posts2) > 4  ? 'text-red-500' : 'text-black-500' ?>"> <?= sizeof($posts2)?></span>/4
             <?php
-            foreach ($posts2 as $post): ?>
+            foreach ($posts2 as $post) : ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
-                    <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?>
-                        class=" w-20 h-10 object-cover" />
-                    <p class="w-96">
+                    <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?> class=" w-20 h-20 object-cover" />
+                    <p class="w-96 title">
                         <?= $post["title"] ?>
                     </p>
-                    <p class="w-auto">
+                    <p class="w-auto source">
                         <?= $post["source"] ?>
                     </p>
-                    <p class="w-5">
+                    <p class="w-5 section">
                         <?= $post["section"] ?>
                     </p>
                     <p class="w-24">
                         <?= date("d-m-Y h:i ", $post["post_at"]) ?>
                     </p>
-                    <p class="w-20 ">
+                    <p class="w-20 status">
                         <?= $post["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                     </p>
+                    <div class="w-20 postContent hidden ">
+                        <?= $post["content"] ?>
+                    </div>
+                    <div class="w-20 thumb hidden ">
+                        <?= $post["image"] ?>
+                    </div>
+                    <div class="w-20 postId hidden">
+                        <?= $post["id"] ?>
+                    </div>
                     <div class="flex gap-x-1">
-                        <button class="openmodalPost bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
+                        <button class="openModalBtn bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                             Verificar
                         </button>
                     </div>
                 </div>
-                <!-- begin fourth-a -->
-                <div
-                class="ui modal fullscreen infoModal two column grid h-fit">
-                    <div class="header">
-                        <?= $post["title"] ?>
-                    </div>
-                    <div class=" flex justify-start gap-x-2">
-                        <div class="w-1/6">
-                            <img src="/images/<?= $post["image"] ?>" class="w-28 h-28">
-                        </div>
-                        <div class="w-5/6">
-                            <span>Posição:</span>
-                            <span <?= $post["section"] ?>></span>
-                            <div>
-                                <span>Status:</span>
-                                <?= $post["status"] == "off" ? "Fora do Ar" : "Publicado" ?>
-                            </div>
-                            <div>
-                                <span>Fonte:</span>
-                                <?= $post["source"] ?>
-                            </div>
 
-                            <div id="content">
-                                <span>Conteúdo:</span>
-                                <?= nl2br($post["content"]) ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="actions">
-                        <div class="flex justify-end items-start w-100 p-3 gap-x-3 h-14">
-                            <button type="button"
-                                class="closemodalPost bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
-                                Fechar
-                            </button>
-                            <?php if ($post["source"] == "Orbital Channel"): ?>
-                                <a href='/admin/editar?id=<?= $post["id"] ?>'
-                                    class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white cursor-pointer hover:text-white">
-                                    Editar
-                                </a>
-                            <?php endif; ?>
-
-                        </div>
-
-                    </div>
-                </div>
             <?php endforeach; ?>
         </div>
-        <div class="ui bottom attached tab segment h-[calc(100vh_-_250px)] overflow-y-auto" data-tab="fifth">
-            <!-- fifth -->
-            <span>
-                No momento : <?= sizeof($posts3) ?> /8
-            </span>
+        <div class="ui bottom attached tab segment h-[calc(100vh_-_250px)] overflow-y-auto" data-tab="level3">
+            No momento :  <span class="<?= sizeof($posts3) > 8 ? 'text-red-500' : 'text-black-500' ?>"> <?= sizeof($posts1)?></span>/8
             <?php
-            foreach ($posts3 as $post): ?>
+            foreach ($posts3 as $post) : ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
-                    <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?>
-                        class=" w-20 h-10 object-cover" />
-                    <?= $post["title"] ?>
+                    <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?> class=" w-20 h-20 object-cover" />
+                    <p class="w-96 title">
+                        <?= $post["title"] ?>
                     </p>
-                    <p class="w-auto">
+                    <p class="w-auto source">
                         <?= $post["source"] ?>
                     </p>
-                    <p class="w-5">
+                    <p class="w-5 section">
                         <?= $post["section"] ?>
                     </p>
                     <p class="w-24">
                         <?= date("d-m-Y h:i ", $post["post_at"]) ?>
                     </p>
-                    <p class="w-20 ">
+                    <p class="w-20 status">
                         <?= $post["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                     </p>
+                    <div class="w-20 postContent hidden ">
+                        <?= $post["content"] ?>
+                    </div>
+                    <div class="w-20 thumb hidden ">
+                        <?= $post["image"] ?>
+                    </div>
+                    <div class="w-20 postId hidden">
+                        <?= $post["id"] ?>
+                    </div>
                     <div class="flex gap-x-1">
-                        <button class="openmodalPost bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
+                        <button class="openModalBtn bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                             Verificar
                         </button>
                     </div>
                 </div>
-                <!-- begin fourth-a -->
-                <div
-                class="ui modal fullscreen infoModal two column grid h-fit">
-                    <div class="header">
-                        <?= $post["title"] ?>
-                    </div>
-                    <div class=" flex justify-start gap-x-2">
-                        <div class="w-1/6">
-                            <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?>
-                                class=" w-20 h-20 object-cover" />
-                        </div>
-                        <div class="w-5/6">
-                            <span>Posição:</span>
-                            <span <?= $post["section"] ?>></span>
-                            <div>
-                                <span>Status:</span>
-                                <?= $post["status"] == "off" ? "Fora do Ar" : "Publicado" ?>
-                            </div>
-                            <div>
-                                <span>Fonte:</span>
-                                <?= $post["source"] ?>
-                            </div>
 
-                            <div id="content">
-                                <span>Conteúdo:</span>
-                                <?= nl2br($post["content"]) ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="actions">
-                        <div class="flex justify-end items-start w-100 p-3 gap-x-3 h-14">
-                            <button type="button"
-                                class="closemodalPost bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
-                                Fechar
-                            </button>
-                            <?php if ($post["source"] == "Orbital Channel"): ?>
-                                <a href='/admin/editar?id=<?= $post["id"] ?>'
-                                    class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white cursor-pointer hover:text-white">
-                                    Editar
-                                </a>
-                            <?php endif; ?>
-
-                        </div>
-
-                    </div>
-                </div>
             <?php endforeach; ?>
         </div>
-        <div class="ui bottom attached tab segment h-[calc(100vh_-_250px)] overflow-y-auto" data-tab="sixth">
-            <!-- sixth -->
-            <span>
-                No momento : <?= sizeof($posts4) ?> /9
-            </span>
+        <div class="ui bottom attached tab segment h-[calc(100vh_-_250px)] overflow-y-auto" data-tab="level4">
+            No momento :  <span class="<?= sizeof($posts4) > 9 ? 'text-red-500' : 'text-black-500' ?>"> <?= sizeof($posts1)?></span>/9
             <?php
-            foreach ($posts4 as $post): ?>
+            foreach ($posts4 as $post) : ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
-                    <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?>
-                        class=" w-20 h-20 object-cover" />
-                    <p class="w-96">
+                    <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?> class=" w-20 h-20 object-cover" />
+                    <p class="w-96 title">
                         <?= $post["title"] ?>
                     </p>
-                    <p class="w-auto">
+                    <p class="w-auto source">
                         <?= $post["source"] ?>
                     </p>
-                    <p class="w-5">
+                    <p class="w-5 section">
                         <?= $post["section"] ?>
                     </p>
                     <p class="w-24">
                         <?= date("d-m-Y h:i ", $post["post_at"]) ?>
                     </p>
-                    <p class="w-20 ">
+                    <p class="w-20 status">
                         <?= $post["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                     </p>
+                    <div class="w-20 postContent hidden ">
+                        <?= $post["content"] ?>
+                    </div>
+                    <div class="w-20 thumb hidden ">
+                        <?= $post["image"] ?>
+                    </div>
+                    <div class="w-20 postId hidden">
+                        <?= $post["id"] ?>
+                    </div>
                     <div class="flex gap-x-1">
-                        <button class="openmodalPost bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
+                        <button class="openModalBtn bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                             Verificar
                         </button>
                     </div>
                 </div>
-                <!-- begin fourth-a -->
-                <div
-                class="ui modal fullscreen infoModal two column grid h-fit">
-                    <div class="header">
-                        <?= $post["title"] ?>
-                    </div>
-                    <div class=" flex justify-start gap-x-2">
-                        <div class="w-1/6">
-                            <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?>
-                                class=" w-20 h-10 object-cover" />
-                        </div>
-                        <div class="w-5/6">
-                            <span>Posição:</span>
-                            <span <?= $post["section"] ?>></span>
-                            <div>
-                                <span>Status:</span>
-                                <?= $post["status"] == "off" ? "Fora do Ar" : "Publicado" ?>
-                            </div>
-                            <div>
-                                <span>Fonte:</span>
-                                <?= $post["source"] ?>
-                            </div>
 
-                            <div id="content">
-                                <span>Conteúdo:</span>
-                                <?= nl2br($post["content"]) ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="actions">
-                        <div class="flex justify-end items-start w-100 p-3 gap-x-3 h-14">
-                            <button type="button"
-                                class="closemodalPost bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
-                                Fechar
-                            </button>
-                            <?php if ($post["source"] == "Orbital Channel"): ?>
-                                <a href='/admin/editar?id=<?= $post["id"] ?>'
-                                    class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white cursor-pointer hover:text-white">
-                                    Editar
-                                </a>
-                            <?php endif; ?>
-
-                        </div>
-
-                    </div>
-                </div>
             <?php endforeach; ?>
         </div>
-        <div class="ui bottom attached tab segment h-[calc(100vh_-_250px)] overflow-y-auto" data-tab="seventh">
-            <!-- seventh -->
+        <div class="ui bottom attached tab segment h-[calc(100vh_-_250px)] overflow-y-auto" data-tab="automatics">
+
             <?php
-            foreach ($autoposts as $post): ?>
+            foreach ($autoposts as $post) : ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
-                    <img src="<?= $post["image"] ?>" class=" w-20 h-10  object-fit" />
-                    <p class="w-96">
+                    <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?> class=" w-20 h-20 object-cover" />
+                    <p class="w-96 title">
                         <?= $post["title"] ?>
                     </p>
-                    <p class="w-auto">
+                    <p class="w-auto source">
                         <?= $post["source"] ?>
                     </p>
-                    <p class="w-5">
+                    <p class="w-5 section">
                         <?= $post["section"] ?>
                     </p>
                     <p class="w-24">
                         <?= date("d-m-Y h:i ", $post["post_at"]) ?>
                     </p>
-                    <p class="w-20 ">
+                    <p class="w-20 status">
                         <?= $post["status"] == "on" ? "Publicado" : "Fora do Ar" ?>
                     </p>
+                    <div class="w-20 postContent hidden ">
+                        <?= $post["content"] ?>
+                    </div>
+                    <div class="w-20 thumb hidden ">
+                        <?= $post["image"] ?>
+                    </div>
                     <div class="flex gap-x-1">
-                        <button class="openmodalPost bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
+                        <button class="openModalBtn bg-black hover:bg-red-700 px-3 py-1 rounded text-white m-3">
                             Verificar
                         </button>
                     </div>
                 </div>
-                <!-- begin fourth-a -->
-                <div
-                class="ui modal fullscreen infoModal two column grid h-fit">
-                    <div class="header">
-                        <?= $post["title"] ?>
-                    </div>
-                    <div class=" flex justify-start gap-x-2">
-                        <div class="w-1/6">
-                            <img src="<?= $post["image"] ?>" class="w-28 h-28">
-                        </div>
-                        <div class="w-5/6">
-                            <span>Posição:</span>
-                            <span <?= $post["section"] ?>></span>
-                            <div>
-                                <span>Status:</span>
-                                <?= $post["status"] == "off" ? "Fora do Ar" : "Publicado" ?>
-                            </div>
-                            <div>
-                                <span>Fonte:</span>
-                                <?= $post["source"] ?>
-                            </div>
 
-                            <div id="content">
-                                <span>Conteúdo:</span>
-                                <?= nl2br($post["content"]) ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="actions">
-                        <div class="flex justify-end items-start w-100 p-3 gap-x-3 h-14">
-                            <button type="button"
-                                class="closemodalPost bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
-                                Fechar
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
             <?php endforeach; ?>
         </div>
-    </main>
 
-    <script src="scripts/admin.js" defer></script>
+
 
 </div>
-<?php
-require "views/partials/admin/footer.php";
+</main>
 
-?>
+<!-- MODAL -->
+<div class="ui modal fullscreen modalArea two column grid h-fit">
+    <div class="header">
+        <span id="modalAreaTitle"></span>
+    </div>
+    <div class=" flex  justify-start gap-x-2">
+        <div class="w-1/6">
+            <div id="modalAreaThumb" class="w-full"></div>
+        </div>
+        <div class="w-5/6">
+            <span>Posição:</span>
+            <span id="modalAreaSection"></span>
+            <div>
+                <span>Status:</span>
+                <span id="modalAreaStatus"></span>
+            </div>
+            <div>
+                <span>Fonte:</span>
+                <span id="modalAreaSource"></span>
+            </div>
+
+            <div id="content">
+                <span>Conteúdo:</span>
+                <span id="modalAreaContent"></span>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="flex justify-end items-center p-3 gap-x-3 h-14">
+            <button type="button" id="closeModalBtn" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1">
+                Fechar
+            </button>                
+            <div id="editPostPublish" class="flex justify-center items-center gap-x-3"></div>            
+        </div>
+    </div>
+    <script src="/scripts/posts.js" defer></script>
+    <?php
+    require "views/partials/admin/footer.php";
+
+    ?>

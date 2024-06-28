@@ -12,32 +12,7 @@ $dtMinTime = new DateTime(date('m/d/Y h:i:s a', time()));
 $minTime = $dtMinTime->format('Y-m-d\TH:i');
 
 
-
-
-$errorsUpdate = [];
-
-if (strlen($name) == 0) {
-    $errorsUpdate["adName"] = "Digite o Nome do Anúncio";
-}
-
-if ($position == "none") {
-    $errorsUpdate["adPosition"] = "Selecione uma posição";
-}
-if (strlen($link) == 0) {
-    $errorsUpdate["adLink"] = "Digite o Link";
-}
-if ($starts_at == false) {
-    $errorsUpdate["adStarts_at"] = "Selecione Data Inicial";
-}
-
-if ($finishs_at == false) {
-    $errorsUpdate["adFinishs_at"] = "Selecione Data Final";
-}
-
-if ($finishs_at < $starts_at) {
-    $errors["adFinalDate"] = "Data Final é maior que data Inicial";
-}
-
+$updateAdErrors = [];
 
 $id = (int) $_POST["updateAdId"];
 $name = $_POST["adName"];
@@ -48,8 +23,34 @@ $link = $_POST["adLink"];
 $starts_at = strtotime($_POST["adStarts_at"]);
 $finishs_at = strtotime($_POST["adFinishs_at"]);
 
+if (strlen($name) == 0) {
+    $updateAdErrors["adName"] = "Digite o Nome";
+}
 
-if (empty($errorsUpdate)) {
+if ($position == "none") {
+    $updateAdErrors["adPosition"] = "Selecione uma posição";
+}
+
+if (strlen($link) == 0) {
+    $updateAdErrors["adLink"] = "Digite o Link";
+}
+if ($starts_at == false) {
+    $updateAdErrors["adStarts_at"] = "Selecione Data Inicial";
+}
+
+if ($finishs_at == false) {
+    $updateAdErrors["adFinishs_at"] = "Selecione Data Final";
+}
+
+if ($finishs_at < $starts_at) {
+    $updateAdErrors["adFinalDate"] = "Data Final é maior que data Inicial";
+}
+
+
+
+
+
+if (empty($updateAdErrors)) {
     if ((strlen($_FILES["adUpdateFileUpload"]["name"]) != 0)) {
 
 
@@ -63,7 +64,7 @@ if (empty($errorsUpdate)) {
         $target = "images/ads/" . $_POST["adName"] . "." . $ext;
 
         $file = $file . "." . $ext;
-        $result = $db->insert("UPDATE ads SET
+        $result = $db->update("UPDATE ads SET
             name = '$name',
             position = '$position',
             status = '$status',
@@ -79,7 +80,7 @@ if (empty($errorsUpdate)) {
             }
         }
     } else {
-        $result = $db->insert("UPDATE ads SET
+        $result = $db->update("UPDATE ads SET
     name = '$name',
     position = '$position',
     status = '$status',
@@ -89,10 +90,14 @@ if (empty($errorsUpdate)) {
     WHERE id=$id");
 
         if ($result) {
+            $updateAdErrors = [];
+            $tempUpdateAdContent=[];
+            $_SESSION["updateAdErrors"]=[];
+            $_SESSION["tempUpdateAdContent"]=[];
             header('Location: ' . "/admin/ads");
         }
     }
 }else{
-    $errorsUpdate = http_build_query($errorsUpdate);
-    header('Location: ' . "/admin/ads?$errorsUpdate");
+    $_SESSION["updateAdErrors"]=$updateAdErrors;    
+    header('Location: ' . "/admin/ads");
 }

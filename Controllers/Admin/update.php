@@ -19,8 +19,8 @@ if ($_POST["UpdateStatusId"]) {
 
 
 if ($_POST["ExtPostStatusId"]) {
-    $id = $_POST["ExtPostStatusId"];
-    $status = $_POST["status"];
+    $id = (int) $_POST["ExtPostStatusId"];
+    $status = $_POST["status"];  
 
     $result = $db->update("UPDATE extposts SET status='$status' WHERE id=$id");
     header('Location: ' . "/admin");

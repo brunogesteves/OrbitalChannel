@@ -1,72 +1,91 @@
 <?php
-use Core\Slug;
+
 use Core\Database;
 
-$db = new Database();
-$createSlug = new Slug();
 
+$db = new Database();
 
 date_default_timezone_set('America/Sao_Paulo');
 
-$dtMinTime = new DateTime(date('m/d/Y h:i:s a', time()));
-$minTime = $dtMinTime->format('Y-m-d\TH:i');
+$minTime = (new DateTime(date('m/d/Y h:i:s a', time())))->format('Y-m-d\TH:i');
 
-$title = trim($_POST["title"]);
-$link = "";
-$content = trim($_POST["content"]);
-$section = $_POST["section"];
-$source = "Orbital Channel";
-$slug = trim($createSlug->create($_POST["title"]));
+$errors = [];
+$tempContent=[];
+
+$name = $_POST["adName"];
+$position = $_POST["adPosition"];
 $status = "off";
-$post_at = $_POST["post_at"];
-$image_id = (int) $_POST["image_id"];
+$file = $_POST["adName"];
+$link = $_POST["adLink"];
+$starts_at = strtotime($_POST["adStarts_at"]);
+$finishs_at = strtotime($_POST["adFinishs_at"]);
 
-$tempContent = [];
+if (strlen($name) == 0) {
+    $errors["adName"] = "Digite o Nome";
+}else{
+    $tempContent["adName"] = $_POST["adName"];
+}
+if ($position == "none") {
+    $errors["adPosition"] = "Selecione uma posição";
+}else{
+    $tempContent["adPosition"] = $_POST["adPosition"];
+}
+if (strlen($link) == 0) {
+    $errors["adLink"] = "Digite o Link";
+}else{
+    $tempContent["adLink"] = $_POST["adLink"];    
+}
+if ($starts_at == false) {
+    $errors["adStarts_at"] = "Selecione Data Inicial";
+}else{
+    $tempContent["adStarts_at"] = $_POST["adStarts_at"];
+}
 
-if (strlen($title) == 0) {
-    $errors["title"] = "Digite um Título";
+if ($finishs_at == false) {
+    $errors["adFinishs_at"] = "Selecione Data Final";
 }else{
-    $tempContent["title"] = $title;
+    $tempContent["adFinishs_at"] = $_POST["adFinishs_at"];
 }
-if ($post_at == false) {
-    $errors["date"] = "Escolha uma data";
-}else{
-    $tempContent["date"] = $title;
-} 
-if ($image_id == 0) {
-    $errors["thumb"] = "Escolha um Thumb";
-}else{
-    $tempContent["thumb"] = $title;
-}
-if (strlen($content) == 0) {
-    $errors["content"] = "Crie o conteúdo";
-}else{
-    $tempContent["content"] = $title;
+
+
+
+if ($finishs_at < $starts_at) {
+    $errors["adFinalDate"] = "Data Final é maior que data Inicial";
 }
 
 if (empty($errors)) {
+    $fileName = $_FILES["adFile"]["name"];
+    $tempName = $_FILES["adFile"]["tmp_name"];
+    $fileSize = $_FILES["adFile"]['size'];
+    $fileError = $_FILES["adFile"]['error'];
 
-    $result = $db->insert('INSERT INTO posts(title , link , content , section , source, slug , status ,post_at ,image_id )
-                          VALUES(:title , :link , :content , :section , :source, :slug , :status ,:post_at ,:image_id)', [
-        "title" => $title,
-        "link" => $link,
-        "content" => $content,
-        "section" => $section,
-        "source" => $source,
-        "slug" => $slug,
+
+    $separateFilename = explode('.', $fileName);
+    $ext = $separateFilename[1];
+    $target = "images/ads/" . $file . "." . $ext;
+
+    $file = $file . "." . $ext;
+    $result = $db->insert('INSERT INTO ads(name, position, status, file, link, starts_at, finishs_at)
+            VALUES(:name, :position, :status, :file, :link, :starts_at, :finishs_at)', [
+        "name" => $name,
+        "position" => $position,
         "status" => $status,
-        "post_at" => strtotime($post_at),
-        "image_id" => $image_id
+        "file" => $file,
+        "link" => $link,
+        "starts_at" => $starts_at,
+        "finishs_at" => $finishs_at
     ]);
     if ($result) {
-        $lastId = $db->lastId("SELECT LAST_INSERT_ID()");
-        $_SESSION["errors"] = [];
-        header('Location: ' . "/admin/editar?id=$lastId");
+        if (move_uploaded_file($tempName, $target)) {
+            $errors = [];
+            $tempContent=[];
+            header('Location: ' . "/admin/ads");
 
+        }
     }
 } else {
+    $errors = http_build_query($errors);
     $_SESSION["errors"]=$errors;
     $_SESSION["tempContent"]=$tempContent;
-    header('Location: ' . "/admin/adicionar");
+    header('Location: ' . "/admin/ads");
 }
-

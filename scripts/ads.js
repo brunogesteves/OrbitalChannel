@@ -1,7 +1,5 @@
-$(document).ready(() => {
+$(document).ready(function () {
   $("#adFileUpload").on("change", function () {
-    $(".dd").text("coloca foto");
-
     var imgPath = $(this)[0].value;
 
     if (typeof FileReader != "undefined") {
@@ -42,16 +40,7 @@ $(document).ready(() => {
     }
   });
 
-  const urlToStrip = $(location).attr("href");
-
-  function stripUrl(urlToStrip) {
-    let stripped = urlToStrip.split("?")[0];
-    return stripped;
-  }
-
-  window.history.replaceState(null, "", stripUrl(urlToStrip));
-
-  if ($("#newModalhasErrors").val() != "") {
+  if ($("#newModalhasErrors").val() > 0) {
     // $(`.newAdModal`).show();
     $(`.fullscreen.newAdModal`).modal("toggle");
   }

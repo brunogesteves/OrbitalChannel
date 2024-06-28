@@ -38,14 +38,14 @@ require "views/partials/admin/headerAdmin.php";
                         </p>
                         <div class="flex gap-x-5">
                             <button
-                                class="openExternalInfoModalbtn bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white m-5">
+                                class="openExternalInfoModalbtnbg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white m-5">
                                 Verificar
                             </button>
                         </div>
                     </div>
                     <!-- modal -->
                     <div
-                        class="ui modal two column grid ExternalInfoModal absolute top-[300px] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        class="ui modal fullScreen externalInfoModal h-fit">
                         <div class="header">
                             <?= $result->title ?>
                         </div>

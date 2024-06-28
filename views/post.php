@@ -1,5 +1,5 @@
 <?php
-include ("partials/header.php");
+include("partials/header.php");
 ?>
 <div class="flex max-[767px]:flex-col">
     <div class="w-1/6 max-[767px]:w-full flex justify-center">esquerod</div>
@@ -10,30 +10,23 @@ include ("partials/header.php");
                     <?= $content["title"] ?>
                 </h1>
                 <!-- begin share -->
-                <div
-                    class="flex gap-y-7 justify-end items-center gap-x-7 p-2 rounded-md max-sm:justify-center max-sm:my-5">
-                    <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/"
-                        data-layout="" data-size="">
-                        <a target="_blank"
-                            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
-                            class="fb-xfbml-parse-ignore">
+                <div class="flex gap-y-7 justify-end items-center gap-x-7 p-2 rounded-md max-sm:justify-center max-sm:my-5">
+                    <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="" data-size="">
+                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
 
                         </a>
                     </div>
-                    <a href="https://orbitaltv.net/<?= $content["slug"] ?>" class="twitter-share-button"
-                        data-show-count="false">
+                    <a href="https://orbitaltv.net/<?= $content["slug"] ?>" class="twitter-share-button" data-show-count="false">
                         <img src="images/icons/x.png" class="w-14" />
                     </a>
 
-                    <a href="https://api.whatsapp.com/send?text=https://orbitaltv.net/<?= $content["slug"] ?>"
-                        target="_blank">
+                    <a href="https://api.whatsapp.com/send?text=https://orbitaltv.net/<?= $content["slug"] ?>" target="_blank">
                         <img src="images/whats.svg" class="w-9" />
                     </a>
                 </div>
                 <!-- end share -->
                 <div class="flex justify-center">
-                    <img src="<?= $content["source"] == "Orbital Channel" ? 'images/' . $content["image"] : $content["image"] ?>"
-                        class="w-[652px] h-[419px] h-auto self-center" />
+                    <img src="<?= $content["source"] == "Orbital Channel" ? 'images/' . $content["image"] : $content["image"] ?>" class="w-[652px] h-[419px] h-auto self-center" />
                 </div>
 
                 <!-- begin speechtotext -->
@@ -47,8 +40,7 @@ include ("partials/header.php");
                     <button type="button" id="stop" class="cursor-pointer bg-black text-white p-3">
                         Parar
                     </button>
-                    <input type="submit" id="play" value="Escutar matéria"
-                        class="cursor-pointer bg-black text-white p-3" />
+                    <input type="submit" id="play" value="Escutar matéria" class="cursor-pointer bg-black text-white p-3" />
                 </div>
                 <!-- end speechtotext -->
 
@@ -61,24 +53,23 @@ include ("partials/header.php");
                     <p class="text-start my-4 font-bold max-sm:pl-2">Fonte:
                         <?= $content["source"] ?>
                     </p>
-                    <?php if (!$tempContent["thumb"]): ?>
+                    <?php if (!$tempContent["thumb"]) : ?>
 
-                    <button class="bg-black text-white p-3 w-52 rounded-md" id="button_change">
-                        Ler matéria completa
-                    </button>
+                        <button class="bg-black text-white p-3 w-52 rounded-md" id="button_change">
+                            Ler matéria completa
+                        </button>
                 </div>
             </div>
             <div class="w-full h-full p-3" id="complete">
-                <iframe src=<?= $content["link"] ?> height="100vh" title="description"
-                    style="overflow:hidden;height:100vh;width:100%"></iframe>
+                <iframe src=<?= $content["link"] ?> height="100vh" title="description" style="overflow:hidden;height:100vh;width:100%"></iframe>
             </div>
-            <?php endif; ?>
+        <?php endif; ?>
 
         </div>
     </main>
     <div class="w-1/6 max-[767px]:w-full flex justify-center flex flex-col gap-y-5 text-center">
         <span class="font-bold text-xl">Mais Posts</span>
-        <?php foreach ($morePosts as $morePost): ?>
+        <?php foreach ($morePosts as $morePost) : ?>
             <div>
                 <a href="/<?= $morePost["slug"] ?>">
                     <img src="images/<?= $morePost["image"] ?>" class="max-[767px]:w-full" />
@@ -90,10 +81,8 @@ include ("partials/header.php");
     </div>
 </div>
 <?php
-require ("partials/footer.php");
+require("partials/footer.php");
 ?>
 
 <script src="../scripts/postnews.js" defer></script>
 <script src="../scripts/textspeech.js" defer></script>
-
-

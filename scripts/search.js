@@ -10,6 +10,7 @@ $(document).ready(() => {
 
   $(".openExternalInfoModalbtn").on("click", function () {
     var index = $(".openExternalInfoModalbtn").index(this);
+    $(".fullScreen").modal("show");
     $(`.ExternalInfoModal:eq(${index})`).show();
   });
 
@@ -17,5 +18,4 @@ $(document).ready(() => {
     var index = $(".closeExternalInfoModalbtn").index(this);
     $(`.ExternalInfoModal:eq(${index})`).hide();
   });
-  $(".dd").text("jquery funcionando");
 });
