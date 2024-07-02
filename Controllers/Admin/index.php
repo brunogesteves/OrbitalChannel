@@ -43,6 +43,7 @@ for ($x = 0; $x <= sizeof($autoposts); $x++) {
         }else if($autoposts[$x]["section"] === "n4" ){
             array_push($level4, $autoposts[$x]);
         }
+    
 }
 
 for ($x = 0; $x <= sizeof($extposts); $x++) {

@@ -44,7 +44,6 @@ $(document).ready(function () {
 
     carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
   }
-
   // Next and previous buttons (optional)
   const nextButton = $("#next");
   const prevButton = $("#prev");
@@ -61,74 +60,102 @@ $(document).ready(function () {
     });
   }
 
-  // Auto-advance the carousel (optional)
-  const autoAdvanceInterval = 5000; // Change slide every 3 seconds
+  const autoAdvanceInterval = 5000;
 
   setInterval(() => {
     currentIndex++;
     showSlide(currentIndex);
   }, autoAdvanceInterval);
 
-  // $(".dd").text("juquery slider funciinando: ");
-  // $(window).resize(function () {
-  //   calculateNewScale();
-  // });
-
-  // calculateNewScale(); // if the user go to the page and his window is less than 1920px
-
-  // function calculateNewScale() {
-  //   var percentageOn1 = $(window).width() / 1300;
-  //   $("body").css({
-  //     "-moz-transform": "scale(" + percentageOn1 + ")",
-  //     "-webkit-transform": "scale(" + percentageOn1 + ")",
-  //     transform: "scale(" + percentageOn1 + ")",
-  //   });
-  // }
-
   const carouselAdFront = document.querySelector(".carousel-adfront");
   const slidesAdFront = document.querySelectorAll(".carousel-slide-adfront");
-  let currentIndexAdFront = 0;
+  let currentAdFrontIndex = 0;
 
   function showSlideAdFront(index) {
     if (index < 0) {
-      currentIndexAdFront = slidesAdFront.length - 1;
+      currentAdFrontIndex = slidesAdFront.length - 1;
     } else if (index >= slidesAdFront.length) {
-      currentIndexAdFront = 0;
+      currentAdFrontIndex = 0;
     }
 
     carouselAdFront.style.transform = `translateX(-${
-      currentIndexAdFront * 100
+      currentAdFrontIndex * 100
     }%)`;
   }
 
-  const autoAdvanceIntervalAdFront = 5000;
+  const autoAdvanceAdFrontInterval = 5000;
 
   setInterval(() => {
-    currentIndexAdFront++;
-    showSlideAdFront(currentIndexAdFront);
-  }, autoAdvanceIntervalAdFront);
+    currentAdFrontIndex++;
+    showSlideAdFront(currentAdFrontIndex);
+  }, autoAdvanceAdFrontInterval);
 
-  const carouselSlideAd = document.querySelector(".carousel-SlideAd");
-  const slidesSlideAd = document.querySelectorAll(".carousel-slide-SlideAd");
-  let currentIndexSlideAd = 0;
+  const carouselAdMobile = document.querySelector(".carousel-adMobile");
+  const slidesAdMobile = document.querySelectorAll(".carousel-slide-adMobile");
+  let currentIndexAdMobile = 0;
 
-  function showSlideSlideAd(index) {
+  function showAdMobile(index) {
     if (index < 0) {
-      currentIndexSlideAd = slidesSlideAd.length - 1;
-    } else if (index >= slidesSlideAd.length) {
-      currentIndexSlideAd = 0;
+      currentIndexAdMobile = slidesAdMobile.length - 1;
+    } else if (index >= slidesAdMobile.length) {
+      currentIndexAdMobile = 0;
     }
 
-    carouselSlideAd.style.transform = `translateX(-${
-      currentIndexSlideAd * 100
+    carouselAdMobile.style.transform = `translateX(-${
+      currentIndexAdMobile * 100
     }%)`;
   }
 
-  // Auto-advance the carousel (optional)
-  const autoAdvanceIntervalSlideAd = 5000; // Change slide every 3 seconds
+  const autoAdvanceIntervalAdMobile = 5000;
 
   setInterval(() => {
-    currentIndexSlideAd++;
-    showSlideSlideAd(currentIndexSlideAd);
-  }, autoAdvanceIntervalSlideAd);
+    currentIndexAdMobile++;
+    showAdMobile(currentIndexAdMobile);
+  }, autoAdvanceIntervalAdMobile);
+
+  const carouselAdSlide = document.querySelector(".carousel-adSlide");
+  const slidesAdSlide = document.querySelectorAll(".carousel-slide-adSlide");
+  let currentIndexAdSlide = 0;
+
+  function showAdSlide(index) {
+    if (index < 0) {
+      currentIndexAdSlide = slidesAdSlide.length - 1;
+    } else if (index >= slidesAdSlide.length) {
+      currentIndexAdSlide = 0;
+    }
+
+    carouselAdSlide.style.transform = `translateX(-${
+      currentIndexAdSlide * 100
+    }%)`;
+  }
+
+  const autoAdvanceIntervalAdSlide = 5000;
+
+  setInterval(() => {
+    currentIndexAdSlide++;
+    showAdSlide(currentIndexAdSlide);
+  }, autoAdvanceIntervalAdSlide);
+
+  const carouselAdTablet = document.querySelector(".carousel-adSlide");
+  const slidesTablet = document.querySelectorAll(".carousel-slide-adSlide");
+  let currentIndexAdTablet = 0;
+
+  function showAdTablet(index) {
+    if (index < 0) {
+      currentIndexAdTablet = slidesTablet.length - 1;
+    } else if (index >= slidesTablet.length) {
+      currentIndexAdTablet = 0;
+    }
+
+    carouselAdTablet.style.transform = `translateX(-${
+      currentIndexAdTablet * 100
+    }%)`;
+  }
+
+  const autoAdvanceIntervalAdTablet = 5000;
+
+  setInterval(() => {
+    currentIndexAdTablet++;
+    showAdTablet(currentIndexAdTablet);
+  }, autoAdvanceIntervalAdTablet);
 });

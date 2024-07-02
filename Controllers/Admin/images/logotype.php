@@ -1,9 +1,11 @@
 <?php
 
 
-    $logotype = $_POST["changeLogotype"];
-    var_dump($logotype);
-    $sourceImage = 'images/' . $_POST["changeLogotype"];
-    copy($sourceImage, "images/orbital/logo.png");
-    header('Location: ' . "/admin");
+    
+    $fileName = $_FILES["newLogotypeImage"]["name"];
+    $tempName = $_FILES["newLogotypeImage"]["tmp_name"];
+    $target = "images/orbital/logo.png";
 
+    if (move_uploaded_file($tempName, $target)) {            
+        header('Location: ' . "/admin");        
+    }

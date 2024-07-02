@@ -9,7 +9,7 @@ $(document).ready(() => {
       width: "90%",
       height: "50vh",
       placeholder: "Crie o post....É obrigatório",
-      imageGalleryUrl: "http://localhost:8000/Components/Gallery.php",
+      imageGalleryUrl: "http://orbitalchannel.42web.io/Components/gallery.php",
       videoFileInput: false,
       audioUrlInput: false,
       tabDisable: false,
@@ -47,8 +47,8 @@ $(document).ready(() => {
           "imageGallery",
           "fullScreen",
           "showBlocks",
-          "codeView",
-          // 'preview',
+          //   "codeView",
+          "preview",
           "print",
           "save",
           "template",
@@ -60,7 +60,8 @@ $(document).ready(() => {
   );
 
   editor.onChange = function (contents) {
-    $("#summary").val(contents);
+    let value = contents.target.innerHTML;
+    $("#content").val(value);
   };
 
   editor.onInput = function (contents) {
@@ -78,8 +79,8 @@ $(document).ready(() => {
     $("#image_id").val(fileId);
   });
 
-  $(".openModal").on("click", () => {
-    $(".imageModal").modal("show");
+  $(".openAddImageModalBtn").on("click", () => {
+    $(".addImageModal").modal("show");
   });
 
   $(".selectImage").on("click", (e) => {
@@ -88,7 +89,7 @@ $(document).ready(() => {
       `<img src=../images/${fileName} class="max-h-72" />`
     );
     $("#image_id").val(e.target.id);
-    $(".imageModal").modal("hide");
+    $(".addImageModal").modal("hide");
   });
 
   $(".seeImage").on("click", (e) => {

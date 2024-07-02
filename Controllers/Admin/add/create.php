@@ -1,91 +1,73 @@
 <?php
-
+use Core\Slug;
 use Core\Database;
 
-
 $db = new Database();
+$createSlug = new Slug();
+
 
 date_default_timezone_set('America/Sao_Paulo');
 
-$minTime = (new DateTime(date('m/d/Y h:i:s a', time())))->format('Y-m-d\TH:i');
+$dtMinTime = new DateTime(date('m/d/Y h:i:s a', time()));
+$minTime = $dtMinTime->format('Y-m-d\TH:i');
 
-$errors = [];
-$tempContent=[];
-
-$name = $_POST["adName"];
-$position = $_POST["adPosition"];
+$title = trim($_POST["title"]);
+$link = "";
+$content = trim($_POST["content"]);
+$section = $_POST["section"];
+$source = "Orbital Channel";
+$slug = trim($createSlug->create($_POST["title"]));
 $status = "off";
-$file = $_POST["adName"];
-$link = $_POST["adLink"];
-$starts_at = strtotime($_POST["adStarts_at"]);
-$finishs_at = strtotime($_POST["adFinishs_at"]);
+$post_at = $_POST["post_at"];
+$image_id = (int) $_POST["image_id"];
 
-if (strlen($name) == 0) {
-    $errors["adName"] = "Digite o Nome";
-}else{
-    $tempContent["adName"] = $_POST["adName"];
-}
-if ($position == "none") {
-    $errors["adPosition"] = "Selecione uma posição";
-}else{
-    $tempContent["adPosition"] = $_POST["adPosition"];
-}
-if (strlen($link) == 0) {
-    $errors["adLink"] = "Digite o Link";
-}else{
-    $tempContent["adLink"] = $_POST["adLink"];    
-}
-if ($starts_at == false) {
-    $errors["adStarts_at"] = "Selecione Data Inicial";
-}else{
-    $tempContent["adStarts_at"] = $_POST["adStarts_at"];
-}
+$tempContent = [];
 
-if ($finishs_at == false) {
-    $errors["adFinishs_at"] = "Selecione Data Final";
+if (strlen($title) == 0) {
+    $errors["title"] = "Digite um Título";
 }else{
-    $tempContent["adFinishs_at"] = $_POST["adFinishs_at"];
+    $tempContent["title"] = $title;
 }
-
-
-
-if ($finishs_at < $starts_at) {
-    $errors["adFinalDate"] = "Data Final é maior que data Inicial";
+if ($post_at == false) {
+    $errors["date"] = "Escolha uma data";
+}else{
+    $tempContent["date"] = $title;
+} 
+if ($image_id == 0) {
+    $errors["thumb"] = "Escolha um Thumb";
+}else{
+    $tempContent["thumb"] = $title;
+}
+if (strlen($content) == 0) {
+    $errors["content"] = "Crie o conteúdo";
+}else{
+    $tempContent["content"] = $title;
 }
 
 if (empty($errors)) {
-    $fileName = $_FILES["adFile"]["name"];
-    $tempName = $_FILES["adFile"]["tmp_name"];
-    $fileSize = $_FILES["adFile"]['size'];
-    $fileError = $_FILES["adFile"]['error'];
 
-
-    $separateFilename = explode('.', $fileName);
-    $ext = $separateFilename[1];
-    $target = "images/ads/" . $file . "." . $ext;
-
-    $file = $file . "." . $ext;
-    $result = $db->insert('INSERT INTO ads(name, position, status, file, link, starts_at, finishs_at)
-            VALUES(:name, :position, :status, :file, :link, :starts_at, :finishs_at)', [
-        "name" => $name,
-        "position" => $position,
-        "status" => $status,
-        "file" => $file,
+    $result = $db->insert('INSERT INTO posts(title , link , content , section , source, slug , status ,post_at ,image_id )
+                          VALUES(:title , :link , :content , :section , :source, :slug , :status ,:post_at ,:image_id)', [
+        "title" => $title,
         "link" => $link,
-        "starts_at" => $starts_at,
-        "finishs_at" => $finishs_at
+        "content" => $content,
+        "section" => $section,
+        "source" => $source,
+        "slug" => $slug,
+        "status" => $status,
+        "post_at" => strtotime($post_at),
+        "image_id" => $image_id
     ]);
     if ($result) {
-        if (move_uploaded_file($tempName, $target)) {
-            $errors = [];
-            $tempContent=[];
-            header('Location: ' . "/admin/ads");
+        $lastId = $db->lastId("SELECT LAST_INSERT_ID()");
+        $_SESSION["errors"] = [];
+        header('Location: ' . "/admin/editar?id=$lastId");
 
-        }
     }
 } else {
-    $errors = http_build_query($errors);
     $_SESSION["errors"]=$errors;
     $_SESSION["tempContent"]=$tempContent;
-    header('Location: ' . "/admin/ads");
+    header('Location: ' . "/admin/adicionar");
 }
+
+    

@@ -10,12 +10,11 @@ $(document).ready(() => {
 
   $(".openExternalInfoModalbtn").on("click", function () {
     var index = $(".openExternalInfoModalbtn").index(this);
-    $(".fullScreen").modal("show");
-    $(`.ExternalInfoModal:eq(${index})`).show();
+    $(`.fullScreen.externalInfoModal:eq(${index})`).modal("toggle");
   });
 
   $(".closeExternalInfoModalbtn").on("click", function () {
     var index = $(".closeExternalInfoModalbtn").index(this);
-    $(`.ExternalInfoModal:eq(${index})`).hide();
+    $(`.fullScreen.externalInfoModal:eq(${index})`).modal("toggle");
   });
 });

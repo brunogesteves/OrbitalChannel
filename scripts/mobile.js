@@ -6,35 +6,45 @@ $(document).ready(() => {
     $(".ui.sidebar").sidebar("toggle");
   });
 
-  const carouselMobile = $(".carousel-mobile");
-  const slidesMobile = $(".carousel-slide-mobile");
-  let currentIndexMobile = 0;
+  const carouselMobile = document.querySelector(".carousel-mobile");
+  const slidesMobile = document.querySelectorAll(".carousel-slide-mobile");
 
+  let currentMobileIndex = 0;
   function showSlide(index) {
     if (index < 0) {
-      currentIndexMobile = slidesMobile.length - 1;
-    } else if (index >= slidesMobile.length) {
-      currentIndexMobile = 0;
+      currentMobileIndex = slidesMobile.length - 1;
+    } else if (index >= slidesMobile.length - 4) {
+      currentMobileIndex = 0;
     }
 
     carouselMobile.style.transform = `translateX(-${
-      currentIndexMobile * 100
+      currentMobileIndex * 100
     }%)`;
   }
 
-  // Auto-advance the carousel (optional)
-  const autoAdvanceIntervalMobile = 5000; // Change slide every 3 seconds
+  const autoMobileAdvanceInterval = 5000;
 
   setInterval(() => {
-    currentIndexMobile++;
-    showSlide(currentIndexMobile);
-  }, autoAdvanceIntervalMobile);
+    currentMobileIndex++;
+    showSlide(currentMobileIndex);
+  }, autoMobileAdvanceInterval);
 
-  // const screenWidth = screen.width;
-  // console.log(screenWidth);
-  // if (screenWidth > 425) {
-  //   $(".scrollable").css("width", screenWidth - 20);
-  // }else{
-  //     $(".scrollable").css("width", screenWidth);
-  // }
+  if (isWeekend) {
+    $(".stock").addClass("hidden");
+  } else {
+    var stocksOpenAt = new Date();
+    stocksOpenAt.setHours(9);
+    stocksOpenAt.setMinutes(0);
+    stocksOpenAt.setSeconds(0);
+    var stocksCloseAt = new Date();
+    stocksCloseAt.setHours(18);
+    stocksCloseAt.setMinutes(0);
+    stocksCloseAt.setSeconds(0);
+
+    var isStocksWorking =
+      new Date() > stocksOpenAt && new Date() < stocksCloseAt;
+    if (!isStocksWorking) {
+      $(".stock").addClass("hidden");
+    }
+  }
 });

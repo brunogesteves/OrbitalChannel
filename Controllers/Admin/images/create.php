@@ -5,17 +5,14 @@ use Core\Database;
 
 $db = new Database();
 
-
-
-$fileName = $_FILES["image"]["name"];
+$fileName = str_replace(" ","_",$_FILES["image"]["name"]);
 $tempName = $_FILES["image"]["tmp_name"];
 $fileSize = $_FILES["image"]['size'];
 $fileError = $_FILES["image"]['error'];
 $target = "images/" . $fileName;
 
 if ($fileError === 0 && $fileSize > 0) {
-    if (file_exists($target)) {
-        var_dump("file existe");
+    if (file_exists($target)) {        
         $separateFilename = explode('.', $target);
         $ext = $separateFilename[1];
         $target = $separateFilename[0] . "(1)." . $ext;

@@ -16,7 +16,7 @@
         <div class="w-1/4 flex justify-center ">
             <a href="/"><img src="/images/orbital/logo.png" alt="logo" class="h-[150px] w-[150px]" /></a>
         </div>
-        <form method="post" action="orbital/session/store" class="max-lg:hidden flex flex-col justify-center items-center">
+        <form method="post" action="session/store" class="max-lg:hidden flex flex-col justify-center items-center">
             <input id="email" class="input border-2 border-black rounded-md mb-5 pl-3" autocomplete="off" type="email"
                 name="email" placeholder="Digite o Email" value="email@email.com" />
             <input id="password" class="input border-2 border-black rounded-md mb-5 pl-3" autocomplete="off"

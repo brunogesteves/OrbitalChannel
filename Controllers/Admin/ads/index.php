@@ -22,12 +22,15 @@ $_SESSION["newAdErrors"]=[];
 $_SESSION["tempNewAdContent"]=[];
 $_SESSION["updateAdErrors"]=[];
 
+
 require view("/admin/ads.php", [
     "frontAds" => $frontAds,
     "mobileAds" => $mobileAds,
     "slideAds" => $slideAds,
     "minTime" => $minTime,
     "images" => $images,
-    "newAdErrors" =>$newAdErrors,    
+    "newAdErrors" =>$newAdErrors,
+    "tempNewAdContent" => $tempNewAdContent,
     "updateAdErrors" => $updateAdErrors
+
 ]);

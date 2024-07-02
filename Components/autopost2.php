@@ -8,15 +8,15 @@ class AutomaticPosts
     {
 
         $config = [
-            "host" => "localhost",
+            "host" => "sql109.infinityfree.com",
             "port" => 3306,
-            "dbname" => "orbital",
+            "dbname" => "if0_36762808_orbital",
             "charset" => "utf8mb4"
         ];
 
         $dsn = 'mysql:' . http_build_query($config, "", ";");
 
-        $this->connection = new PDO($dsn, "root", "", [
+        $this->connection = new PDO($dsn, "if0_36762808", "lya92WJOl7HLwW", [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]);
     }
@@ -176,12 +176,10 @@ class AutomaticPosts
             content='$content',
             section='n1',
             source='$source',
+            status='on',
             slug ='$slug',
             image ='$image'
             WHERE id=2");
-
-
-
     }
 }
 

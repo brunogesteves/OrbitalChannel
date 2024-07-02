@@ -1,5 +1,8 @@
 $(document).ready(function () {
+  $("#dd").text("jquery funcionando");
   $("#adFileUpload").on("change", function () {
+    $(".dd").text("coloca foto");
+
     var imgPath = $(this)[0].value;
 
     if (typeof FileReader != "undefined") {

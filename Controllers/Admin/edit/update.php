@@ -8,7 +8,7 @@ $db = new Database();
 
 
 $errors = [];
-
+$tempContent = [];
 
 $id = trim($_POST["id"]);
 $title = trim($_POST["title"]);
@@ -20,30 +20,29 @@ $slug = trim($createSlug->create($_POST["title"]));
 $post_at = $_POST["post_at"] == NULL ? strtotime($_POST["new_post_at"]) : $_POST["post_at"];
 $image_id = (int) $_POST["image_id"];
 
-
-
 if (strlen($title) == 0) {
     $errors["title"] = "Digite um Título";
+}else{
+    $tempContent["title"] = $title;
+}
+if ($post_at == false) {
+    $errors["date"] = "Escolha uma data";
+}else{
+    $tempContent["date"] = $title;
+} 
+if ($image_id == 0) {
+    $errors["thumb"] = "Escolha um Thumb";
+}else{
+    $tempContent["thumb"] = $title;
+}
+if (strlen($content) == 0) {
+    $errors["content"] = "Crie o conteúdo";
+}else{
+    $tempContent["content"] = $title;
 }
 
 if (empty($errors)) {
-    echo "<pre>";
-
-    var_dump("entrou db");
-    // var_dump("title: " . $title);
-    // var_dump("link: " . $link);
-    // var_dump("content: " . $content);
-    // var_dump("section: " . $section);
-    // var_dump("source: " . $source);
-    // var_dump("slug: " . $slug);
-
-    var_dump($_POST["post_at"]);
-    var_dump($_POST["new_post_at"]);
-    var_dump($post_at);
-    // var_dump("image_id: " . $image_id);
-    // var_dump("id: " . $id);
-    echo "</pre>";
-
+    
 
     $result = $db->update("UPDATE posts SET 
         title='$title',
@@ -54,13 +53,16 @@ if (empty($errors)) {
         slug='$slug',
         post_at= $post_at,
         image_id=$image_id 
-        WHERE id=$id");
-    var_dump("saiu db");
+        WHERE id=$id");    
 
 
     if ($result) {
         header('Location: ' . "/admin/editar?id=$id");
     }
 
+}else {
+    $_SESSION["errors"]=$errors;
+    $_SESSION["tempContent"]=$tempContent;
+    header('Location: ' . "/admin/editar?id=$id");
 }
 

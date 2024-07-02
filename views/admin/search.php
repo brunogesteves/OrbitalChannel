@@ -5,7 +5,6 @@ require "views/partials/admin/headerAdmin.php";
 <div class="h-[calc(100vh_-_195px)] flex justify-start">
     <?php
     require "views/partials/admin/sidebar.php";
- 
 
     ?>
 
@@ -14,7 +13,7 @@ require "views/partials/admin/headerAdmin.php";
             <div class="mt-3 w-full">
                 <form method="POST" action="procurar/search"
                     class=" w-full h-20 flex justify-center items-center gap-x-3">
-                    <input type="text" required name="searchTerm" value="brasil"
+                    <input type="text" required name="searchTerm" 
                         class="bg-slate-300 rounded-md pl-2 outline-none" placeholder="buscar" />
                     <select class="h-5" name="language" required>
                         <option value="pt">Português</option>
@@ -38,7 +37,7 @@ require "views/partials/admin/headerAdmin.php";
                         </p>
                         <div class="flex gap-x-5">
                             <button
-                                class="openExternalInfoModalbtnbg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white m-5">
+                                class="openExternalInfoModalbtn bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white m-5">
                                 Verificar
                             </button>
                         </div>

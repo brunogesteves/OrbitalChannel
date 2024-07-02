@@ -1,7 +1,7 @@
 <?php
 require "views/partials/admin/header.php";
 ?>
-<div class="h-[calc(100vh_-_181px)] flex justify-start">
+<div class="h-[calc(98vh_-_180px)] flex justify-start">
     <?php
     require "views/partials/admin/sidebar.php";
     ?>
@@ -20,7 +20,7 @@ require "views/partials/admin/header.php";
             <?php
             foreach ($posts as $post) : ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
-                    <img src="images/<?= $post['image'] ?>" class=" w-20 h-10  object-fit" />
+                    <img src="images/<?= $post['image'] ?>" class=" w-20 object-contain" />
                     <p class="w-96 title">
                         <?= $post["title"] ?>
                     </p>
@@ -63,7 +63,7 @@ require "views/partials/admin/header.php";
             <?php
             foreach ($extposts as $post) : ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
-                    <img src=<?= $post["image"] ?> class=" w-20 h-10 object-cover " />
+                    <img src=<?= $post["image"] ?> class="w-20 object-contain" />
                     <p class="w-96 title">
                         <?= $post["title"] ?>
                     </p>
@@ -108,7 +108,7 @@ require "views/partials/admin/header.php";
             <?php
             foreach ($posts1 as $post) : ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
-                    <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?> class=" w-20 h-20 object-cover" />
+                    <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?> class="w-20 object-contain" />
                     <p class="w-96 title">
                         <?= $post["title"] ?>
                     </p>
@@ -147,7 +147,7 @@ require "views/partials/admin/header.php";
             <?php
             foreach ($posts2 as $post) : ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
-                    <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?> class=" w-20 h-20 object-cover" />
+                    <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?> class="w-20 object-contain" />
                     <p class="w-96 title">
                         <?= $post["title"] ?>
                     </p>
@@ -182,11 +182,11 @@ require "views/partials/admin/header.php";
             <?php endforeach; ?>
         </div>
         <div class="ui bottom attached tab segment h-[calc(100vh_-_250px)] overflow-y-auto" data-tab="level3">
-            No momento :  <span class="<?= sizeof($posts3) > 8 ? 'text-red-500' : 'text-black-500' ?>"> <?= sizeof($posts1)?></span>/8
+            No momento :  <span class="<?= sizeof($posts3) > 8 ? 'text-red-500' : 'text-black-500' ?>"> <?= sizeof($posts3)?></span>/7
             <?php
             foreach ($posts3 as $post) : ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
-                    <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?> class=" w-20 h-20 object-cover" />
+                    <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?> class="w-20 object-contain" />
                     <p class="w-96 title">
                         <?= $post["title"] ?>
                     </p>
@@ -221,11 +221,11 @@ require "views/partials/admin/header.php";
             <?php endforeach; ?>
         </div>
         <div class="ui bottom attached tab segment h-[calc(100vh_-_250px)] overflow-y-auto" data-tab="level4">
-            No momento :  <span class="<?= sizeof($posts4) > 9 ? 'text-red-500' : 'text-black-500' ?>"> <?= sizeof($posts1)?></span>/9
+            No momento :  <span class="<?= sizeof($posts4) > 9 ? 'text-red-500' : 'text-black-500' ?>"> <?= sizeof($posts4)?></span>/9
             <?php
             foreach ($posts4 as $post) : ?>
                 <div class="flex justify-between items-center h-auto w-full my-2 px-3 py-2 gap-x-1">
-                    <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?> class=" w-20 h-20 object-cover" />
+                    <img src=<?= $post["source"] == "Orbital Channel" ? '/images/' . $post["image"] : $post["image"] ?> class="w-20 object-contain" />
                     <p class="w-96 title">
                         <?= $post["title"] ?>
                     </p>

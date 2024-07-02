@@ -3,27 +3,27 @@ require "views/partials/admin/headerAdmin.php";
 ?>
 
 
-<div class="h-[calc(100vh_-_188px)] flex justify-start">
+<div class="h-full flex justify-start">
     <?php
     require "views/partials/admin/sidebar.php";
     ?>
 
     <main class="flex flex-col w-full">
         <div class="w-full flex justify-center items-start gap-x-5">
-            <form method="POST" action="orbital/admin/imagens/create" enctype="multipart/form-data" class="flex flex-col">
+            <form method="POST" action="imagens/create" enctype="multipart/form-data" class="flex flex-col">
                 <input type="file" name="image" id="fileUpload" required accept=".jpg, .jpeg, .png" />
                 <button type="submit" class="text-white bg-black my-7 p-2 rounded-lg text-xl">adicionar</button>
             </form>
             <div id="previewInputImage"> </div>
         </div>
-        <div class="flex justify-start items-start gap-x-7 flex-wrap h-[calc(100vh_-_250px)] overflow-y-auto">
+        <div class="flex justify-start items-start gap-x-7 flex-wrap overflow-y-auto"">
             <?php
             foreach ($images as $image): ?>
                 <div class="cursor-pointer w-1/6 mr-3 relative">
                     <div class="ui dimmable image">
                         <div class="ui dimmer">
                             <div class="content">
-                                <form method="post" action="orbital/admin/imagens/destroy">
+                                <form method="post" action="imagens/destroy">
                                     <input type="hidden" name="imageId" value=<?= $image["id"] ?> />
                                     <input type="hidden" name="imageName" value=<?= $image["name"] ?> />
                                     <div class="ui button seePicture" id=<?= $image["name"] ?>>Ver</div>

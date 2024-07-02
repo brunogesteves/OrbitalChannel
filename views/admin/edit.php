@@ -35,9 +35,9 @@
                             </select>
                             <input id="image_id" type="hidden" name="image_id" value="<?= $post["image_id"] ?>" />
                             
-                            <div class="ui approve button openModal">Selecione uma Thumb</div>
-                            <div id="previewImage">                            
-                                <img src="../images/<?=$post["image"] ?>"/>
+                            <div class="ui approve button openEditImageModalBtn">Selecione uma Thumb</div>
+                            <div id="previewImage" class="flex justify-center">                            
+                                <img src="../images/<?=$post["image"] ?>" />
                             </div>
                             <input type="hidden" name="content" id="content" value="<?=$post["content"]?>">
                             <input type="hidden" name="id" value="<?=$id?>">
@@ -50,8 +50,8 @@
 
                         </div>
                     </form>
-                    <div class="ui modal imageModal">
-                        <div class="flex justify-around flex-wrap bg-slate-300 overflow-y-auto h-screen">
+                    <div class="ui modal editImageModal bg-slate-300  h-screen">
+                    <div class="flex justify-between flex-wrap overflow-y-auto gap-y-5">
                             <?php
                             foreach ($images as $image): ?>
                                 <div class="cursor-pointer w-1/6 mr-3">
@@ -59,9 +59,8 @@
                                         <div class="ui dimmer">
                                             <div >
                                                 <div class="ui button seeImage" id=<?= $image["name"] ?>>Ver</div>
-                                                <button class="ui primary button selectImage"
+                                                <button class="ui primary button selectEditImage"
                                                     id=<?= $image["id"] ?> name=<?= $image["name"] ?> >Selecionar</button>
-
                                             </div>
                                         </div>
                                         <img src="../images/<?=$image["name"] ?>" alt=<?= $image["name"] ?>
@@ -74,11 +73,11 @@
                 </div>
                 <div class="ui modal fullScreen">
                     <div class="text-2xl ml-3 mt-3  cursor-pointer closeImage">X</div>
-                    <div id="modalImage"></div>
+                    <div id="modalImage" class="flex justify-center mb-5"></div>
                 </div>
                 <div class="w-8/12 z-0">
                     <div class="h-full flex items-start justify-center">
-                        <textarea id="editor"></textarea>
+                        <textarea id="editor">Carregando Editor...</textarea>
                     </div>
                 </div>
             </div>

@@ -61,7 +61,7 @@ $(document).ready(() => {
                     <option value="n3">n3</option>
                     <option value="n4">n4</option>
                 </select>	
-                <input type="hidden" name="sectionUpdateExtPostId" value=${postId} />                 
+                <input type="hidden" name="sectionUpdateExtPostId" value=${postId} />                
                 <button type="submit" name="_method" value="put"
                   class="bg-blue-600 hover:bg-blue-700 px-3 py-1 ml-3 rounded text-white cursor-pointer">
                   Atualizar seção

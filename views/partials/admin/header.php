@@ -9,7 +9,7 @@
 
 
     <script src="scripts/tailwind.js"></script>
-    <script src="scripts/scripts.js" defer></script>
+    <script src="scripts/admin.js" defer></script>
     <link rel="shortcut icon" href="images/orbital/logo.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="styles/semantic.min.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -36,8 +36,8 @@
             <div class="flex flex-col justify-start items-center pt-10 min-h-96">
                 <span class="text-3xl font-bold text-black">Selecione um novo Logotipo</span>                
                 <form method="POST" action="admin/imagens/logotype" enctype="multipart/form-data" class="flex flex-col mt-10">
-                    <input type="file" name="image" id="newLogotype" required accept=".png" />
-                    <button type="submit" class="text-white bg-black my-7 p-2 rounded-lg text-xl">Mudar Logotipo</button>
+                    <input type="file" name="newLogotypeImage" id="newLogotype" required accept=".png" />
+                    <button type="submit" name="_method" value="put" class="text-white bg-black my-7 p-2 rounded-lg text-xl">Mudar Logotipo</button>
                 </form>
                 <div id="previewNewLogotype"> </div>
                 </form>                
@@ -46,7 +46,7 @@
         <div class="text-4xl" id="timestamp"></div>
         <div class="flex flex-col items-center">
 
-            <form method="POST" action="orbital//session/delete">
+            <form method="POST" action="/session/delete">
                 <button type="submit" name="_method" value="DELETE"
                     class=" cursor-pointer text-xl bg-black text-white w-20 text-center mt-3 rounded-md">
                     Sair</button>
